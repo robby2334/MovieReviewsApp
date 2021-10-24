@@ -5,7 +5,9 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.CountDownTimer
 import com.dev.divig.moviereviewsapp.R
-import com.dev.divig.moviereviewsapp.ui.intropage.IntroPageActivity
+import com.dev.divig.moviereviewsapp.data.local.preference.MoviePreference
+import com.dev.divig.moviereviewsapp.ui.intro.IntroActivity
+import com.dev.divig.moviereviewsapp.ui.main.MainActivity
 
 class SplashScreenActivity : AppCompatActivity() {
     private var timer: CountDownTimer? = null
@@ -24,9 +26,16 @@ class SplashScreenActivity : AppCompatActivity() {
             }
 
             override fun onFinish() {
-                val intent = Intent(this@SplashScreenActivity, IntroPageActivity::class.java)
-                intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-                startActivity(intent)
+                val isFirstRunApp = MoviePreference(this@SplashScreenActivity).isFirstRunApp
+                if (isFirstRunApp) {
+                    val intent = Intent(this@SplashScreenActivity, IntroActivity::class.java)
+                    intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                    startActivity(intent)
+                } else {
+                    val intent = Intent(this@SplashScreenActivity, MainActivity::class.java)
+                    intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                    startActivity(intent)
+                }
             }
 
         }
