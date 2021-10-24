@@ -10,6 +10,7 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
 import com.dev.divig.moviereviewsapp.R
+import com.dev.divig.moviereviewsapp.data.local.preference.MoviePreference
 import com.dev.divig.moviereviewsapp.databinding.ActivityIntroBinding
 import com.dev.divig.moviereviewsapp.ui.main.MainActivity
 
@@ -22,7 +23,7 @@ class IntroActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityIntroBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        setIntroPage()
+        setIntro()
         supportActionBar?.hide()
         setupIndicator()
         setCurrentIndicator(0)
@@ -73,7 +74,7 @@ class IntroActivity : AppCompatActivity() {
     }
 
 
-    private fun setIntroPage() {
+    private fun setIntro() {
         introDataAdapter = IntroAdapter(
             listOf(
                 IntroData(
@@ -119,15 +120,16 @@ class IntroActivity : AppCompatActivity() {
                     binding.mbBtnNext.text = getString(R.string.text_navigate_to_main_page)
                 }
             } else {
-                navigateToHomeActivity()
+                navigateToMainActivity()
             }
         }
 
     }
 
-    private fun navigateToHomeActivity() {
+    private fun navigateToMainActivity() {
+        MoviePreference(this@IntroActivity).isFirstRunApp = false
         val intent = Intent(applicationContext, MainActivity::class.java)
-//        intent.putExtra()
+        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
         startActivity(intent)
         finish()
 
