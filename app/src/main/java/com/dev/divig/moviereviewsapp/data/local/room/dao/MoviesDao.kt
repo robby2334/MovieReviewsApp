@@ -7,7 +7,7 @@ import com.dev.divig.moviereviewsapp.data.model.ReviewEntity
 @Dao
 interface MoviesDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertMovies(movies: List<MovieEntity>): Long
+    suspend fun insertMovies(movies: MovieEntity): Long
 
     @Query("SELECT * FROM tb_movie")
     suspend fun getMovies(): List<MovieEntity>
