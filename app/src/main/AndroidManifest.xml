@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MovieReviewsApp">
         <activity
+            android:name=".data.model.DetailMovieActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.main.MainActivity"
             android:exported="true">
             <intent-filter>
