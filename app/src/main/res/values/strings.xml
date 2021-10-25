@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">Movie Reviews App</string>
+    <string name="genre">Genre</string>
+    <string name="date_release">Date Release</string>
+    <string name="overview">Overview</string>
+    <string name="add_your_reviews">Add your reviews</string>
+    <string name="input_review">Review about this, share it with your friends</string>
+    <string name="duration">Duration</string>
+    <string name="title_movie">Jungle Cruise</string>
 </resources>
