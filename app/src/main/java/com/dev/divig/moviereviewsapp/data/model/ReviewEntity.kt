@@ -10,7 +10,7 @@ data class ReviewEntity (
     @PrimaryKey
     @NonNull
     @ColumnInfo(name = "id")
-    var id: Int,
+    var id: String,
 
     @ColumnInfo(name = "movie_id")
     var movieId: Int,
