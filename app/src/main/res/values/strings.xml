@@ -6,5 +6,6 @@
     <string name="add_your_reviews">Add your reviews</string>
     <string name="input_review">Review about this, share it with your friends</string>
     <string name="duration">Duration</string>
-    <string name="title_movie">Jungle Cruise</string>
+    <string name="profile_movie">Profile Movie</string>
+    <string name="ic_back">ic Back</string>
 </resources>
