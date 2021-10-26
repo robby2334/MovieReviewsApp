@@ -5,8 +5,12 @@ import com.dev.divig.moviereviewsapp.data.model.MovieEntity
 import com.dev.divig.moviereviewsapp.data.model.ReviewEntity
 
 class MoviesDataSourceImpl(private val dao: MoviesDao) : MoviesDataSource {
-    override suspend fun insertMovies(movies: List<MovieEntity>): Int {
-        return dao.insertMovies(movies)
+    override suspend fun insertMovies(movies: List<MovieEntity>): Long {
+        var result = 0L
+        movies.forEach {
+            result = dao.insertMovies(it)
+        }
+        return result
     }
 
     override suspend fun getMovies(): List<MovieEntity> {
