@@ -1,4 +1,4 @@
-package com.dev.divig.moviereviewsapp.ui.intro
+package com.dev.divig.moviereviewsapp.ui.intro.adapter
 
 import android.view.LayoutInflater
 import android.view.View
@@ -7,10 +7,10 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.dev.divig.moviereviewsapp.R
+import com.dev.divig.moviereviewsapp.ui.intro.model.IntroData
 
 class IntroAdapter(private val intro: List<IntroData>) :
     RecyclerView.Adapter<IntroAdapter.IntroViewHolder>() {
-
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): IntroViewHolder {
         return IntroViewHolder(

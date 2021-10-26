@@ -1,4 +1,4 @@
-package com.dev.divig.moviereviewsapp.ui.intro
+package com.dev.divig.moviereviewsapp.ui.intro.model
 
 data class IntroData(
     val introDataImage: Int,
