@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">Movie Reviews App</string>
     <string name="text_menu_about">About</string>
+    <string name="text_empty_movie">There\'s no movies</string>
 </resources>
