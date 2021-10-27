@@ -9,8 +9,7 @@ import com.dev.divig.moviereviewsapp.databinding.ItemReviewBinding
 
 
 class BottomReviewDialog (
-private val itemClick: (ReviewEntity) -> Unit) : RecyclerView.Adapter<BottomReviewDialog.ViewHolder>()
-{
+private val itemClick: (ReviewEntity) -> Unit) : RecyclerView.Adapter<BottomReviewDialog.ViewHolder>() {
 
 
     private var items: MutableList<ReviewEntity> = mutableListOf()
@@ -53,10 +52,11 @@ private val itemClick: (ReviewEntity) -> Unit) : RecyclerView.Adapter<BottomRevi
                 binding.tvReviewName.text = item.author
                 binding.tvDescReview.text = item.content
                 binding.tvDateReview.text = item.createAt
-            }
-            itemView.setOnClickListener { itemClick(this)
+                itemView.setOnClickListener {
+                    itemClick(this)
+                }
             }
         }
-    }
 
+    }
 }
