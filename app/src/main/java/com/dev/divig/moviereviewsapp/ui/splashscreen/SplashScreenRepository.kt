@@ -4,7 +4,7 @@ import com.dev.divig.moviereviewsapp.data.local.preference.MoviePreference
 
 class SplashScreenRepository(private val moviePreference: MoviePreference) :
     SplashScreenContract.Repository {
-    override fun isFirstRunApp(): Boolean {
+    override fun getStateFirstRunApp(): Boolean {
         return moviePreference.isFirstRunApp
     }
 }

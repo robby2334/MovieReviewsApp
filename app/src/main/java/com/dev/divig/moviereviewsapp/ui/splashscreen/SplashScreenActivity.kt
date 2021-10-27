@@ -1,12 +1,10 @@
 package com.dev.divig.moviereviewsapp.ui.splashscreen
 
-import android.content.Intent
 import android.os.CountDownTimer
 import com.dev.divig.moviereviewsapp.base.BaseActivity
 import com.dev.divig.moviereviewsapp.data.local.preference.MoviePreference
 import com.dev.divig.moviereviewsapp.databinding.ActivitySplashScreenBinding
-import com.dev.divig.moviereviewsapp.ui.intro.IntroActivity
-import com.dev.divig.moviereviewsapp.ui.main.MainActivity
+import com.dev.divig.moviereviewsapp.utils.Constant
 
 class SplashScreenActivity :
     BaseActivity<ActivitySplashScreenBinding, SplashScreenContract.Presenter>(
@@ -26,9 +24,8 @@ class SplashScreenActivity :
     }
 
     override fun setSplashScreenTimer() {
-        timer = object : CountDownTimer(3000, 1000) {
+        timer = object : CountDownTimer(Constant.THREE_SECOND, Constant.ONE_SECOND) {
             override fun onTick(p0: Long) {}
-
             override fun onFinish() {
                 checkStateFirstRunApp()
             }
@@ -41,15 +38,11 @@ class SplashScreenActivity :
     }
 
     override fun navigateToIntroPage() {
-        val intent = Intent(this@SplashScreenActivity, IntroActivity::class.java)
-        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-        startActivity(intent)
+        // TODO: 27-Oct-21 Navigate to IntroPage
     }
 
     override fun navigateToMainPage() {
-        val intent = Intent(this@SplashScreenActivity, MainActivity::class.java)
-        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-        startActivity(intent)
+        // TODO: 27-Oct-21 Navigate to MainPage
     }
 
     override fun onDestroy() {

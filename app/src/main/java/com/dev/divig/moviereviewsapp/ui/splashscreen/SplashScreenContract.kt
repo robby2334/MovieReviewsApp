@@ -3,7 +3,7 @@ package com.dev.divig.moviereviewsapp.ui.splashscreen
 import com.dev.divig.moviereviewsapp.base.BaseContract
 
 interface SplashScreenContract {
-    interface View : BaseContract.BaseView{
+    interface View : BaseContract.BaseView {
         fun setSplashScreenTimer()
         fun checkStateFirstRunApp()
         fun navigateToIntroPage()
@@ -15,6 +15,6 @@ interface SplashScreenContract {
     }
 
     interface Repository {
-        fun isFirstRunApp() : Boolean
+        fun getStateFirstRunApp(): Boolean
     }
 }

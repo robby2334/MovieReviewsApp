@@ -10,12 +10,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MovieReviewsApp">
         <activity
-            android:name=".ui.intro.IntroActivity"
-            android:exported="true" />
-        <activity
             android:name=".ui.splashscreen.SplashScreenActivity"
-            android:theme="@style/SplashScreenTheme"
-            android:exported="true">
+            android:exported="true"
+            android:noHistory="true"
+            android:theme="@style/SplashScreenTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -26,5 +24,4 @@
             android:name=".ui.main.MainActivity"
             android:exported="true" />
     </application>
-
 </manifest>

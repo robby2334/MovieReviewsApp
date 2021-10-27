@@ -7,7 +7,7 @@ class SplashScreenPresenter(
     private val repository: SplashScreenContract.Repository
 ) : SplashScreenContract.Presenter, BasePresenterImpl() {
     override fun checkStateFirstRunApp() {
-        if (repository.isFirstRunApp()) {
+        if (repository.getStateFirstRunApp()) {
             view.navigateToIntroPage()
         } else {
             view.navigateToMainPage()
