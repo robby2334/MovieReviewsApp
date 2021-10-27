@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:app="http://schemas.android.com/apk/res-auto"
+xmlns:tools="http://schemas.android.com/tools"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+tools:context=".ui.bottomsheetreview.BottomSheetReviewActivity">
+
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/_400sdp"
+    android:background="@drawable/bg_bottom_sheet_dialog"
+    app:layout_behavior="@string/bottom_sheet_behavior"
+    android:id="@+id/bts_review">
+
+    <ImageView
+        android:id="@+id/iv_add_review"
+        android:layout_width="@dimen/_12sdp"
+        android:layout_height="@dimen/_12sdp"
+        android:src="@drawable/ic_add_review"
+        android:layout_marginTop="@dimen/_25sdp"
+        android:layout_marginStart="@dimen/_18sdp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@id/tv_add_reviews" />
+
+    <TextView
+        android:id="@+id/tv_add_reviews"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/text_placeholder_add_review"
+        android:fontFamily="@font/roboto_light"
+        android:textSize="@dimen/_10ssp"
+        android:textColor="#FCCF00"
+        android:layout_marginTop="@dimen/_23sdp"
+        android:layout_marginStart="@dimen/_5sdp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toRightOf="@id/iv_add_review"
+        app:layout_constraintRight_toRightOf="parent"/>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/til_review"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_18sdp"
+        android:layout_marginTop="@dimen/_6sdp"
+        android:layout_marginEnd="@dimen/_18sdp"
+        app:boxStrokeColor="#1F2A33"
+        android:background="@drawable/bg_edit_text"
+        android:textSize="@dimen/_10ssp"
+        app:hintEnabled="false"
+        app:endIconMode="custom"
+        app:endIconDrawable="@drawable/ic_send_24"
+        app:endIconTint="#151E27"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/iv_add_review">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/et_text_review"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:fontFamily="@font/roboto_light"
+            android:hint="@string/text_hint_input_review" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rc_review"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:listitem="@layout/item_review"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:layout_marginStart="@dimen/_18sdp"
+        android:layout_marginEnd="@dimen/_18sdp"
+        app:layout_constraintTop_toBottomOf="@id/til_review"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"/>
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
