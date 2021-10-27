@@ -1,9 +1,9 @@
 package com.dev.divig.moviereviewsapp.ui.intro
 
-import android.content.Intent
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.LinearLayout
+import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
@@ -12,8 +12,7 @@ import com.dev.divig.moviereviewsapp.base.BaseActivity
 import com.dev.divig.moviereviewsapp.data.local.preference.MoviePreference
 import com.dev.divig.moviereviewsapp.databinding.ActivityIntroBinding
 import com.dev.divig.moviereviewsapp.ui.intro.adapter.IntroAdapter
-import com.dev.divig.moviereviewsapp.ui.intro.model.IntroData
-import com.dev.divig.moviereviewsapp.ui.main.MainActivity
+import com.dev.divig.moviereviewsapp.ui.intro.model.Intro
 
 class IntroActivity :
     BaseActivity<ActivityIntroBinding, IntroContract.Presenter>(ActivityIntroBinding::inflate),
@@ -70,7 +69,6 @@ class IntroActivity :
                         applicationContext, R.drawable.ic_indicator_inactive
                     )
                 )
-
                 it.layoutParams = layoutParams
                 indicatorContainer.addView(it)
             }
@@ -80,15 +78,15 @@ class IntroActivity :
     override fun setIntro() {
         introDataAdapter = IntroAdapter(
             listOf(
-                IntroData(
+                Intro(
                     introDataImage = R.drawable.image_test_intro,
                     introDataDesc = getString(R.string.desc_intro_1)
                 ),
-                IntroData(
+                Intro(
                     introDataImage = R.drawable.image_test_intro,
                     introDataDesc = getString(R.string.desc_intro_2)
                 ),
-                IntroData(
+                Intro(
                     introDataImage = R.drawable.image_test_intro,
                     introDataDesc = getString(R.string.desc_intro_3)
                 )
@@ -104,13 +102,10 @@ class IntroActivity :
                 setCurrentIndicator(position)
 
                 if (introViewPager.currentItem + 1 < introDataAdapter.itemCount) {
-                    getViewBinding().mbBtnNext.text = getString(R.string.text_btn_next)
-
+                    getViewBinding().mbBtnNext.text = getString(R.string.text_placeholder_next)
                 } else {
                     getViewBinding().mbBtnNext.text = getString(R.string.text_navigate_to_main_page)
                 }
-
-
             }
         })
         (introViewPager.getChildAt(0) as RecyclerView).overScrollMode =
@@ -126,14 +121,11 @@ class IntroActivity :
                 navigateToMainPage()
             }
         }
-
     }
 
     override fun navigateToMainPage() {
         getPresenter().setStateFirstRunApp()
-        val intent = Intent(applicationContext, MainActivity::class.java)
-        startActivity(intent)
-        finish()
+        Toast.makeText(this, "Navigate to Main Page", Toast.LENGTH_SHORT).show()
+        // TODO: 27-Oct-21 Navigate to MainPage
     }
-
 }

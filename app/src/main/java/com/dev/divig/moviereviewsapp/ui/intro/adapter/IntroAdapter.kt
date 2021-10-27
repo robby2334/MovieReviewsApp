@@ -1,25 +1,19 @@
 package com.dev.divig.moviereviewsapp.ui.intro.adapter
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.dev.divig.moviereviewsapp.R
-import com.dev.divig.moviereviewsapp.ui.intro.model.IntroData
+import coil.load
+import com.dev.divig.moviereviewsapp.databinding.ItemIntroContainerBinding
+import com.dev.divig.moviereviewsapp.ui.intro.model.Intro
 
-class IntroAdapter(private val intro: List<IntroData>) :
+class IntroAdapter(private val intro: List<Intro>) :
     RecyclerView.Adapter<IntroAdapter.IntroViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): IntroViewHolder {
-        return IntroViewHolder(
-            LayoutInflater.from(parent.context).inflate(
-                R.layout.intro_container,
-                parent,
-                false
-            )
-        )
+        val binding =
+            ItemIntroContainerBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        return IntroViewHolder(binding)
     }
 
     override fun onBindViewHolder(holder: IntroViewHolder, position: Int) {
@@ -30,13 +24,11 @@ class IntroAdapter(private val intro: List<IntroData>) :
         return intro.size
     }
 
-    inner class IntroViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        private val imageIntro = view.findViewById<ImageView>(R.id.iv_image_intro)
-        private val descIntro = view.findViewById<TextView>(R.id.tv_desc_intro)
-
-        fun bind(intro: IntroData) {
-            imageIntro.setImageResource(intro.introDataImage)
-            descIntro.text = intro.introDataDesc
+    inner class IntroViewHolder(private val binding: ItemIntroContainerBinding) :
+        RecyclerView.ViewHolder(binding.root) {
+        fun bind(intro: Intro) {
+            binding.ivImageIntro.load(intro.introDataImage)
+            binding.tvDescIntro.text = intro.introDataDesc
         }
     }
 }

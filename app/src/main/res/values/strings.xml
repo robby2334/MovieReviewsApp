@@ -3,8 +3,6 @@
     <string name="desc_intro_1">In this application you will find many interesting movie reviews</string>
     <string name="desc_intro_2">The choice of movies is very wide and diverse. It will help you choose the best movies</string>
     <string name="desc_intro_3">Let\'s get access to a huge number of great reviews on all movies</string>
-    <string name="text_btn_next">Next</string>
+    <string name="text_placeholder_next">Next</string>
     <string name="text_navigate_to_main_page">Start Finding Reviews</string>
-
-
 </resources>

@@ -11,38 +11,39 @@
         android:id="@+id/vp_intro"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginBottom="30dp"
-        app:layout_constraintBottom_toTopOf="@id/mb_btn_next"
+        app:layout_constraintBottom_toTopOf="@id/ll_indicators_container"
         app:layout_constraintTop_toTopOf="parent" />
 
     <LinearLayout
         android:id="@+id/ll_indicators_container"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="50dp"
         android:orientation="horizontal"
         app:layout_constraintBottom_toTopOf="@id/mb_btn_next"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent" />
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.95" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/mb_btn_next"
+        style="@style/Text.Bold.Movie.App"
         android:layout_width="@dimen/_185sdp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/_50sdp"
         android:backgroundTint="@color/color_secondary"
         android:paddingStart="@dimen/_20sdp"
         android:paddingTop="@dimen/_10sdp"
         android:paddingEnd="@dimen/_20sdp"
         android:paddingBottom="@dimen/_10sdp"
-        android:text="Next"
+        android:text="@string/text_placeholder_next"
         android:textAllCaps="false"
         android:textColor="@color/color_primary"
         android:textSize="@dimen/_12ssp"
-        android:textStyle="bold"
         app:cornerRadius="@dimen/_25sdp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.95" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
