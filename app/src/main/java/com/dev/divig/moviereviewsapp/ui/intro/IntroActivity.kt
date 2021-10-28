@@ -1,9 +1,10 @@
 package com.dev.divig.moviereviewsapp.ui.intro
 
+import android.content.Context
+import android.content.Intent
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.LinearLayout
-import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
@@ -13,6 +14,7 @@ import com.dev.divig.moviereviewsapp.data.local.preference.MoviePreference
 import com.dev.divig.moviereviewsapp.databinding.ActivityIntroBinding
 import com.dev.divig.moviereviewsapp.ui.intro.adapter.IntroAdapter
 import com.dev.divig.moviereviewsapp.ui.intro.model.Intro
+import com.dev.divig.moviereviewsapp.ui.main.MainActivity
 
 class IntroActivity :
     BaseActivity<ActivityIntroBinding, IntroContract.Presenter>(ActivityIntroBinding::inflate),
@@ -125,7 +127,14 @@ class IntroActivity :
 
     override fun navigateToMainPage() {
         getPresenter().setStateFirstRunApp()
-        Toast.makeText(this, "Navigate to Main Page", Toast.LENGTH_SHORT).show()
-        // TODO: 27-Oct-21 Navigate to MainPage
+        MainActivity.startActivity(this)
+    }
+
+    companion object {
+        @JvmStatic
+        fun startActivity(context: Context?) {
+            val intent = Intent(context, IntroActivity::class.java)
+            context?.startActivity(intent)
+        }
     }
 }

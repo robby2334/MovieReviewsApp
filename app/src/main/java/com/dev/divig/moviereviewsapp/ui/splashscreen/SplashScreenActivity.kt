@@ -8,6 +8,8 @@ import com.dev.divig.moviereviewsapp.data.local.preference.MoviePreference
 import com.dev.divig.moviereviewsapp.data.local.room.MoviesDatabase
 import com.dev.divig.moviereviewsapp.data.local.room.datasource.MoviesDataSourceImpl
 import com.dev.divig.moviereviewsapp.databinding.ActivitySplashScreenBinding
+import com.dev.divig.moviereviewsapp.ui.intro.IntroActivity
+import com.dev.divig.moviereviewsapp.ui.main.MainActivity
 import com.dev.divig.moviereviewsapp.utils.Constant
 import com.dev.divig.moviereviewsapp.utils.DataDummy
 
@@ -73,11 +75,11 @@ class SplashScreenActivity :
     }
 
     override fun navigateToIntroPage() {
-        // TODO: 27-Oct-21 Navigate to IntroPage
+        IntroActivity.startActivity(this)
     }
 
     override fun navigateToMainPage() {
-        // TODO: 27-Oct-21 Navigate to MainPage
+        MainActivity.startActivity(this)
     }
 
     override fun onDestroy() {
