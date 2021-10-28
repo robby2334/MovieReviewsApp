@@ -25,6 +25,7 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainActivityContract.Pres
         setupRecyclerView(DataDummy.getMovies())
 //        insertMovies()
 //        getMovies()
+
         setupBanner()
         setupAppbar()
     }
