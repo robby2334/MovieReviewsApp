@@ -51,6 +51,14 @@ class DetailActivity :
 
     override fun fetchData(movie: MovieEntity) {
         getViewBinding().detailMovie.tvTitleMovie.text = movie.title
+        getViewBinding().imgCollapsing.setImageResource(movie.backdropPath!!.toInt())
+        getViewBinding().detailMovie.ivProfileMovie.setImageResource(movie.posterPath!!.toInt())
+        getViewBinding().detailMovie.tvGenre.text = movie.genres
+        getViewBinding().detailMovie.tvDate.text = movie.releaseDate
+        getViewBinding().detailMovie.tvRuntime.text = movie.runtime.toString()
         getViewBinding().detailMovie.tvOverview.text = movie.overview
     }
 }
+
+
+

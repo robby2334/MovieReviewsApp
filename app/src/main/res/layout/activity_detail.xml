@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/color_primary">
+    android:background="@color/color_primary"
+    tools:context=".ui.detail.DetailActivity">
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appBarLayout"
@@ -53,9 +54,8 @@
 
                 <ImageView
                     android:id="@+id/iv_btn_back"
-                    android:layout_width="@dimen/_25sdp"
-                    android:layout_height="@dimen/_25sdp"
-                    android:layout_gravity="center"
+                    android:layout_width="@dimen/_30sdp"
+                    android:layout_height="@dimen/_30sdp"
                     android:contentDescription="@string/ic_back"
                     app:srcCompat="@drawable/ic_back" />
             </androidx.appcompat.widget.Toolbar>
