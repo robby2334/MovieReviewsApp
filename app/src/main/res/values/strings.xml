@@ -6,4 +6,6 @@
     <string name="text_placeholder_next">Next</string>
     <string name="text_navigate_to_main_page">Start Finding Reviews</string>
     <string name="text_placeholder_welcome">Welcome to</string>
+    <string name="text_menu_about">About</string>
+    <string name="text_empty_movie">There\'s no movies</string>
 </resources>
