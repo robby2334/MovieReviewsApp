@@ -12,6 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MovieReviewsApp">
         <activity
+            android:name=".ui.about.AboutActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.intro.IntroActivity"
             android:exported="true"
             android:noHistory="true" />

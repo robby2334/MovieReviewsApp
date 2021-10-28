@@ -8,4 +8,9 @@
     <string name="text_placeholder_welcome">Welcome to</string>
     <string name="text_menu_about">About</string>
     <string name="text_empty_movie">There\'s no movies</string>
+    <string name="text_placeholder_about">About</string>
+    <string name="text_placeholder_version">Version %s</string>
+    <string name="text_placeholder_copyright">© 2021 Team 1</string>
+    <string name="text_placeholder_development">Development by</string>
+    <string name="text_placeholder_challenge">Challenge | Chapter VI</string>
 </resources>
