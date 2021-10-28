@@ -1,5 +1,7 @@
 package com.dev.divig.moviereviewsapp.ui.main
 
+import android.content.Context
+import android.content.Intent
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
@@ -14,19 +16,14 @@ import com.dev.divig.moviereviewsapp.data.model.MovieEntity
 import com.dev.divig.moviereviewsapp.databinding.ActivityMainBinding
 import com.dev.divig.moviereviewsapp.ui.main.adapter.MovieAdapter
 import com.dev.divig.moviereviewsapp.utils.Constant
-import com.dev.divig.moviereviewsapp.utils.DataDummy
-import java.util.ArrayList
+import java.util.*
 
 class MainActivity : BaseActivity<ActivityMainBinding, MainActivityContract.Presenter>(
     ActivityMainBinding::inflate
 ), MainActivityContract.View {
 
     override fun initView() {
-        setupRecyclerView(DataDummy.getMovies())
-//        insertMovies()
-//        getMovies()
-
-        setupBanner()
+        getMovies()
         setupAppbar()
     }
 
@@ -36,52 +33,8 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainActivityContract.Pres
         setPresenter(MainActivityPresenter(this, repository))
     }
 
-    override fun setupRecyclerView(movies: List<MovieEntity>) {
-        val adapter = MovieAdapter(
-            MovieAdapter.OnClickListener {
-                setClickListeners(it)
-            }
-        )
-        adapter.submitList(movies)
-        getViewBinding().rvMovie.adapter = adapter
-    }
-
-    override fun setClickListeners(movie: MovieEntity) {
-        Toast.makeText(this, movie.title, Toast.LENGTH_SHORT).show()
-    }
-
-    override fun onInsertDataCallback(response: Resource<Pair<Boolean, Int>>) {
-        when (response) {
-            is Resource.Loading -> {
-            }
-            is Resource.Success -> {
-                showLoading(false)
-                response.data?.let { result ->
-                    var msg: Pair<String, String>? = null
-                    when (result.second) {
-                        Constant.ACTION_INSERT -> {
-                            msg = Pair("Insert Success", "Insert Failed")
-                        }
-                        Constant.ACTION_EDIT -> {
-                            msg = Pair("Edit Success", "Edit Failed")
-                        }
-                        Constant.ACTION_DELETE -> {
-                            msg = Pair("Delete Success", "Delete Failed")
-                        }
-                    }
-                    if (result.first) {
-                        Toast.makeText(this, msg?.first, Toast.LENGTH_SHORT).show()
-                        finish()
-                    } else {
-                        Toast.makeText(this, msg?.second, Toast.LENGTH_SHORT).show()
-                        finish()
-                    }
-                }
-            }
-            is Resource.Error -> {
-                Toast.makeText(this, response.message, Toast.LENGTH_SHORT).show()
-            }
-        }
+    override fun getMovies() {
+        getPresenter().getMovies()
     }
 
     override fun onDataCallback(response: Resource<List<MovieEntity>>) {
@@ -101,6 +54,7 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainActivityContract.Pres
                         showError(false, null)
                         showContent(true)
                         setupRecyclerView(it)
+                        setupBanner(it)
                     }
                 }
             }
@@ -112,24 +66,28 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainActivityContract.Pres
         }
     }
 
-    override fun insertMovies() {
-        getPresenter().insertMovies(DataDummy.getMovies())
+    override fun setupRecyclerView(movies: List<MovieEntity>) {
+        val adapter = MovieAdapter(
+            MovieAdapter.OnClickListener {
+                navigateToDetail(it)
+            }
+        )
+        adapter.submitList(movies)
+        getViewBinding().rvMovie.adapter = adapter
     }
 
-    override fun getMovies() {
-        getPresenter().getMovies()
+    private fun navigateToDetail(movie: MovieEntity) {
+        Toast.makeText(this, movie.title, Toast.LENGTH_SHORT).show()
     }
 
-    override fun setupBanner() {
-        val baseUrl = "https://image.tmdb.org/t/p/w500"
+    override fun setupBanner(movie: List<MovieEntity>) {
         val imageList = ArrayList<SlideModel>().apply {
-            add(SlideModel("$baseUrl/lNyLSOKMMeUPr1RsL4KcRuIXwHt.jpg", ""))
-            add(SlideModel("$baseUrl/2cdrhlf3hvvueGyQDx0u8jpWvQR.jpg", ""))
-            add(SlideModel("$baseUrl/8Y43POKjjKDGI9MH89NW0NAzzp8.jpg", ""))
-            add(SlideModel("$baseUrl/x6E7DS5ZcMoCITjkO0RiLLQ9Nb0.jpg", ""))
-            add(SlideModel("$baseUrl/ux6gkGSKNFtp2NFYxwYFxVWdnGa.jpg", ""))
+            add(SlideModel(Constant.BASE_URL_IMAGE + movie[0].posterPath, ""))
+            add(SlideModel(Constant.BASE_URL_IMAGE + movie[1].posterPath, ""))
+            add(SlideModel(Constant.BASE_URL_IMAGE + movie[2].posterPath, ""))
+            add(SlideModel(Constant.BASE_URL_IMAGE + movie[3].posterPath, ""))
+            add(SlideModel(Constant.BASE_URL_IMAGE + movie[4].posterPath, ""))
         }
-
         getViewBinding().imgSlider.setImageList(imageList, ScaleTypes.FIT)
     }
 
@@ -147,14 +105,14 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainActivityContract.Pres
             else -> super.onOptionsItemSelected(item)
         }
     }
-    
-    private fun navigateToAbout(){
+
+    private fun navigateToAbout() {
         Toast.makeText(this, "open about page", Toast.LENGTH_SHORT).show()
     }
 
-    private fun setupAppbar(){
+    private fun setupAppbar() {
         getViewBinding().topAppBar.setOnMenuItemClickListener {
-            when (it.itemId){
+            when (it.itemId) {
                 R.id.menu_about -> {
                     Toast.makeText(this, "goto about page", Toast.LENGTH_SHORT).show()
                     true
@@ -164,4 +122,11 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainActivityContract.Pres
         }
     }
 
+    companion object {
+        @JvmStatic
+        fun startActivity(context: Context?) {
+            val intent = Intent(context, MainActivity::class.java)
+            context?.startActivity(intent)
+        }
+    }
 }
