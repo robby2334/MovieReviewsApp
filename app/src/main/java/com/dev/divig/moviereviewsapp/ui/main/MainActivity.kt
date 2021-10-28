@@ -26,6 +26,7 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainActivityContract.Pres
 //        insertMovies()
 //        getMovies()
         setupBanner()
+        setupAppbar()
     }
 
     override fun initPresenter() {
@@ -128,7 +129,6 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainActivityContract.Pres
             add(SlideModel("$baseUrl/ux6gkGSKNFtp2NFYxwYFxVWdnGa.jpg", ""))
         }
 
-//        imageList
         getViewBinding().imgSlider.setImageList(imageList, ScaleTypes.FIT)
     }
 
@@ -150,4 +150,17 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainActivityContract.Pres
     private fun navigateToAbout(){
         Toast.makeText(this, "open about page", Toast.LENGTH_SHORT).show()
     }
+
+    private fun setupAppbar(){
+        getViewBinding().topAppBar.setOnMenuItemClickListener {
+            when (it.itemId){
+                R.id.menu_about -> {
+                    Toast.makeText(this, "goto about page", Toast.LENGTH_SHORT).show()
+                    true
+                }
+                else -> true
+            }
+        }
+    }
+
 }

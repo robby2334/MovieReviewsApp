@@ -9,6 +9,7 @@
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
+        android:id="@+id/abl_main"
         android:layout_height="@dimen/_200sdp"
         android:fitsSystemWindows="true"
         android:theme="@style/Theme.MovieReviewsApp.ActionBar">
@@ -18,7 +19,6 @@
             android:layout_height="match_parent"
             android:fitsSystemWindows="true"
             app:layout_scrollFlags="scroll|snap|exitUntilCollapsed"
-            app:title="Movies"
             app:contentScrim="?attr/colorPrimary"
             android:id="@+id/collapsing_toolbar">
 
@@ -36,7 +36,10 @@
                 app:iss_period="1000"
                 tools:ignore="MissingConstraints" />
 
-            <androidx.appcompat.widget.Toolbar
+            <com.google.android.material.appbar.MaterialToolbar
+                android:id="@+id/top_app_bar"
+                app:menu="@menu/menu_main"
+                app:title="@string/app_name"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
                 app:layout_collapseMode="pin"/>
