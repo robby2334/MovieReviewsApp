@@ -24,9 +24,9 @@ class SplashScreenActivity :
     }
 
     override fun initPresenter() {
-        val dataSource = MoviesDataSourceImpl(MoviesDatabase.getInstance(this).moviesDao())
+        val localDataSource = MoviesDataSourceImpl(MoviesDatabase.getInstance(this).moviesDao())
         val moviePreference = MoviePreference(this)
-        val repository = SplashScreenRepository(dataSource, moviePreference)
+        val repository = SplashScreenRepository(localDataSource, moviePreference)
         setPresenter(SplashScreenPresenter(this, repository))
     }
 
@@ -37,10 +37,13 @@ class SplashScreenActivity :
             is Resource.Success -> {
                 response.data?.let { result ->
                     if (result) {
-                        Toast.makeText(this, "Insert Success", Toast.LENGTH_SHORT).show()
                         setSplashScreenTimer()
                     } else {
-                        Toast.makeText(this, "Insert Failed", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(
+                            this,
+                            "There was a problem loading the data, please try again.",
+                            Toast.LENGTH_SHORT
+                        ).show()
                         setSplashScreenTimer()
                     }
                 }
@@ -51,11 +54,11 @@ class SplashScreenActivity :
         }
     }
 
-    override fun insertMovies() {
+    private fun insertMovies() {
         getPresenter().insertMovies(DataDummy.getMovies())
     }
 
-    override fun setSplashScreenTimer() {
+    private fun setSplashScreenTimer() {
         timer = object : CountDownTimer(Constant.THREE_SECOND, Constant.ONE_SECOND) {
             override fun onTick(p0: Long) {}
             override fun onFinish() {
@@ -65,7 +68,7 @@ class SplashScreenActivity :
         timer?.start()
     }
 
-    override fun checkStateFirstRunApp() {
+    private fun checkStateFirstRunApp() {
         getPresenter().checkStateFirstRunApp()
     }
 

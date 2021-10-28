@@ -31,7 +31,7 @@ class SplashScreenPresenter(
     }
 
     override fun checkStateFirstRunApp() {
-        if (repository.getStateFirstRunApp()) {
+        if (repository.isFirstRunApp()) {
             view.navigateToIntroPage()
         } else {
             view.navigateToMainPage()

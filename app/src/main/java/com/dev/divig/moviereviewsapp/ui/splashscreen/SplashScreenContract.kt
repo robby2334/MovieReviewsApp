@@ -7,9 +7,6 @@ import com.dev.divig.moviereviewsapp.data.model.MovieEntity
 interface SplashScreenContract {
     interface View : BaseContract.BaseView {
         fun onDataCallback(response: Resource<Boolean>)
-        fun insertMovies()
-        fun setSplashScreenTimer()
-        fun checkStateFirstRunApp()
         fun navigateToIntroPage()
         fun navigateToMainPage()
     }
@@ -20,7 +17,7 @@ interface SplashScreenContract {
     }
 
     interface Repository {
-        suspend fun insertMovies(movies: List<MovieEntity>): Long
-        fun getStateFirstRunApp(): Boolean
+        suspend fun insertMovies(movies: List<MovieEntity>): Int
+        fun isFirstRunApp(): Boolean
     }
 }
