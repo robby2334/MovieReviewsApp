@@ -2,11 +2,11 @@ package com.dev.divig.moviereviewsapp.ui.bottomsheetreview
 
 import com.dev.divig.moviereviewsapp.base.BasePresenterImpl
 
-class BottomSheetReviewPresenter(
-    private val view: BottomSheetReviewContract.View,
-    private val repository: BottomSheetReviewContract.Repository
+class ReviewsBottomSheetPresenter(
+    private val view: ReviewsBottomSheetContract.View,
+    private val repository: ReviewsBottomSheetContract.Repository
 ) :
-    BottomSheetReviewContract.Presenter, BasePresenterImpl() {
+    ReviewsBottomSheetContract.Presenter, BasePresenterImpl() {
     override fun getReviewsByMovieId() {
         TODO("Not yet implemented")
     }

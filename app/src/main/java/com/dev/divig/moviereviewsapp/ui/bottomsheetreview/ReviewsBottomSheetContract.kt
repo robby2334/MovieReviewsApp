@@ -1,11 +1,10 @@
 package com.dev.divig.moviereviewsapp.ui.bottomsheetreview
 
 import com.dev.divig.moviereviewsapp.base.BaseContract
-import com.dev.divig.moviereviewsapp.base.model.Resource
 import com.dev.divig.moviereviewsapp.data.model.MovieEntity
 import com.dev.divig.moviereviewsapp.data.model.ReviewEntity
 
-interface BottomSheetReviewContract {
+interface ReviewsBottomSheetContract {
     interface View : BaseContract.BaseView {
         fun onInsertSuccess(rowsAffected : Number)
         fun onDeleteSuccess(rowsAffected : Number)

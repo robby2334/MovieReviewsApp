@@ -1,72 +1,72 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="@dimen/_264sdp"
-    android:layout_height="@dimen/_97sdp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    app:cardCornerRadius="@dimen/_10sdp"
-    app:cardBackgroundColor="#1F2A33"
+    android:layout_width="@dimen/_264sdp"
+    android:layout_height="@dimen/_97sdp"
     android:layout_marginLeft="8dp"
+    android:layout_marginTop="4dp"
     android:layout_marginRight="8dp"
     android:layout_marginBottom="4dp"
-    android:layout_marginTop="4dp">
+    app:cardBackgroundColor="#1F2A33"
+    app:cardCornerRadius="@dimen/_10sdp">
 
-<androidx.constraintlayout.widget.ConstraintLayout
-    android:padding="@dimen/_4sdp"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
-    <TextView
-        android:id="@+id/tv_review_name"
-        tools:text="@string/text_placeholder_name_reviewer"
-        android:fontFamily="@font/roboto_bold"
-        android:textColor="#CED8DE"
-        android:textSize="@dimen/_12sdp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/_8sdp"
-        android:layout_marginStart="@dimen/_8sdp"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"/>
-    
-    <ImageView
-        android:id="@+id/iv_delete_review"
-        android:layout_width="@dimen/_12sdp"
-        android:layout_height="@dimen/_12sdp"
-        android:src="@drawable/ic_delete_review"
-        android:layout_marginTop="@dimen/_12sdp"
-        android:layout_marginStart="@dimen/_200sdp"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintLeft_toRightOf="@id/tv_review_name"
-        android:clickable="true"
-        android:focusable="true" />
-    
-    <TextView
-        android:id="@+id/tv_desc_review"
-        android:layout_width="@dimen/_240sdp"
-        android:layout_height="@dimen/_34sdp"
-        tools:text="@string/text_placeholder_review"
-        android:fontFamily="@font/roboto_light"
-        android:textSize="@dimen/_10ssp"
-        android:textColor="#CED8DE"
-        android:layout_marginTop="@dimen/_8sdp"
-        android:layout_marginStart="@dimen/_4sdp"
-        app:layout_constraintTop_toBottomOf="@id/tv_review_name"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"/>
-
-    <TextView
-        android:id="@+id/tv_date_review"
-        tools:text="@string/text_placeholder_date_add_review"
-        android:fontFamily="@font/roboto_light"
-        android:textSize="@dimen/_7sdp"
-        android:textColor="#CED8DE"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/_8sdp"
-        android:layout_marginEnd="@dimen/_14sdp"
-        app:layout_constraintTop_toBottomOf="@id/tv_desc_review"
-        app:layout_constraintRight_toRightOf="parent"
-        android:gravity="end"/>
-</androidx.constraintlayout.widget.ConstraintLayout>
+        android:layout_height="match_parent"
+        android:padding="@dimen/_4sdp">
+
+        <TextView
+            android:id="@+id/tv_review_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_8sdp"
+            android:layout_marginTop="@dimen/_8sdp"
+            android:fontFamily="@font/roboto_bold"
+            android:textColor="#CED8DE"
+            android:textSize="@dimen/_12sdp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Shodiq" />
+
+        <ImageView
+            android:id="@+id/iv_delete_review"
+            android:layout_width="@dimen/_12sdp"
+            android:layout_height="@dimen/_12sdp"
+            android:layout_marginStart="@dimen/_200sdp"
+            android:layout_marginTop="@dimen/_12sdp"
+            android:clickable="true"
+            android:focusable="true"
+            android:src="@drawable/ic_delete_review"
+            app:layout_constraintLeft_toRightOf="@id/tv_review_name"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_desc_review"
+            android:layout_width="@dimen/_240sdp"
+            android:layout_height="@dimen/_34sdp"
+            android:layout_marginStart="@dimen/_4sdp"
+            android:layout_marginTop="@dimen/_8sdp"
+            android:fontFamily="@font/roboto_light"
+            android:textColor="#CED8DE"
+            android:textSize="@dimen/_10ssp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_review_name"
+            tools:text="Just. Don't. Watch. You have been warned." />
+
+        <TextView
+            android:id="@+id/tv_date_review"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_8sdp"
+            android:layout_marginEnd="@dimen/_14sdp"
+            android:fontFamily="@font/roboto_light"
+            android:gravity="end"
+            android:textColor="#CED8DE"
+            android:textSize="@dimen/_7sdp"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_desc_review"
+            tools:text="2021" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.cardview.widget.CardView>

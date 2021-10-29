@@ -4,9 +4,9 @@ import com.dev.divig.moviereviewsapp.data.local.room.datasource.MoviesDataSource
 import com.dev.divig.moviereviewsapp.data.model.MovieEntity
 import com.dev.divig.moviereviewsapp.data.model.ReviewEntity
 
-class BottomSheetReviewRepository(
+class ReviewsBottomSheetRepository(
     private val dataSource: MoviesDataSource
-) : BottomSheetReviewContract.Repository {
+) : ReviewsBottomSheetContract.Repository {
     override suspend fun getReviewsByMovieId(): List<ReviewEntity> {
         TODO("Not yet implemented")
     }

@@ -7,8 +7,9 @@ import com.dev.divig.moviereviewsapp.data.model.ReviewEntity
 import com.dev.divig.moviereviewsapp.databinding.ItemReviewBinding
 
 
-class BottomReviewDialogAdapter (
-private val itemClick: (ReviewEntity) -> Unit) : RecyclerView.Adapter<BottomReviewDialogAdapter.ViewHolder>() {
+class ReviewsBottomSheetAdapter(
+    private val itemClick: (ReviewEntity) -> Unit
+) : RecyclerView.Adapter<ReviewsBottomSheetAdapter.ViewHolder>() {
 
 
     private var items: MutableList<ReviewEntity> = mutableListOf()
