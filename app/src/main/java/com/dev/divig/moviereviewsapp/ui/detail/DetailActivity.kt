@@ -13,9 +13,20 @@ class DetailActivity :
     BaseActivity<ActivityDetailBinding, DetailContract.Presenter>(ActivityDetailBinding::inflate),
     DetailContract.View {
     override fun initView() {
+
         getExtras()
+
+
         getViewBinding().ivBtnBack.setOnClickListener {
             onBackPressed()
+        }
+        //intent add review
+        getViewBinding().detailMovie.tvAddReviews.setOnClickListener {
+
+        }
+        //intent add review
+        getViewBinding().detailMovie.tvAddOverviewTitle.setOnClickListener {
+
         }
     }
 
@@ -51,8 +62,8 @@ class DetailActivity :
 
     override fun fetchData(movie: MovieEntity) {
         getViewBinding().detailMovie.tvTitleMovie.text = movie.title
-        getViewBinding().imgCollapsing.setImageResource(movie.backdropPath!!.toInt())
-        getViewBinding().detailMovie.ivProfileMovie.setImageResource(movie.posterPath!!.toInt())
+//        getViewBinding().imgCollapsing.setImageResource(movie.backdropPath)
+//        getViewBinding().detailMovie.ivProfileMovie.setImageResource(movie.posterPath)
         getViewBinding().detailMovie.tvGenre.text = movie.genres
         getViewBinding().detailMovie.tvDate.text = movie.releaseDate
         getViewBinding().detailMovie.tvRuntime.text = movie.runtime.toString()

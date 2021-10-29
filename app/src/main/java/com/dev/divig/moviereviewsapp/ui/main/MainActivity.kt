@@ -10,15 +10,23 @@ import com.dev.divig.moviereviewsapp.utils.Constant
 import com.dev.divig.moviereviewsapp.utils.DataDummy
 
 class MainActivity : AppCompatActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
+
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         supportActionBar?.hide()
 
         findViewById<Button>(R.id.btn_click).setOnClickListener {
-            val intent = Intent(this, DetailActivity::class.java)
-            intent.putExtra(Constant.KEY_EXTRA_ID, DataDummy.getMovies()[0].id)
+        val intent = Intent(this, DetailActivity::class.java)
+            intent.putExtra(Constant.KEY_EXTRA_ID, DataDummy.getMovies()[1].id)
             startActivity(intent)
-        }
+     }
+        findViewById<Button>(R.id.btn_click1).setOnClickListener {
+        val intent = Intent(this, DetailActivity::class.java)
+            intent.putExtra(Constant.KEY_EXTRA_ID, DataDummy.getMovies()[2].id)
+            startActivity(intent)
+     }
+
     }
 }
