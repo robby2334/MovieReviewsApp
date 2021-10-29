@@ -48,6 +48,8 @@ dependencies {
     implementation "com.intuit.sdp:sdp-android:$intuitVersion"
     implementation "io.coil-kt:coil:$coilVersion"
     implementation "com.github.AppIntro:AppIntro:$appIntro"
+    implementation "com.facebook.shimmer:shimmer:$shimmerVersion"
+    implementation "com.github.denzcoskun:ImageSlideshow:$imgSliderVersion"
 
     //room
     implementation "androidx.room:room-ktx:$roomVersion"
