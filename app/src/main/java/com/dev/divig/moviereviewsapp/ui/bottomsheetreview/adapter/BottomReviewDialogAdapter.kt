@@ -1,15 +1,14 @@
 package com.dev.divig.moviereviewsapp.ui.bottomsheetreview.adapter;
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.dev.divig.moviereviewsapp.data.model.ReviewEntity
 import com.dev.divig.moviereviewsapp.databinding.ItemReviewBinding
 
 
-class BottomReviewDialog (
-private val itemClick: (ReviewEntity) -> Unit) : RecyclerView.Adapter<BottomReviewDialog.ViewHolder>() {
+class BottomReviewDialogAdapter (
+private val itemClick: (ReviewEntity) -> Unit) : RecyclerView.Adapter<BottomReviewDialogAdapter.ViewHolder>() {
 
 
     private var items: MutableList<ReviewEntity> = mutableListOf()
@@ -57,6 +56,6 @@ private val itemClick: (ReviewEntity) -> Unit) : RecyclerView.Adapter<BottomRevi
                 }
             }
         }
-
     }
+
 }
