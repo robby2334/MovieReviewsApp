@@ -30,6 +30,20 @@ class SplashScreenPresenter(
         }
     }
 
+    override fun checkAvailabilityMovieData() {
+        scope.launch {
+            if (repository.getMovies().isEmpty()) {
+                scope.launch(Dispatchers.Main) {
+                    view.insertMovies()
+                }
+            } else {
+                scope.launch(Dispatchers.Main) {
+                    view.setSplashScreenTimer()
+                }
+            }
+        }
+    }
+
     override fun checkStateFirstRunApp() {
         if (repository.isFirstRunApp()) {
             view.navigateToIntroPage()

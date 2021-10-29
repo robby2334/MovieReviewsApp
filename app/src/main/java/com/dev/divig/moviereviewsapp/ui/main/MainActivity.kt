@@ -14,6 +14,7 @@ import com.dev.divig.moviereviewsapp.data.local.room.MoviesDatabase
 import com.dev.divig.moviereviewsapp.data.local.room.datasource.MoviesDataSourceImpl
 import com.dev.divig.moviereviewsapp.data.model.MovieEntity
 import com.dev.divig.moviereviewsapp.databinding.ActivityMainBinding
+import com.dev.divig.moviereviewsapp.ui.about.AboutActivity
 import com.dev.divig.moviereviewsapp.ui.main.adapter.MovieAdapter
 import com.dev.divig.moviereviewsapp.utils.Constant
 import java.util.*
@@ -82,11 +83,11 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainActivityContract.Pres
 
     override fun setupBanner(movie: List<MovieEntity>) {
         val imageList = ArrayList<SlideModel>().apply {
-            add(SlideModel(Constant.BASE_URL_IMAGE + movie[0].posterPath, ""))
-            add(SlideModel(Constant.BASE_URL_IMAGE + movie[1].posterPath, ""))
-            add(SlideModel(Constant.BASE_URL_IMAGE + movie[2].posterPath, ""))
-            add(SlideModel(Constant.BASE_URL_IMAGE + movie[3].posterPath, ""))
-            add(SlideModel(Constant.BASE_URL_IMAGE + movie[4].posterPath, ""))
+            add(SlideModel(Constant.BASE_URL_IMAGE + movie[0].backdropPath, ""))
+            add(SlideModel(Constant.BASE_URL_IMAGE + movie[2].backdropPath, ""))
+            add(SlideModel(Constant.BASE_URL_IMAGE + movie[4].backdropPath, ""))
+            add(SlideModel(Constant.BASE_URL_IMAGE + movie[6].backdropPath, ""))
+            add(SlideModel(Constant.BASE_URL_IMAGE + movie[8].backdropPath, ""))
         }
         getViewBinding().imgSlider.setImageList(imageList, ScaleTypes.FIT)
     }
@@ -107,14 +108,14 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainActivityContract.Pres
     }
 
     private fun navigateToAbout() {
-        Toast.makeText(this, "open about page", Toast.LENGTH_SHORT).show()
+        AboutActivity.startActivity(this)
     }
 
     private fun setupAppbar() {
         getViewBinding().topAppBar.setOnMenuItemClickListener {
             when (it.itemId) {
                 R.id.menu_about -> {
-                    Toast.makeText(this, "goto about page", Toast.LENGTH_SHORT).show()
+                    navigateToAbout()
                     true
                 }
                 else -> true
@@ -128,4 +129,5 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainActivityContract.Pres
             val intent = Intent(context, MainActivity::class.java)
             context?.startActivity(intent)
         }
+    }
 }

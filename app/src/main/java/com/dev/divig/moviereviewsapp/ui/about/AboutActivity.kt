@@ -15,7 +15,8 @@ class AboutActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityAboutBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        supportActionBar?.title = getString(R.string.text_placeholder_about)
+        setSupportActionBar(binding.toolbarAbout)
+        supportActionBar?.setDisplayShowTitleEnabled(false)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         binding.tvVersion.text =
             getString(R.string.text_placeholder_version, BuildConfig.VERSION_NAME)

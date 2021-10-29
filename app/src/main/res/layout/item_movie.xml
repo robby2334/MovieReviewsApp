@@ -6,7 +6,8 @@
     android:layout_height="wrap_content"
     android:layout_gravity="center"
     android:layout_margin="@dimen/_8sdp"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    tools:background="@color/color_primary_variant">
 
     <androidx.cardview.widget.CardView
         android:layout_width="wrap_content"
@@ -14,19 +15,12 @@
         app:cardCornerRadius="@dimen/_16sdp"
         app:cardElevation="@dimen/_8sdp">
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <ImageView
-                android:id="@+id/iv_movie_poster"
-                android:layout_width="@dimen/_80sdp"
-                android:layout_height="@dimen/_120sdp"
-                tools:ignore="ContentDescription"
-                tools:src="@color/black" />
-
-        </LinearLayout>
+        <ImageView
+            android:id="@+id/iv_movie_poster"
+            android:layout_width="@dimen/_80sdp"
+            android:layout_height="@dimen/_120sdp"
+            tools:ignore="ContentDescription"
+            tools:src="@color/black" />
 
     </androidx.cardview.widget.CardView>
 
@@ -36,8 +30,9 @@
         android:layout_width="@dimen/_80sdp"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/_4sdp"
-        android:textSize="@dimen/_16ssp"
+        android:ellipsize="end"
         android:maxLines="2"
+        android:textSize="@dimen/_12ssp"
         tools:text="Cosmic Sin" />
 
 </LinearLayout>

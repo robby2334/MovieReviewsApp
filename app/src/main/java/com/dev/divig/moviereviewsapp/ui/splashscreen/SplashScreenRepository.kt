@@ -13,6 +13,10 @@ class SplashScreenRepository(
         return localDataSource.insertMovies(movies)
     }
 
+    override suspend fun getMovies(): List<MovieEntity> {
+        return localDataSource.getMovies()
+    }
+
     override fun isFirstRunApp(): Boolean {
         return moviePreference.isFirstRunApp
     }

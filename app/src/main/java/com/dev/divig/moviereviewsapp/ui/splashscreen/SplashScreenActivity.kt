@@ -21,7 +21,7 @@ class SplashScreenActivity :
     private var timer: CountDownTimer? = null
 
     override fun initView() {
-        insertMovies()
+        checkAvailabilityMovieData()
         supportActionBar?.hide()
     }
 
@@ -30,6 +30,10 @@ class SplashScreenActivity :
         val moviePreference = MoviePreference(this)
         val repository = SplashScreenRepository(localDataSource, moviePreference)
         setPresenter(SplashScreenPresenter(this, repository))
+    }
+
+    private fun checkAvailabilityMovieData() {
+        getPresenter().checkAvailabilityMovieData()
     }
 
     override fun onDataCallback(response: Resource<Boolean>) {
@@ -56,11 +60,11 @@ class SplashScreenActivity :
         }
     }
 
-    private fun insertMovies() {
+    override fun insertMovies() {
         getPresenter().insertMovies(DataDummy.getMovies())
     }
 
-    private fun setSplashScreenTimer() {
+    override fun setSplashScreenTimer() {
         timer = object : CountDownTimer(Constant.THREE_SECOND, Constant.ONE_SECOND) {
             override fun onTick(p0: Long) {}
             override fun onFinish() {
