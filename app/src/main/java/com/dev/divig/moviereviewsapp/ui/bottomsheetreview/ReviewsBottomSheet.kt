@@ -31,7 +31,7 @@ class ReviewsBottomSheet() : BottomSheetDialogFragment() {
         super.onViewCreated(view, savedInstanceState)
 
         buttonAdapter = ReviewsBottomSheetAdapter {}
-        buttonAdapter.addItems(DataDummy.getReviews())
+        buttonAdapter.submitList(DataDummy.getReviews())
         binding.tilReview.setEndIconOnClickListener {
             Toast.makeText(context, "Send Review", Toast.LENGTH_SHORT).show()
         }

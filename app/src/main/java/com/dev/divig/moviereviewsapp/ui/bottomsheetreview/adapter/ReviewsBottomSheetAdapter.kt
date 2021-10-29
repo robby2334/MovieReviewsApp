@@ -1,34 +1,15 @@
-package com.dev.divig.moviereviewsapp.ui.bottomsheetreview.adapter;
+package com.dev.divig.moviereviewsapp.ui.bottomsheetreview.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.dev.divig.moviereviewsapp.data.model.ReviewEntity
 import com.dev.divig.moviereviewsapp.databinding.ItemReviewBinding
 
-
 class ReviewsBottomSheetAdapter(
     private val itemClick: (ReviewEntity) -> Unit
-) : RecyclerView.Adapter<ReviewsBottomSheetAdapter.ViewHolder>() {
-
-
-    private var items: MutableList<ReviewEntity> = mutableListOf()
-
-    fun setItems(items: List<ReviewEntity>) {
-        clearItems()
-        addItems(items)
-        notifyDataSetChanged()
-    }
-
-    fun addItems(items: List<ReviewEntity>) {
-        this.items.addAll(items)
-        notifyDataSetChanged()
-    }
-
-    fun clearItems() {
-        this.items.clear()
-        notifyDataSetChanged()
-    }
+) : ListAdapter<ReviewEntity, ReviewsBottomSheetAdapter.ViewHolder>(DiffCallback) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val binding = ItemReviewBinding.inflate(LayoutInflater.from(parent.context), parent, false)
@@ -36,13 +17,10 @@ class ReviewsBottomSheetAdapter(
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bindView(items[position])
+        holder.bindView(getItem(position))
     }
 
-    override fun getItemCount(): Int = items.size
-
-
-    class ViewHolder(
+    inner class ViewHolder(
         private val binding: ItemReviewBinding,
         val itemClick: (ReviewEntity) -> Unit
     ) : RecyclerView.ViewHolder(binding.root) {
@@ -59,4 +37,14 @@ class ReviewsBottomSheetAdapter(
         }
     }
 
+    companion object DiffCallback :
+        androidx.recyclerview.widget.DiffUtil.ItemCallback<ReviewEntity>() {
+        override fun areItemsTheSame(oldItem: ReviewEntity, newItem: ReviewEntity): Boolean {
+            return oldItem === newItem
+        }
+
+        override fun areContentsTheSame(oldItem: ReviewEntity, newItem: ReviewEntity): Boolean {
+            return oldItem.id == newItem.id
+        }
+    }
 }
