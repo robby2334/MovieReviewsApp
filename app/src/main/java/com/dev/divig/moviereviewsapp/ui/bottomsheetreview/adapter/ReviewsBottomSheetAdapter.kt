@@ -2,10 +2,13 @@ package com.dev.divig.moviereviewsapp.ui.bottomsheetreview.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.dev.divig.moviereviewsapp.data.model.ReviewEntity
 import com.dev.divig.moviereviewsapp.databinding.ItemReviewBinding
+import com.dev.divig.moviereviewsapp.utils.Constant
+import com.dev.divig.moviereviewsapp.utils.Utils
 
 class ReviewsBottomSheetAdapter(
     private val itemClick: (ReviewEntity) -> Unit
@@ -27,10 +30,11 @@ class ReviewsBottomSheetAdapter(
 
         fun bindView(item: ReviewEntity) {
             with(item) {
+                binding.ivBtnDeleteReview.isVisible = item.username.equals(Constant.USERNAME)
                 binding.tvReviewName.text = item.author
                 binding.tvDescReview.text = item.content
-                binding.tvDateReview.text = item.createAt
-                itemView.setOnClickListener {
+                binding.tvDateReview.text = Utils.dateFormatter(item.createAt)
+                binding.ivBtnDeleteReview.setOnClickListener {
                     itemClick(this)
                 }
             }

@@ -24,15 +24,12 @@
     <autoscroll-to-editor value="false" />
     <autoscroll-from-editor value="true" />
     <show-object-properties value="true" />
-    <loaded-nodes>
-      <connection connection-id="15f6102a-80f3-46ae-87b1-142d2f3c4fab">
-        <schema name="main" object-types="table, view" />
-      </connection>
-    </loaded-nodes>
+    <loaded-nodes />
   </component>
   <component name="DBNavigator.Project.DatabaseConsoleManager">
     <connection id="15f6102a-80f3-46ae-87b1-142d2f3c4fab">
-      <console name="MovieReviewsApp" type="STANDARD" schema="main" session="Main"><![CDATA[select * from tb_movie]]></console>
+      <console name="MovieReviewsApp" type="STANDARD" schema="main" session="Main"><![CDATA[SELECT * FROM tb_review WHERE movie_id LIKE 436969 order by create_at desc
+--SELECT * FROM tb_review]]></console>
     </connection>
   </component>
   <component name="DBNavigator.Project.DatabaseFileManager">
@@ -40,6 +37,9 @@
   </component>
   <component name="DBNavigator.Project.DatabaseSessionManager">
     <connection id="15f6102a-80f3-46ae-87b1-142d2f3c4fab" />
+  </component>
+  <component name="DBNavigator.Project.DatasetFilterManager">
+    <filter-actions connection-id="15f6102a-80f3-46ae-87b1-142d2f3c4fab" dataset="main.tb_review" active-filter-id="" />
   </component>
   <component name="DBNavigator.Project.EditorStateManager">
     <last-used-providers />
@@ -553,6 +553,8 @@
     </general-settings>
   </component>
   <component name="DBNavigator.Project.StatementExecutionManager">
-    <execution-variables />
+    <execution-variables>
+      <file file-url="db://15f6102a-80f3-46ae-87b1-142d2f3c4fab/consoles/MovieReviewsApp" />
+    </execution-variables>
   </component>
 </project>
