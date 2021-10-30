@@ -15,7 +15,6 @@ object StringGenerator {
         generateId += LETTERS
         generateId += NUMBERS
 
-
         val randomAlgorithm = SecureRandom.getInstance(ALGORITHM)
         val sb = StringBuilder(LENGTH)
 
@@ -27,5 +26,4 @@ object StringGenerator {
 
         return sb.toString()
     }
-
 }
