@@ -8,4 +8,6 @@
     <string name="duration">Duration</string>
     <string name="profile_movie">Profile Movie</string>
     <string name="ic_back">ic Back</string>
+    <string name="text_title_add_review">Add Your Review</string>
+    <string name="text_hint_add_review">Review about this, share it with your friends</string>
 </resources>

@@ -17,12 +17,9 @@
             android:id="@+id/toolbar_layout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:fitsSystemWindows="true"
-            app:contentScrim="@color/color_secondary_variant"
-            app:expandedTitleGravity="bottom|left"
+            app:contentScrim="@color/black_alpha_85"
             app:layout_scrollFlags="scroll|enterAlways|enterAlwaysCollapsed"
-            app:maxLines="3"
-            app:toolbarId="@id/toolbar">
+            app:maxLines="3">
 
             <ImageView
                 android:id="@+id/img_collapsing"
@@ -33,32 +30,18 @@
                 app:layout_collapseMode="parallax"
                 tools:src="@drawable/jungle_cruise_img" />
 
-            <ProgressBar
-                android:id="@+id/progress_bar"
-                style="?android:attr/progressBarStyle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="end|bottom"
-                android:elevation="@dimen/_2sdp"
-                android:padding="@dimen/_2sdp"
-                android:visibility="gone"
-                app:layout_collapseMode="parallax"
-                tools:visibility="visible" />
-
-            <androidx.appcompat.widget.Toolbar
-                android:id="@+id/toolbar"
-                android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
+            <ImageView
+                android:id="@+id/iv_btn_back"
+                android:layout_width="@dimen/_30sdp"
+                android:layout_height="@dimen/_30sdp"
+                android:layout_margin="@dimen/_12sdp"
+                android:contentDescription="@string/ic_back"
+                android:padding="@dimen/_8sdp"
+                android:background="@drawable/bg_oval"
+                android:backgroundTint="@color/black_alpha_85"
                 app:layout_collapseMode="pin"
-                app:layout_scrollFlags="scroll|enterAlways|enterAlwaysCollapsed">
+                app:srcCompat="@drawable/ic_back" />
 
-                <ImageView
-                    android:id="@+id/iv_btn_back"
-                    android:layout_width="@dimen/_30sdp"
-                    android:layout_height="@dimen/_30sdp"
-                    android:contentDescription="@string/ic_back"
-                    app:srcCompat="@drawable/ic_back" />
-            </androidx.appcompat.widget.Toolbar>
         </com.google.android.material.appbar.CollapsingToolbarLayout>
     </com.google.android.material.appbar.AppBarLayout>
 

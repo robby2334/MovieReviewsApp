@@ -8,33 +8,25 @@
     android:background="@color/color_primary"
     tools:context=".ui.detail.DetailActivity">
 
-    <View
-        android:id="@+id/view1"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/_5sdp"
-        android:background="@color/color_primary_variant" />
-
     <androidx.cardview.widget.CardView
         android:id="@+id/img_poster"
         android:layout_width="@dimen/_115sdp"
         android:layout_height="@dimen/_150sdp"
-        android:layout_below="@id/view1"
         android:layout_marginStart="@dimen/_12sdp"
-        android:layout_marginTop="@dimen/_12sdp"
+        android:layout_marginTop="@dimen/_16sdp"
         android:layout_marginEnd="@dimen/_12sdp"
         android:layout_marginBottom="@dimen/_12sdp"
         android:importantForAccessibility="no"
         android:scaleType="fitXY"
-        app:cardCornerRadius="@dimen/_10sdp"
-        tools:src="@drawable/jungle_cruise_img">
+        app:cardCornerRadius="@dimen/_10sdp">
 
         <ImageView
             android:id="@+id/iv_profile_movie"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:contentDescription="@string/profile_movie"
-            android:scaleType="centerCrop"
-            tools:src="@drawable/jungle_cruise_img" />
+            android:importantForAccessibility="no"
+            android:scaleType="fitXY"
+            tools:src="@drawable/poster_overlord" />
 
     </androidx.cardview.widget.CardView>
 
@@ -47,7 +39,7 @@
         android:paddingTop="@dimen/_2sdp"
         android:paddingBottom="@dimen/_2sdp"
         android:textColor="@color/color_secondary"
-        android:textSize="@dimen/_12sdp"
+        android:textSize="@dimen/_14sdp"
         android:textStyle="bold"
         tools:text="Jungle Cruise" />
 
@@ -57,7 +49,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/tv_title_movie"
         android:layout_alignStart="@+id/tv_title_movie"
-        android:paddingTop="@dimen/_2sdp"
+        android:paddingTop="@dimen/_8sdp"
         android:paddingBottom="@dimen/_2sdp"
         android:text="@string/genre"
         android:textColor="@color/white"
@@ -70,7 +62,9 @@
         android:layout_below="@id/tv_genre_title"
         android:layout_alignStart="@+id/tv_genre_title"
         android:layout_marginEnd="@dimen/_12sdp"
-        android:paddingBottom="@dimen/_12sdp"
+        android:paddingBottom="@dimen/_10sdp"
+        android:ellipsize="end"
+        android:maxLines="2"
         android:textColor="@color/color_secondary_variant"
         tools:text="Action, Adventure, Fantasy" />
 
@@ -91,7 +85,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/tv_date_title"
         android:layout_alignStart="@+id/tv_date_title"
-        android:paddingBottom="@dimen/_12sdp"
+        android:paddingBottom="@dimen/_10sdp"
         android:textColor="@color/color_secondary_variant"
         tools:text="11/23/2019" />
 
@@ -112,69 +106,100 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/tv_runtime_title"
         android:layout_alignStart="@+id/tv_runtime_title"
-        android:paddingBottom="@dimen/_12sdp"
         android:textColor="@color/color_secondary_variant"
         tools:text="1h 2m" />
-
-    <View
-        android:id="@+id/view2"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/_3sdp"
-        android:layout_below="@id/img_poster"
-        android:background="@color/color_primary_variant" />
 
     <TextView
         android:id="@+id/tv_title_overview"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/view2"
-        android:padding="@dimen/_12sdp"
+        android:layout_below="@id/img_poster"
+        android:layout_alignStart="@+id/img_poster"
+        android:paddingTop="@dimen/_10sdp"
+        android:paddingBottom="@dimen/_5sdp"
         android:text="@string/overview"
         android:textColor="@color/color_secondary"
-        android:textSize="@dimen/_14sdp"
+        android:textSize="@dimen/_12ssp"
         android:textStyle="bold" />
 
     <TextView
         android:id="@+id/tv_overview"
+        style="@style/Text.Light.Movie.App"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/tv_title_overview"
         android:paddingStart="@dimen/_12sdp"
         android:paddingEnd="@dimen/_12sdp"
         android:paddingBottom="@dimen/_12sdp"
-        android:textColor="@color/white"
-        android:textSize="@dimen/_12ssp"
         tools:text="Once home to the most advanced civilization on Earth, Atlantis is now an underwater kingdom ruled by the power-hungry King Orm. With a vast army at his disposal, Orm plans to conquer the remaining oceanic people and then the surface world. Standing in his way is Arthur Curry, Orm's half-human, half-Atlantean brother and true heir to the throne." />
 
-    <View
-        android:id="@+id/view3"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/_3sdp"
-        android:layout_below="@id/tv_overview"
-        android:background="@color/color_primary_variant" />
 
-    <TextView
-        android:id="@+id/tv_add_overview_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+    <ImageView
+        android:id="@+id/iv_add_review"
+        android:layout_width="@dimen/_12sdp"
+        android:layout_height="@dimen/_12sdp"
         android:layout_below="@+id/tv_overview"
-        android:padding="@dimen/_12sdp"
-        android:text="@string/add_your_reviews"
-        android:textColor="@color/color_secondary"
-        android:textSize="@dimen/_14sdp"
-        android:textStyle="bold"
-        app:drawableLeftCompat="@drawable/ic_add_review" />
+        android:layout_marginStart="@dimen/_14sdp"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:importantForAccessibility="no"
+        android:src="@drawable/ic_add_review" />
 
     <TextView
-        android:id="@+id/tv_add_reviews"
+        android:id="@+id/tv_add_review"
+        style="@style/Text.Bold.Movie.App"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/_34sdp"
-        android:layout_below="@+id/tv_add_overview_title"
-        android:layout_marginLeft="@dimen/_9sdp"
-        android:layout_marginRight="@dimen/_9sdp"
-        android:background="@drawable/shape_rectangle_white"
-        android:gravity="center"
-        android:text="@string/input_review"
-        android:textAlignment="center"
-        android:textColor="@color/black" />
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/iv_add_review"
+        android:layout_marginStart="6dp"
+        android:layout_marginEnd="@dimen/_14sdp"
+        android:layout_toEndOf="@id/iv_add_review"
+        android:text="@string/text_title_add_review"
+        android:textColor="@color/color_secondary"
+        android:textSize="@dimen/_12ssp" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/til_review"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/iv_add_review"
+        android:layout_alignStart="@id/iv_add_review"
+        android:layout_alignEnd="@id/tv_add_review"
+        android:layout_marginTop="@dimen/_5sdp"
+        android:background="@drawable/bg_corner"
+        app:errorEnabled="false"
+        app:hintEnabled="false">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/et_review"
+            style="@style/Text.Light.Movie.App"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:focusable="false"
+            android:hint="@string/text_hint_add_review"
+            android:textColor="@color/color_primary"
+            android:textSize="@dimen/_10sdp" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <include
+        android:id="@+id/item_review"
+        layout="@layout/item_review"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/til_review"
+        android:layout_alignStart="@id/til_review"
+        android:layout_alignEnd="@id/til_review"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:visibility="gone" />
+
+    <include
+        android:id="@+id/layout_scenario"
+        layout="@layout/component_scenario_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/til_review"
+        android:visibility="gone" />
+
 </RelativeLayout>

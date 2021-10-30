@@ -1,6 +1,9 @@
 package com.dev.divig.moviereviewsapp.ui.detail
 
+import android.content.Context
+import android.content.Intent
 import android.widget.Toast
+import coil.load
 import com.dev.divig.moviereviewsapp.base.BaseActivity
 import com.dev.divig.moviereviewsapp.base.model.Resource
 import com.dev.divig.moviereviewsapp.data.local.room.MoviesDatabase
@@ -13,20 +16,14 @@ class DetailActivity :
     BaseActivity<ActivityDetailBinding, DetailContract.Presenter>(ActivityDetailBinding::inflate),
     DetailContract.View {
     override fun initView() {
-
+        supportActionBar?.hide()
         getExtras()
-
 
         getViewBinding().ivBtnBack.setOnClickListener {
             onBackPressed()
         }
-        //intent add review
-        getViewBinding().detailMovie.tvAddReviews.setOnClickListener {
-
-        }
-        //intent add review
-        getViewBinding().detailMovie.tvAddOverviewTitle.setOnClickListener {
-
+        getViewBinding().detailMovie.etReview.setOnClickListener {
+            Toast.makeText(this, "Open Bottom Sheet Dialog", Toast.LENGTH_SHORT).show()
         }
     }
 
@@ -61,13 +58,23 @@ class DetailActivity :
     }
 
     override fun fetchData(movie: MovieEntity) {
+        val imgUrl = Constant.BASE_URL_IMAGE
+        getViewBinding().imgCollapsing.load(imgUrl + movie.backdropPath)
+        getViewBinding().detailMovie.ivProfileMovie.load(imgUrl + movie.posterPath)
         getViewBinding().detailMovie.tvTitleMovie.text = movie.title
-//        getViewBinding().imgCollapsing.setImageResource(movie.backdropPath)
-//        getViewBinding().detailMovie.ivProfileMovie.setImageResource(movie.posterPath)
         getViewBinding().detailMovie.tvGenre.text = movie.genres
         getViewBinding().detailMovie.tvDate.text = movie.releaseDate
         getViewBinding().detailMovie.tvRuntime.text = movie.runtime.toString()
         getViewBinding().detailMovie.tvOverview.text = movie.overview
+    }
+
+    companion object {
+        fun startActivity(context: Context?, id: Int) {
+            val intent = Intent(context, DetailActivity::class.java).apply {
+                putExtra(Constant.KEY_EXTRA_ID, id)
+            }
+            context?.startActivity(intent)
+        }
     }
 }
 
