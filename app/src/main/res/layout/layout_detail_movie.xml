@@ -9,7 +9,7 @@
     tools:context=".ui.detail.DetailActivity">
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/img_poster"
+        android:id="@+id/cv_img_poster"
         android:layout_width="@dimen/_115sdp"
         android:layout_height="@dimen/_150sdp"
         android:layout_marginStart="@dimen/_12sdp"
@@ -21,12 +21,12 @@
         app:cardCornerRadius="@dimen/_10sdp">
 
         <ImageView
-            android:id="@+id/iv_profile_movie"
+            android:id="@+id/iv_poster"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:importantForAccessibility="no"
             android:scaleType="fitXY"
-            tools:src="@drawable/poster_overlord" />
+            tools:src="@color/color_secondary_variant" />
 
     </androidx.cardview.widget.CardView>
 
@@ -34,8 +34,8 @@
         android:id="@+id/tv_title_movie"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/img_poster"
-        android:layout_toEndOf="@+id/img_poster"
+        android:layout_alignTop="@+id/cv_img_poster"
+        android:layout_toEndOf="@+id/cv_img_poster"
         android:paddingTop="@dimen/_2sdp"
         android:paddingBottom="@dimen/_2sdp"
         android:textColor="@color/color_secondary"
@@ -51,7 +51,7 @@
         android:layout_alignStart="@+id/tv_title_movie"
         android:paddingTop="@dimen/_8sdp"
         android:paddingBottom="@dimen/_2sdp"
-        android:text="@string/genre"
+        android:text="@string/text_title_genre"
         android:textColor="@color/white"
         android:textStyle="bold" />
 
@@ -62,9 +62,9 @@
         android:layout_below="@id/tv_genre_title"
         android:layout_alignStart="@+id/tv_genre_title"
         android:layout_marginEnd="@dimen/_12sdp"
-        android:paddingBottom="@dimen/_10sdp"
         android:ellipsize="end"
         android:maxLines="2"
+        android:paddingBottom="@dimen/_10sdp"
         android:textColor="@color/color_secondary_variant"
         tools:text="Action, Adventure, Fantasy" />
 
@@ -75,7 +75,7 @@
         android:layout_below="@id/tv_genre"
         android:layout_alignStart="@+id/tv_genre"
         android:paddingBottom="@dimen/_2sdp"
-        android:text="@string/date_release"
+        android:text="@string/text_title_date_release"
         android:textColor="@color/white"
         android:textStyle="bold" />
 
@@ -96,7 +96,7 @@
         android:layout_below="@id/tv_date"
         android:layout_alignStart="@+id/tv_date"
         android:paddingBottom="@dimen/_2sdp"
-        android:text="@string/duration"
+        android:text="@string/text_title_duration"
         android:textColor="@color/white"
         android:textStyle="bold" />
 
@@ -113,11 +113,11 @@
         android:id="@+id/tv_title_overview"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/img_poster"
-        android:layout_alignStart="@+id/img_poster"
+        android:layout_below="@id/cv_img_poster"
+        android:layout_alignStart="@+id/cv_img_poster"
         android:paddingTop="@dimen/_10sdp"
         android:paddingBottom="@dimen/_5sdp"
-        android:text="@string/overview"
+        android:text="@string/text_title_overview"
         android:textColor="@color/color_secondary"
         android:textSize="@dimen/_12ssp"
         android:textStyle="bold" />
@@ -192,7 +192,9 @@
         android:layout_alignStart="@id/til_review"
         android:layout_alignEnd="@id/til_review"
         android:layout_marginTop="@dimen/_10sdp"
-        android:visibility="gone" />
+        android:layout_marginBottom="@dimen/_12sdp"
+        android:visibility="gone"
+        tools:visibility="visible" />
 
     <include
         android:id="@+id/layout_scenario"
@@ -200,6 +202,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/til_review"
+        android:layout_alignStart="@id/til_review"
+        android:layout_alignEnd="@id/til_review"
+        android:layout_marginTop="@dimen/_10sdp"
         android:visibility="gone" />
-
 </RelativeLayout>

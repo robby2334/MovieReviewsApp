@@ -30,6 +30,9 @@ class MainActivity : AppCompatActivity() {
             MoviesDataSourceImpl(
                 MoviesDatabase.getInstance(this@MainActivity).moviesDao()
             ).insertMovies(DataDummy.getMovies())
+            MoviesDataSourceImpl(
+                MoviesDatabase.getInstance(this@MainActivity).moviesDao()
+            ).insertAllReview(DataDummy.getReviews())
         }
     }
 

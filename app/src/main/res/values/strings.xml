@@ -1,13 +1,11 @@
 <resources>
     <string name="app_name">Movie Reviews App</string>
-    <string name="genre">Genre</string>
-    <string name="date_release">Date Release</string>
-    <string name="overview">Overview</string>
-    <string name="add_your_reviews">Add your reviews</string>
-    <string name="input_review">Review about this, share it with your friends</string>
-    <string name="duration">Duration</string>
-    <string name="profile_movie">Profile Movie</string>
-    <string name="ic_back">ic Back</string>
+    <string name="text_title_genre">Genre</string>
+    <string name="text_title_date_release">Date Release</string>
+    <string name="text_title_overview">Overview</string>
+    <string name="text_title_duration">Duration</string>
+    <string name="text_title_no_review">Uh-oh! No Reviews Yet</string>
     <string name="text_title_add_review">Add Your Review</string>
     <string name="text_hint_add_review">Review about this, share it with your friends</string>
+    <string name="message_no_review">it\'s a little empty here! No reviews have been submitted yet.</string>
 </resources>
