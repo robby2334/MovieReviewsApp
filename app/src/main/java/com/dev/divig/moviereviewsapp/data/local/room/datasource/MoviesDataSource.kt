@@ -10,9 +10,11 @@ interface MoviesDataSource {
 
     suspend fun getMovieById(id: Int): MovieEntity
 
+    suspend fun insertAllReview(reviews: List<ReviewEntity>): Int
+
     suspend fun insertReview(review: ReviewEntity): Long
 
-    suspend fun deleteReview(movie: MovieEntity): Int
+    suspend fun deleteReview(review: ReviewEntity): Int
 
     suspend fun getReviewsByMovieId(movieId: Int): List<ReviewEntity>
 }
