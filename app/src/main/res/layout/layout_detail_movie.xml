@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/layout_detail_movie"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/color_primary"
+    tools:context=".ui.detail.DetailActivity">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cv_img_poster"
+        android:layout_width="@dimen/_115sdp"
+        android:layout_height="@dimen/_150sdp"
+        android:layout_marginStart="@dimen/_12sdp"
+        android:layout_marginTop="@dimen/_16sdp"
+        android:layout_marginEnd="@dimen/_12sdp"
+        android:layout_marginBottom="@dimen/_12sdp"
+        android:importantForAccessibility="no"
+        android:scaleType="fitXY"
+        app:cardCornerRadius="@dimen/_10sdp">
+
+        <ImageView
+            android:id="@+id/iv_poster"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:importantForAccessibility="no"
+            android:scaleType="fitXY"
+            tools:src="@color/color_secondary_variant" />
+
+    </androidx.cardview.widget.CardView>
+
+    <TextView
+        android:id="@+id/tv_title_movie"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/cv_img_poster"
+        android:layout_toEndOf="@+id/cv_img_poster"
+        android:paddingTop="@dimen/_2sdp"
+        android:paddingBottom="@dimen/_2sdp"
+        android:textColor="@color/color_secondary"
+        android:textSize="@dimen/_14sdp"
+        android:textStyle="bold"
+        tools:text="Jungle Cruise" />
+
+    <TextView
+        android:id="@+id/tv_genre_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_title_movie"
+        android:layout_alignStart="@+id/tv_title_movie"
+        android:paddingTop="@dimen/_8sdp"
+        android:paddingBottom="@dimen/_2sdp"
+        android:text="@string/text_title_genre"
+        android:textColor="@color/white"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/tv_genre"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_genre_title"
+        android:layout_alignStart="@+id/tv_genre_title"
+        android:layout_marginEnd="@dimen/_12sdp"
+        android:ellipsize="end"
+        android:maxLines="2"
+        android:paddingBottom="@dimen/_10sdp"
+        android:textColor="@color/color_secondary_variant"
+        tools:text="Action, Adventure, Fantasy" />
+
+    <TextView
+        android:id="@+id/tv_date_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_genre"
+        android:layout_alignStart="@+id/tv_genre"
+        android:paddingBottom="@dimen/_2sdp"
+        android:text="@string/text_title_date_release"
+        android:textColor="@color/white"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/tv_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_date_title"
+        android:layout_alignStart="@+id/tv_date_title"
+        android:paddingBottom="@dimen/_10sdp"
+        android:textColor="@color/color_secondary_variant"
+        tools:text="11/23/2019" />
+
+    <TextView
+        android:id="@+id/tv_runtime_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_date"
+        android:layout_alignStart="@+id/tv_date"
+        android:paddingBottom="@dimen/_2sdp"
+        android:text="@string/text_title_duration"
+        android:textColor="@color/white"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/tv_runtime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_runtime_title"
+        android:layout_alignStart="@+id/tv_runtime_title"
+        android:textColor="@color/color_secondary_variant"
+        tools:text="1h 2m" />
+
+    <TextView
+        android:id="@+id/tv_title_overview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/cv_img_poster"
+        android:layout_alignStart="@+id/cv_img_poster"
+        android:paddingTop="@dimen/_10sdp"
+        android:paddingBottom="@dimen/_5sdp"
+        android:text="@string/text_title_overview"
+        android:textColor="@color/color_secondary"
+        android:textSize="@dimen/_12ssp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/tv_overview"
+        style="@style/Text.Light.Movie.App"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_title_overview"
+        android:paddingStart="@dimen/_12sdp"
+        android:paddingEnd="@dimen/_12sdp"
+        android:paddingBottom="@dimen/_12sdp"
+        tools:text="Once home to the most advanced civilization on Earth, Atlantis is now an underwater kingdom ruled by the power-hungry King Orm. With a vast army at his disposal, Orm plans to conquer the remaining oceanic people and then the surface world. Standing in his way is Arthur Curry, Orm's half-human, half-Atlantean brother and true heir to the throne." />
+
+
+    <ImageView
+        android:id="@+id/iv_add_review"
+        android:layout_width="@dimen/_12sdp"
+        android:layout_height="@dimen/_12sdp"
+        android:layout_below="@+id/tv_overview"
+        android:layout_marginStart="@dimen/_14sdp"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:importantForAccessibility="no"
+        android:src="@drawable/ic_add_review" />
+
+    <TextView
+        android:id="@+id/tv_add_review"
+        style="@style/Text.Bold.Movie.App"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/iv_add_review"
+        android:layout_marginStart="6dp"
+        android:layout_marginEnd="@dimen/_14sdp"
+        android:layout_toEndOf="@id/iv_add_review"
+        android:text="@string/text_title_add_review"
+        android:textColor="@color/color_secondary"
+        android:textSize="@dimen/_12ssp" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/til_review"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/iv_add_review"
+        android:layout_alignStart="@id/iv_add_review"
+        android:layout_alignEnd="@id/tv_add_review"
+        android:layout_marginTop="@dimen/_5sdp"
+        android:background="@drawable/bg_corner"
+        app:errorEnabled="false"
+        app:hintEnabled="false">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/et_review"
+            style="@style/Text.Light.Movie.App"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:focusable="false"
+            android:hint="@string/text_hint_add_review"
+            android:textColor="@color/color_primary"
+            android:textSize="@dimen/_10sdp" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <include
+        android:id="@+id/item_review"
+        layout="@layout/item_review"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/til_review"
+        android:layout_alignStart="@id/til_review"
+        android:layout_alignEnd="@id/til_review"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:layout_marginBottom="@dimen/_12sdp"
+        android:visibility="gone"
+        tools:visibility="visible" />
+
+    <include
+        android:id="@+id/layout_scenario"
+        layout="@layout/component_scenario_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/til_review"
+        android:layout_alignStart="@id/til_review"
+        android:layout_alignEnd="@id/til_review"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:visibility="gone" />
+</RelativeLayout>

@@ -13,4 +13,12 @@
     <string name="text_placeholder_copyright">© 2021 Team 1</string>
     <string name="text_placeholder_development">Development by</string>
     <string name="text_placeholder_challenge">Challenge | Chapter VI</string>
+    <string name="text_title_genre">Genre</string>
+    <string name="text_title_date_release">Date Release</string>
+    <string name="text_title_overview">Overview</string>
+    <string name="text_title_duration">Duration</string>
+    <string name="text_title_no_review">Uh-oh! No Reviews Yet</string>
+    <string name="text_title_add_review">Add Your Review</string>
+    <string name="text_hint_add_review">Review about this, share it with your friends</string>
+    <string name="message_no_review">it\'s a little empty here! No reviews have been submitted yet.</string>
 </resources>

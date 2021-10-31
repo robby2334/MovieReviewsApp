@@ -59,7 +59,4 @@ dependencies {
     testImplementation "junit:junit:$junitVersion"
     androidTestImplementation "androidx.test:rules:$androidXTestVersion"
     androidTestImplementation "androidx.test.espresso:espresso-core:$espressoVersion"
-
-    //imageSlider
-    implementation "com.github.denzcoskun:ImageSlideshow:$imgSliderVersion"
 }
