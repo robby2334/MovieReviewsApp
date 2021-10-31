@@ -17,8 +17,15 @@
     <string name="text_title_date_release">Date Release</string>
     <string name="text_title_overview">Overview</string>
     <string name="text_title_duration">Duration</string>
-    <string name="text_title_no_review">Uh-oh! No Reviews Yet</string>
+    <string name="text_title_ok">OK</string>
+    <string name="text_title_cancel">Cancel</string>
+    <string name="text_title_delete_review">Delete Review</string>
     <string name="text_title_add_review">Add Your Review</string>
+    <string name="text_title_no_review">Uh-oh! No Reviews Yet</string>
     <string name="text_hint_add_review">Review about this, share it with your friends</string>
+    <string name="message_delete_review">Do you want to delete the review?</string>
     <string name="message_no_review">it\'s a little empty here! No reviews have been submitted yet.</string>
+    <string name="message_error_insert_review">An error occurred while entering data.</string>
+    <string name="message_error_delete_review">An error occurred while deleting data.</string>
+    <string name="message_error_field_request">Fields cannot be empty.</string>
 </resources>

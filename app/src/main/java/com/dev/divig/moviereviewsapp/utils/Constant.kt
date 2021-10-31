@@ -9,4 +9,7 @@ object Constant {
     const val ONE_HOURS = 60
     const val ONE_SECOND = 1000L
     const val THREE_SECOND = 3000L
+    const val ZERO = 0
+    const val ACTION_INSERT = 101
+    const val ACTION_DELETE = 102
 }
