@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/_450sdp"
+    android:layout_gravity="bottom"
+    android:layout_marginTop="?attr/actionBarSize"
+    android:background="@drawable/bg_bottom_sheet_dialog">
+
+    <View
+        android:id="@+id/view"
+        android:layout_width="@dimen/_45sdp"
+        android:layout_height="@dimen/_3sdp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/_8sdp"
+        android:background="@drawable/bg_corner" />
+
+    <ImageView
+        android:id="@+id/iv_add_review"
+        android:layout_width="@dimen/_12sdp"
+        android:layout_height="@dimen/_12sdp"
+        android:layout_marginStart="@dimen/_14sdp"
+        android:layout_marginTop="@dimen/_30sdp"
+        android:importantForAccessibility="no"
+        android:src="@drawable/ic_add_review" />
+
+    <TextView
+        android:id="@+id/tv_add_review"
+        style="@style/Text.Bold.Movie.App"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@id/iv_add_review"
+        android:layout_alignBottom="@id/iv_add_review"
+        android:layout_marginStart="@dimen/_4sdp"
+        android:layout_marginEnd="@dimen/_14sdp"
+        android:layout_toEndOf="@id/iv_add_review"
+        android:text="@string/text_title_add_review"
+        android:textColor="@color/color_secondary"
+        android:textSize="@dimen/_10ssp" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/til_review"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/iv_add_review"
+        android:layout_alignStart="@id/iv_add_review"
+        android:layout_alignEnd="@id/tv_add_review"
+        android:layout_marginTop="@dimen/_5sdp"
+        android:background="@drawable/bg_corner"
+        app:endIconDrawable="@drawable/ic_send_24"
+        app:endIconMode="custom"
+        app:endIconTint="@color/color_primary_variant"
+        app:errorEnabled="false"
+        app:hintEnabled="false">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/et_review"
+            style="@style/Text.Light.Movie.App"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:hint="@string/text_hint_add_review"
+            android:maxHeight="@dimen/_120sdp"
+            android:overScrollMode="never"
+            android:scrollbarSize="3dp"
+            android:scrollbarStyle="outsideOverlay"
+            android:scrollbarThumbVertical="@color/color_primary"
+            android:scrollbars="vertical"
+            android:textColor="@color/color_primary"
+            android:textSize="@dimen/_10sdp" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_review"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/til_review"
+        android:layout_alignStart="@id/til_review"
+        android:layout_alignEnd="@id/til_review"
+        android:layout_marginTop="@dimen/_10sdp"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        tools:listitem="@layout/item_review" />
+
+    <include
+        android:id="@+id/layout_scenario"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/til_review"
+        android:layout_alignStart="@id/til_review"
+        android:layout_alignEnd="@id/til_review"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:visibility="gone"
+        layout="@layout/component_scenario_layout" />
+
+    <com.facebook.shimmer.ShimmerFrameLayout
+        android:id="@+id/sfl_item_placeholder"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/til_review"
+        android:layout_alignStart="@id/til_review"
+        android:layout_alignEnd="@id/til_review"
+        android:layout_marginTop="@dimen/_10sdp"
+        tools:visibility="gone">
+
+        <LinearLayout
+            android:id="@+id/ll_placeholder"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <include layout="@layout/item_review_placeholder" />
+
+            <include layout="@layout/item_review_placeholder" />
+
+            <include layout="@layout/item_review_placeholder" />
+
+            <include layout="@layout/item_review_placeholder" />
+
+            <include layout="@layout/item_review_placeholder" />
+        </LinearLayout>
+    </com.facebook.shimmer.ShimmerFrameLayout>
+</RelativeLayout>

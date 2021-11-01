@@ -4,12 +4,12 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
 import androidx.viewbinding.ViewBinding
+import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 
-abstract class BaseFragment<B : ViewBinding, P : BaseContract.BasePresenter>(
+abstract class BaseBottomSheetDialogFragment<B : ViewBinding, P : BaseContract.BasePresenter>(
     val bindingFactory: (LayoutInflater, ViewGroup?, Boolean) -> B
-) : Fragment(), BaseContract.BaseView {
+) : BottomSheetDialogFragment(), BaseContract.BaseView {
     private lateinit var binding: B
     private lateinit var presenter: P
 

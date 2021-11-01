@@ -32,4 +32,6 @@ data class MovieEntity(
 
     @ColumnInfo(name = "backdropPath")
     var backdropPath: String?,
-)
+){
+    val basePosterUrl get() = "https://image.tmdb.org/t/p/w500"
+}

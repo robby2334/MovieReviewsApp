@@ -48,15 +48,17 @@ dependencies {
     implementation "com.intuit.sdp:sdp-android:$intuitVersion"
     implementation "io.coil-kt:coil:$coilVersion"
     implementation "com.github.AppIntro:AppIntro:$appIntro"
+    implementation "com.facebook.shimmer:shimmer:$shimmerVersion"
+    implementation "com.github.denzcoskun:ImageSlideshow:$imgSliderVersion"
+    implementation "kr.co.prnd:readmore-textview:$readMoreVersion"
 
     //room
     implementation "androidx.room:room-ktx:$roomVersion"
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     kapt "androidx.room:room-compiler:$roomVersion"
 
     //testing
     testImplementation "junit:junit:$junitVersion"
     androidTestImplementation "androidx.test:rules:$androidXTestVersion"
     androidTestImplementation "androidx.test.espresso:espresso-core:$espressoVersion"
-
-
 }

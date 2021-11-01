@@ -6,14 +6,17 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 
 @Entity(tableName = "tb_review")
-data class ReviewEntity (
+data class ReviewEntity(
     @PrimaryKey
     @NonNull
     @ColumnInfo(name = "id")
-    var id: Int,
+    var id: String,
 
     @ColumnInfo(name = "movie_id")
     var movieId: Int,
+
+    @ColumnInfo(name = "username")
+    var username: String?,
 
     @ColumnInfo(name = "author")
     var author: String?,
