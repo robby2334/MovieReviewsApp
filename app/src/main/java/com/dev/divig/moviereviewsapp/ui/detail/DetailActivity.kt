@@ -15,6 +15,7 @@ import com.dev.divig.moviereviewsapp.data.local.room.datasource.MoviesDataSource
 import com.dev.divig.moviereviewsapp.data.model.MovieEntity
 import com.dev.divig.moviereviewsapp.data.model.ReviewEntity
 import com.dev.divig.moviereviewsapp.databinding.ActivityDetailBinding
+import com.dev.divig.moviereviewsapp.ui.detail.bottomsheetreview.ReviewsBottomSheet
 import com.dev.divig.moviereviewsapp.utils.Constant
 import com.dev.divig.moviereviewsapp.utils.Utils
 
@@ -49,10 +50,10 @@ class DetailActivity :
             onBackPressed()
         }
         getViewBinding().detailMovie.etReview.setOnClickListener {
-            Toast.makeText(this, "Open Bottom Sheet Dialog", Toast.LENGTH_SHORT).show()
+            openReviewsBottomSheet()
         }
         getViewBinding().detailMovie.itemReview.layoutItemReview.setOnClickListener {
-            Toast.makeText(this, "Open Bottom Sheet Dialog", Toast.LENGTH_SHORT).show()
+            openReviewsBottomSheet()
         }
     }
 
@@ -90,6 +91,7 @@ class DetailActivity :
         val id = intent.getIntExtra(Constant.KEY_EXTRA_ID, 0)
         movieId = id
         getMovieDetail(id)
+        getReviewByMovieId(movieId)
     }
 
     private fun getMovieDetail(id: Int) {
@@ -105,7 +107,7 @@ class DetailActivity :
             (Constant.BASE_URL_IMAGE + movie.backdropPath).toUri().buildUpon().scheme("https")
                 .build()
         getViewBinding().imgCollapsing.load(imgBackdrop) {
-            placeholder(R.drawable.loading_animation)
+            placeholder(R.color.color_secondary_variant)
             error(R.drawable.ic_broken_image)
         }
         val imgPoster =
@@ -125,8 +127,15 @@ class DetailActivity :
     private fun fetchDataReview(review: ReviewEntity) {
         getViewBinding().detailMovie.itemReview.tvReviewName.text = review.author
         getViewBinding().detailMovie.itemReview.tvDescReview.text = review.content
+        getViewBinding().detailMovie.itemReview.tvDescReview.isClickable = false
         getViewBinding().detailMovie.itemReview.tvDateReview.text =
             Utils.dateFormatter(review.createAt)
+    }
+
+    private fun openReviewsBottomSheet() {
+        ReviewsBottomSheet(movieId) {
+            getReviewByMovieId(movieId)
+        }.show(supportFragmentManager, null)
     }
 
     private fun showEmptyPlaceholder(isVisible: Boolean) {
@@ -153,11 +162,6 @@ class DetailActivity :
         super.showError(isErrorEnabled, msg)
         if (isErrorEnabled) Toast.makeText(this, msg.orEmpty(), Toast.LENGTH_SHORT)
             .show()
-    }
-
-    override fun onResume() {
-        super.onResume()
-        getReviewByMovieId(movieId)
     }
 
     companion object {

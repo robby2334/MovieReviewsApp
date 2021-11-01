@@ -82,15 +82,15 @@ class IntroActivity :
             listOf(
                 Intro(
                     introDataImage = R.drawable.img_intro_1,
-                    introDataDesc = getString(R.string.desc_intro_1)
+                    introDataDesc = getString(R.string.text_desc_intro_1)
                 ),
                 Intro(
                     introDataImage = R.drawable.img_intro_2,
-                    introDataDesc = getString(R.string.desc_intro_2)
+                    introDataDesc = getString(R.string.text_desc_intro_2)
                 ),
                 Intro(
                     introDataImage = R.drawable.img_intro_3,
-                    introDataDesc = getString(R.string.desc_intro_3)
+                    introDataDesc = getString(R.string.text_desc_intro_3)
                 )
             )
         )

@@ -18,6 +18,8 @@ object Utils {
         } else {
             "${minutes}m"
         }
+    }
+
     fun getDate(): String {
         val calendar = Calendar.getInstance(TimeZone.getDefault())
         val formatter = SimpleDateFormat(Constant.DATABASE_DATE_PATTERN, Locale.getDefault())

@@ -1,4 +1,4 @@
-package com.dev.divig.moviereviewsapp.ui.bottomsheetreview
+package com.dev.divig.moviereviewsapp.ui.detail.bottomsheetreview
 
 import android.app.Dialog
 import android.os.Bundle
@@ -7,31 +7,30 @@ import android.widget.FrameLayout
 import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.core.widget.doAfterTextChanged
+import coil.load
 import com.dev.divig.moviereviewsapp.R
 import com.dev.divig.moviereviewsapp.base.BaseBottomSheetDialogFragment
 import com.dev.divig.moviereviewsapp.data.local.room.MoviesDatabase
 import com.dev.divig.moviereviewsapp.data.local.room.datasource.MoviesDataSourceImpl
 import com.dev.divig.moviereviewsapp.data.model.ReviewEntity
 import com.dev.divig.moviereviewsapp.databinding.FragmentBottomSheetReviewBinding
-import com.dev.divig.moviereviewsapp.ui.bottomsheetreview.adapter.ReviewsBottomSheetAdapter
+import com.dev.divig.moviereviewsapp.ui.detail.bottomsheetreview.adapter.ReviewsBottomSheetAdapter
 import com.dev.divig.moviereviewsapp.utils.Constant
 import com.dev.divig.moviereviewsapp.utils.StringGenerator
 import com.dev.divig.moviereviewsapp.utils.Utils
 
-class ReviewsBottomSheet(private val movieId: Int) :
+class ReviewsBottomSheet(
+    private val movieId: Int,
+    private val onResultCallback: (Boolean) -> Unit
+) :
     BaseBottomSheetDialogFragment<FragmentBottomSheetReviewBinding, ReviewsBottomSheetContract.Presenter>(
         FragmentBottomSheetReviewBinding::inflate
     ), ReviewsBottomSheetContract.View {
 
     override fun initView() {
-        getViewBinding().tilReview.setEndIconOnClickListener {
-            Utils.hideSoftKeyboard(requireActivity(), it)
-            saveReview()
-        }
-        getViewBinding().etReview.doAfterTextChanged {
-            getViewBinding().tilReview.isErrorEnabled = false
-        }
         getReviews()
+        initScenarioComponent()
+        setClickListeners()
     }
 
     override fun initPresenter() {
@@ -40,6 +39,23 @@ class ReviewsBottomSheet(private val movieId: Int) :
                 MoviesDataSourceImpl(MoviesDatabase.getInstance(it).moviesDao())
             val repository = ReviewsBottomSheetRepository(dataSource)
             setPresenter(ReviewsBottomSheetPresenter(this@ReviewsBottomSheet, repository))
+        }
+    }
+
+    private fun initScenarioComponent() {
+        getViewBinding().layoutScenario.ivScenario.load(R.drawable.ic_no_reviews_placeholder)
+        getViewBinding().layoutScenario.tvTitle.text = getString(R.string.text_title_no_review)
+        getViewBinding().layoutScenario.tvDesc.text = getString(R.string.message_no_review)
+    }
+
+
+    private fun setClickListeners() {
+        getViewBinding().tilReview.setEndIconOnClickListener {
+            Utils.hideSoftKeyboard(requireActivity(), it)
+            saveReview()
+        }
+        getViewBinding().etReview.doAfterTextChanged {
+            getViewBinding().tilReview.isErrorEnabled = false
         }
     }
 
@@ -77,8 +93,8 @@ class ReviewsBottomSheet(private val movieId: Int) :
         showLoading(false)
         showContent(true)
         val message = when (response.first) {
-            Constant.ACTION_INSERT -> getString(R.string.message_error_insert_review)
-            Constant.ACTION_DELETE -> getString(R.string.message_error_delete_review)
+            Constant.ACTION_INSERT -> getString(R.string.message_error_insert)
+            Constant.ACTION_DELETE -> getString(R.string.message_error_delete)
             else -> response.second.orEmpty()
         }
         showError(true, message)
@@ -138,8 +154,7 @@ class ReviewsBottomSheet(private val movieId: Int) :
     }
 
     private fun showEmptyPlaceholder(isVisible: Boolean) {
-        getViewBinding().tvTitleNoReview.isVisible = isVisible
-        getViewBinding().tvDescNoReview.isVisible = isVisible
+        getViewBinding().layoutScenario.layoutComponentScenario.isVisible = isVisible
     }
 
     override fun showContent(isContentVisible: Boolean) {
@@ -171,5 +186,10 @@ class ReviewsBottomSheet(private val movieId: Int) :
                 bottomSheet.setBackgroundResource(android.R.color.transparent)
             }
         }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        onResultCallback(true)
     }
 }

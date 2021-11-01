@@ -37,7 +37,7 @@
             app:layout_constraintLeft_toRightOf="@id/tv_review_name"
             app:layout_constraintTop_toTopOf="@+id/tv_review_name" />
 
-        <TextView
+        <kr.co.prnd.readmore.ReadMoreTextView
             android:id="@+id/tv_desc_review"
             style="@style/Text.Light.Movie.App"
             android:layout_width="match_parent"
@@ -48,7 +48,10 @@
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintStart_toStartOf="@+id/tv_review_name"
             app:layout_constraintTop_toBottomOf="@id/tv_review_name"
-            tools:text="Just. Don't. Watch. You have been warned." />
+            app:readMoreColor="@color/color_secondary"
+            app:readMoreMaxLine="10"
+            app:readMoreText="@string/text_placeholder_read_more"
+            tools:text="When audiences last saw Eddie Brock (Tom Hardy); the journalist"/>
 
         <TextView
             android:id="@+id/tv_date_review"

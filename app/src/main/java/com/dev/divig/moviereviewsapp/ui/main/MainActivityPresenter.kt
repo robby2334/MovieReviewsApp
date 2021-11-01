@@ -3,6 +3,7 @@ package com.dev.divig.moviereviewsapp.ui.main
 import com.dev.divig.moviereviewsapp.base.BasePresenterImpl
 import com.dev.divig.moviereviewsapp.base.model.Resource
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 class MainActivityPresenter(
@@ -14,6 +15,7 @@ class MainActivityPresenter(
         view.onDataCallback(Resource.Loading())
         scope.launch {
             try {
+                delay(2000)
                 val movies = repository.getMovies()
                 scope.launch(Dispatchers.Main) {
                     view.onDataCallback(Resource.Success(movies))
@@ -25,5 +27,4 @@ class MainActivityPresenter(
             }
         }
     }
-
 }

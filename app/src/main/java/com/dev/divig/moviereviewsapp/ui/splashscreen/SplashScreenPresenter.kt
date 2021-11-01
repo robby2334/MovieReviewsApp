@@ -3,6 +3,7 @@ package com.dev.divig.moviereviewsapp.ui.splashscreen
 import com.dev.divig.moviereviewsapp.base.BasePresenterImpl
 import com.dev.divig.moviereviewsapp.base.model.Resource
 import com.dev.divig.moviereviewsapp.data.model.MovieEntity
+import com.dev.divig.moviereviewsapp.data.model.ReviewEntity
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
@@ -10,13 +11,13 @@ class SplashScreenPresenter(
     private val view: SplashScreenContract.View,
     private val repository: SplashScreenContract.Repository
 ) : SplashScreenContract.Presenter, BasePresenterImpl() {
-    override fun insertMovies(movies: List<MovieEntity>) {
-        view.onDataCallback(Resource.Loading())
+    override fun insertData(movies: List<MovieEntity>, reviews: List<ReviewEntity>) {
         scope.launch {
             try {
-                val notes = repository.insertMovies(movies)
+                val listMovies = repository.insertMovies(movies)
+                val listReviews = repository.insertAllReviews(reviews)
                 scope.launch(Dispatchers.Main) {
-                    if (notes > 0) {
+                    if (listMovies > 0 && listReviews > 0) {
                         view.onDataCallback(Resource.Success(true))
                     } else {
                         view.onDataCallback(Resource.Success(false))
@@ -30,11 +31,13 @@ class SplashScreenPresenter(
         }
     }
 
-    override fun checkAvailabilityMovieData() {
+    override fun checkAvailabilityData(movieId: Int) {
         scope.launch {
-            if (repository.getMovies().isEmpty()) {
+            if (repository.getMovies().isEmpty() &&
+                repository.getReviewsByMovieId(movieId).isEmpty()
+            ) {
                 scope.launch(Dispatchers.Main) {
-                    view.insertMovies()
+                    view.insertData()
                 }
             } else {
                 scope.launch(Dispatchers.Main) {

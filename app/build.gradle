@@ -50,6 +50,7 @@ dependencies {
     implementation "com.github.AppIntro:AppIntro:$appIntro"
     implementation "com.facebook.shimmer:shimmer:$shimmerVersion"
     implementation "com.github.denzcoskun:ImageSlideshow:$imgSliderVersion"
+    implementation "kr.co.prnd:readmore-textview:$readMoreVersion"
 
     //room
     implementation "androidx.room:room-ktx:$roomVersion"

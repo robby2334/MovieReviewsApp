@@ -84,32 +84,16 @@
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         tools:listitem="@layout/item_review" />
 
-    <TextView
-        android:id="@+id/tv_title_no_review"
-        style="@style/Text.Bold.Movie.App"
+    <include
+        android:id="@+id/layout_scenario"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_below="@id/til_review"
         android:layout_alignStart="@id/til_review"
         android:layout_alignEnd="@id/til_review"
         android:layout_marginTop="@dimen/_10sdp"
-        android:paddingTop="@dimen/_18sdp"
-        android:text="@string/text_title_no_review"
-        android:textAlignment="center"
-        android:visibility="gone" />
-
-    <TextView
-        android:id="@+id/tv_desc_no_review"
-        style="@style/Text.Light.Movie.App"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@id/tv_title_no_review"
-        android:layout_alignStart="@id/til_review"
-        android:layout_alignEnd="@id/til_review"
-        android:text="@string/message_no_review"
-        android:textAlignment="center"
-        android:textSize="@dimen/_10ssp"
-        android:visibility="gone" />
+        android:visibility="gone"
+        layout="@layout/component_scenario_layout" />
 
     <com.facebook.shimmer.ShimmerFrameLayout
         android:id="@+id/sfl_item_placeholder"

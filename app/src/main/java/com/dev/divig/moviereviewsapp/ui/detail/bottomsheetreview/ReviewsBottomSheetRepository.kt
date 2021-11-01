@@ -1,4 +1,4 @@
-package com.dev.divig.moviereviewsapp.ui.bottomsheetreview
+package com.dev.divig.moviereviewsapp.ui.detail.bottomsheetreview
 
 import com.dev.divig.moviereviewsapp.data.local.room.datasource.MoviesDataSource
 import com.dev.divig.moviereviewsapp.data.model.ReviewEntity

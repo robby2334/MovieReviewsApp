@@ -1,4 +1,4 @@
-package com.dev.divig.moviereviewsapp.ui.bottomsheetreview.adapter
+package com.dev.divig.moviereviewsapp.ui.detail.bottomsheetreview.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

@@ -2,6 +2,7 @@ package com.dev.divig.moviereviewsapp.ui.splashscreen
 
 import android.os.CountDownTimer
 import android.widget.Toast
+import com.dev.divig.moviereviewsapp.R
 import com.dev.divig.moviereviewsapp.base.BaseActivity
 import com.dev.divig.moviereviewsapp.base.model.Resource
 import com.dev.divig.moviereviewsapp.data.local.preference.MoviePreference
@@ -33,7 +34,7 @@ class SplashScreenActivity :
     }
 
     private fun checkAvailabilityMovieData() {
-        getPresenter().checkAvailabilityMovieData()
+        getPresenter().checkAvailabilityData(DataDummy.getReviews()[0].movieId)
     }
 
     override fun onDataCallback(response: Resource<Boolean>) {
@@ -47,7 +48,7 @@ class SplashScreenActivity :
                     } else {
                         Toast.makeText(
                             this,
-                            "There was a problem loading the data, please try again.",
+                            getString(R.string.message_error_insert),
                             Toast.LENGTH_SHORT
                         ).show()
                         setSplashScreenTimer()
@@ -60,8 +61,8 @@ class SplashScreenActivity :
         }
     }
 
-    override fun insertMovies() {
-        getPresenter().insertMovies(DataDummy.getMovies())
+    override fun insertData() {
+        getPresenter().insertData(DataDummy.getMovies(), DataDummy.getReviews())
     }
 
     override fun setSplashScreenTimer() {
