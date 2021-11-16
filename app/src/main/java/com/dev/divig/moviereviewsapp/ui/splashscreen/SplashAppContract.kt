@@ -11,7 +11,6 @@ interface SplashAppContract {
 
     interface ViewModel {
         fun getStatusLiveData(): LiveData<Boolean>
-        fun getMockDataLoading(): Boolean
         fun checkStateFirstRunApp()
     }
 
