@@ -2,21 +2,18 @@ package com.dev.divig.moviereviewsapp.ui.detail.bottomsheetreview.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.core.view.isVisible
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.dev.divig.moviereviewsapp.data.model.ReviewEntity
+import com.dev.divig.moviereviewsapp.data.local.model.ReviewEntity
 import com.dev.divig.moviereviewsapp.databinding.ItemReviewBinding
-import com.dev.divig.moviereviewsapp.utils.Constant
 import com.dev.divig.moviereviewsapp.utils.Utils
 
-class ReviewsBottomSheetAdapter(
-    private val itemClick: (ReviewEntity) -> Unit
-) : ListAdapter<ReviewEntity, ReviewsBottomSheetAdapter.ViewHolder>(DiffCallback) {
+class ReviewsBottomSheetAdapter() :
+    ListAdapter<ReviewEntity, ReviewsBottomSheetAdapter.ViewHolder>(DiffCallback) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val binding = ItemReviewBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return ViewHolder(binding, itemClick)
+        return ViewHolder(binding)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
@@ -24,19 +21,13 @@ class ReviewsBottomSheetAdapter(
     }
 
     inner class ViewHolder(
-        private val binding: ItemReviewBinding,
-        val itemClick: (ReviewEntity) -> Unit
+        private val binding: ItemReviewBinding
     ) : RecyclerView.ViewHolder(binding.root) {
-
         fun bindView(item: ReviewEntity) {
             with(item) {
-                binding.ivBtnDeleteReview.isVisible = item.username.equals(Constant.USERNAME)
-                binding.tvReviewName.text = item.author
-                binding.tvDescReview.text = item.content
-                binding.tvDateReview.text = Utils.dateFormatter(item.createAt)
-                binding.ivBtnDeleteReview.setOnClickListener {
-                    itemClick(this)
-                }
+                binding.tvReviewName.text = author
+                binding.tvDescReview.text = content
+                binding.tvDateReview.text = Utils.dateFormatter(createAt)
             }
         }
     }

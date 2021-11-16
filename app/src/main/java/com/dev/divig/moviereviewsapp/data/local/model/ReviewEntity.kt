@@ -1,4 +1,4 @@
-package com.dev.divig.moviereviewsapp.data.model
+package com.dev.divig.moviereviewsapp.data.local.model
 
 import androidx.annotation.NonNull
 import androidx.room.ColumnInfo
@@ -14,9 +14,6 @@ data class ReviewEntity(
 
     @ColumnInfo(name = "movie_id")
     var movieId: Int,
-
-    @ColumnInfo(name = "username")
-    var username: String?,
 
     @ColumnInfo(name = "author")
     var author: String?,

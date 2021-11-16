@@ -10,7 +10,7 @@ interface IntroContract {
         fun navigateToMainPage()
     }
 
-    interface Presenter : BaseContract.BasePresenter {
+    interface ViewModel {
         fun setStateFirstRunApp()
     }
 

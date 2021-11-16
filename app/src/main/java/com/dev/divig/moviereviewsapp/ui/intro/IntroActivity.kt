@@ -5,33 +5,31 @@ import android.content.Intent
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.LinearLayout
+import androidx.activity.viewModels
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
 import com.dev.divig.moviereviewsapp.R
 import com.dev.divig.moviereviewsapp.base.BaseActivity
-import com.dev.divig.moviereviewsapp.data.local.preference.MoviePreference
 import com.dev.divig.moviereviewsapp.databinding.ActivityIntroBinding
 import com.dev.divig.moviereviewsapp.ui.intro.adapter.IntroAdapter
 import com.dev.divig.moviereviewsapp.ui.intro.model.Intro
 import com.dev.divig.moviereviewsapp.ui.main.MainActivity
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class IntroActivity :
-    BaseActivity<ActivityIntroBinding, IntroContract.Presenter>(ActivityIntroBinding::inflate),
+    BaseActivity<ActivityIntroBinding>(ActivityIntroBinding::inflate),
     IntroContract.View {
     private lateinit var introDataAdapter: IntroAdapter
     private lateinit var indicatorContainer: LinearLayout
+    private val viewModel: IntroViewModel by viewModels()
 
     override fun initView() {
         setIntro()
         supportActionBar?.hide()
         setupIndicator()
         setCurrentIndicator(0)
-    }
-
-    override fun initPresenter() {
-        val repository = IntroRepository(MoviePreference(this))
-        setPresenter(IntroPresenter(repository))
     }
 
     override fun setCurrentIndicator(position: Int) {
@@ -126,7 +124,7 @@ class IntroActivity :
     }
 
     override fun navigateToMainPage() {
-        getPresenter().setStateFirstRunApp()
+        viewModel.setStateFirstRunApp()
         MainActivity.startActivity(this)
     }
 

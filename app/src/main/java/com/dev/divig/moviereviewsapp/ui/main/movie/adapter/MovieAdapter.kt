@@ -1,16 +1,18 @@
-package com.dev.divig.moviereviewsapp.ui.main.adapter
+package com.dev.divig.moviereviewsapp.ui.main.movie.adapter
 
 import androidx.core.net.toUri
 import androidx.recyclerview.widget.ListAdapter
 import coil.load
 import com.dev.divig.moviereviewsapp.R
-import com.dev.divig.moviereviewsapp.data.model.MovieEntity
+import com.dev.divig.moviereviewsapp.data.local.model.MovieEntity
 import com.dev.divig.moviereviewsapp.databinding.ItemMovieBinding
+import com.dev.divig.moviereviewsapp.utils.Constant
 
-class MovieAdapter(private val onClickListener: OnClickListener):
+class MovieAdapter(private val onClickListener: OnClickListener) :
     ListAdapter<MovieEntity, MovieAdapter.ViewHolder>(DiffCallback) {
 
-    companion object DiffCallback : androidx.recyclerview.widget.DiffUtil.ItemCallback<MovieEntity>() {
+    companion object DiffCallback :
+        androidx.recyclerview.widget.DiffUtil.ItemCallback<MovieEntity>() {
         override fun areItemsTheSame(oldItem: MovieEntity, newItem: MovieEntity): Boolean {
             return oldItem === newItem
         }
@@ -21,11 +23,11 @@ class MovieAdapter(private val onClickListener: OnClickListener):
     }
 
 
-    inner class ViewHolder(private var binding: ItemMovieBinding):
-        androidx.recyclerview.widget.RecyclerView.ViewHolder(binding.root){
-        fun bind(movie: MovieEntity){
+    inner class ViewHolder(private var binding: ItemMovieBinding) :
+        androidx.recyclerview.widget.RecyclerView.ViewHolder(binding.root) {
+        fun bind(movie: MovieEntity) {
             binding.tvMovieTitle.text = movie.title
-            val imgUrl = movie.basePosterUrl + movie.posterPath
+            val imgUrl = Constant.BASE_URL_IMAGE + movie.posterPath
             imgUrl.let {
                 val imgUri = imgUrl.toUri().buildUpon().scheme("https").build()
                 binding.ivMoviePoster.load(imgUri) {
@@ -37,7 +39,11 @@ class MovieAdapter(private val onClickListener: OnClickListener):
     }
 
     override fun onCreateViewHolder(parent: android.view.ViewGroup, viewType: Int): ViewHolder {
-        val binding = ItemMovieBinding.inflate(android.view.LayoutInflater.from(parent.context), parent, false)
+        val binding = ItemMovieBinding.inflate(
+            android.view.LayoutInflater.from(parent.context),
+            parent,
+            false
+        )
         return ViewHolder(binding)
     }
 
@@ -49,7 +55,7 @@ class MovieAdapter(private val onClickListener: OnClickListener):
         holder.bind(movie)
     }
 
-    class OnClickListener(val clickListener: (movie: MovieEntity) -> Unit){
+    class OnClickListener(val clickListener: (movie: MovieEntity) -> Unit) {
         fun onClick(movie: MovieEntity) = clickListener(movie)
     }
 

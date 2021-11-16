@@ -1,20 +1,13 @@
 package com.dev.divig.moviereviewsapp.ui.detail.bottomsheetreview
 
-import com.dev.divig.moviereviewsapp.data.local.room.datasource.MoviesDataSource
-import com.dev.divig.moviereviewsapp.data.model.ReviewEntity
+import com.dev.divig.moviereviewsapp.data.local.datasource.LocalDataSource
+import com.dev.divig.moviereviewsapp.data.local.model.ReviewEntity
+import javax.inject.Inject
 
-class ReviewsBottomSheetRepository(
-    private val localDataSource: MoviesDataSource
+class ReviewsBottomSheetRepository @Inject constructor(
+    private val localDataSource: LocalDataSource
 ) : ReviewsBottomSheetContract.Repository {
     override suspend fun getReviewsByMovieId(movieId: Int): List<ReviewEntity> {
         return localDataSource.getReviewsByMovieId(movieId)
-    }
-
-    override suspend fun insertReview(review: ReviewEntity): Long {
-        return localDataSource.insertReview(review)
-    }
-
-    override suspend fun deleteReview(review: ReviewEntity): Int {
-        return localDataSource.deleteReview(review)
     }
 }

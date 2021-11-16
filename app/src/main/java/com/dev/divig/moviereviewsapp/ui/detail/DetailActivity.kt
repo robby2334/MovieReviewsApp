@@ -3,6 +3,7 @@ package com.dev.divig.moviereviewsapp.ui.detail
 import android.content.Context
 import android.content.Intent
 import android.widget.Toast
+import androidx.activity.viewModels
 import androidx.core.net.toUri
 import androidx.core.view.isGone
 import androidx.core.view.isVisible
@@ -10,31 +11,68 @@ import coil.load
 import com.dev.divig.moviereviewsapp.R
 import com.dev.divig.moviereviewsapp.base.BaseActivity
 import com.dev.divig.moviereviewsapp.base.model.Resource
-import com.dev.divig.moviereviewsapp.data.local.room.MoviesDatabase
-import com.dev.divig.moviereviewsapp.data.local.room.datasource.MoviesDataSourceImpl
-import com.dev.divig.moviereviewsapp.data.model.MovieEntity
-import com.dev.divig.moviereviewsapp.data.model.ReviewEntity
+import com.dev.divig.moviereviewsapp.data.local.model.MovieEntity
+import com.dev.divig.moviereviewsapp.data.local.model.ReviewEntity
 import com.dev.divig.moviereviewsapp.databinding.ActivityDetailBinding
 import com.dev.divig.moviereviewsapp.ui.detail.bottomsheetreview.ReviewsBottomSheet
 import com.dev.divig.moviereviewsapp.utils.Constant
 import com.dev.divig.moviereviewsapp.utils.Utils
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class DetailActivity :
-    BaseActivity<ActivityDetailBinding, DetailContract.Presenter>(ActivityDetailBinding::inflate),
+    BaseActivity<ActivityDetailBinding>(ActivityDetailBinding::inflate),
     DetailContract.View {
+    private val viewModel: DetailViewModel by viewModels()
     private var movieId: Int = 0
 
     override fun initView() {
         supportActionBar?.hide()
         getExtras()
+        observeViewModel()
         initScenarioComponent()
         setClickListeners()
     }
 
-    override fun initPresenter() {
-        val dataSource = MoviesDataSourceImpl(MoviesDatabase.getInstance(this).moviesDao())
-        val repository = DetailRepository(dataSource)
-        setPresenter(DetailPresenter(this, repository))
+    override fun observeViewModel() {
+        viewModel.getMovieLiveData().observe(this) { response ->
+            when (response) {
+                is Resource.Loading -> {
+                    showLoading(true)
+                    showContent(false)
+                }
+                is Resource.Success -> {
+                    showLoading(false)
+                    showContent(true)
+                    response.data?.let {
+                        fetchDataMovie(it)
+                    }
+                }
+                is Resource.Error -> {
+                    showLoading(false)
+                    showContent(true)
+                    showError(true, response.message)
+                }
+            }
+        }
+
+        viewModel.getReviewLiveData().observe(this) { response ->
+            when (response) {
+                is Resource.Loading -> {
+                }
+                is Resource.Success -> {
+                    showEmptyPlaceholder(false)
+                    if (response.data != null) {
+                        fetchDataReview(response.data)
+                    } else {
+                        showEmptyPlaceholder(true)
+                    }
+                }
+                is Resource.Error -> {
+                    showError(true, response.message)
+                }
+            }
+        }
     }
 
     private fun initScenarioComponent() {
@@ -49,42 +87,12 @@ class DetailActivity :
         getViewBinding().ivBtnBack.setOnClickListener {
             onBackPressed()
         }
-        getViewBinding().detailMovie.etReview.setOnClickListener {
+        getViewBinding().detailMovie.tvBtnShowAllReview.setOnClickListener {
             openReviewsBottomSheet()
         }
         getViewBinding().detailMovie.itemReview.layoutItemReview.setOnClickListener {
             openReviewsBottomSheet()
         }
-    }
-
-    override fun onDataCallback(response: Resource<MovieEntity>) {
-        when (response) {
-            is Resource.Loading -> {
-                showLoading(true)
-                showContent(false)
-            }
-            is Resource.Success -> {
-                showLoading(false)
-                showContent(true)
-                response.data?.let {
-                    fetchDataMovie(it)
-                }
-            }
-            is Resource.Error -> {
-                showLoading(false)
-                showContent(true)
-                showError(true, response.message)
-            }
-        }
-    }
-
-    override fun onGetReviewSuccess(response: ReviewEntity) {
-        showEmptyPlaceholder(false)
-        fetchDataReview(response)
-    }
-
-    override fun onDataReviewEmpty() {
-        showEmptyPlaceholder(true)
     }
 
     private fun getExtras() {
@@ -95,14 +103,14 @@ class DetailActivity :
     }
 
     private fun getMovieDetail(id: Int) {
-        getPresenter().getMovie(id)
+        viewModel.getMovie(id)
     }
 
     private fun getReviewByMovieId(movieId: Int) {
-        getPresenter().getReviewsByMovieId(movieId)
+        viewModel.getReviewsByMovieId(movieId)
     }
 
-    private fun fetchDataMovie(movie: MovieEntity) {
+    override fun fetchDataMovie(movie: MovieEntity) {
         val imgBackdrop =
             (Constant.BASE_URL_IMAGE + movie.backdropPath).toUri().buildUpon().scheme("https")
                 .build()
@@ -118,24 +126,25 @@ class DetailActivity :
             error(R.drawable.ic_broken_image)
         }
         getViewBinding().detailMovie.tvTitleMovie.text = movie.title
-        getViewBinding().detailMovie.tvGenre.text = movie.genres
+        getViewBinding().detailMovie.tvRating.text = movie.voteAverage.toString()
+        getViewBinding().detailMovie.ratingBar.rating =
+            (movie.voteAverage?.div(2))?.toFloat() ?: Constant.ZERO_FLOAT
         getViewBinding().detailMovie.tvDate.text = movie.releaseDate
-        getViewBinding().detailMovie.tvRuntime.text = Utils.convertRuntime(movie.runtime)
+        getViewBinding().detailMovie.tvRuntime.text = Utils.convertRuntime(movie.runtime ?: 0)
+        getViewBinding().detailMovie.tvGenre.text = movie.genres
         getViewBinding().detailMovie.tvOverview.text = movie.overview
     }
 
-    private fun fetchDataReview(review: ReviewEntity) {
-        getViewBinding().detailMovie.itemReview.tvReviewName.text = review.author
-        getViewBinding().detailMovie.itemReview.tvDescReview.text = review.content
+    override fun fetchDataReview(review: ReviewEntity?) {
+        getViewBinding().detailMovie.itemReview.tvReviewName.text = review?.author
+        getViewBinding().detailMovie.itemReview.tvDescReview.text = review?.content
         getViewBinding().detailMovie.itemReview.tvDescReview.isClickable = false
         getViewBinding().detailMovie.itemReview.tvDateReview.text =
-            Utils.dateFormatter(review.createAt)
+            Utils.dateFormatter(review?.createAt)
     }
 
     private fun openReviewsBottomSheet() {
-        ReviewsBottomSheet(movieId) {
-            getReviewByMovieId(movieId)
-        }.show(supportFragmentManager, null)
+        ReviewsBottomSheet(movieId).show(supportFragmentManager, null)
     }
 
     private fun showEmptyPlaceholder(isVisible: Boolean) {
@@ -160,7 +169,11 @@ class DetailActivity :
 
     override fun showError(isErrorEnabled: Boolean, msg: String?) {
         super.showError(isErrorEnabled, msg)
-        if (isErrorEnabled) Toast.makeText(this, msg.orEmpty(), Toast.LENGTH_SHORT)
+        if (isErrorEnabled && !msg.isNullOrEmpty()) Toast.makeText(
+            this,
+            msg.orEmpty(),
+            Toast.LENGTH_SHORT
+        )
             .show()
     }
 
@@ -173,6 +186,3 @@ class DetailActivity :
         }
     }
 }
-
-
-

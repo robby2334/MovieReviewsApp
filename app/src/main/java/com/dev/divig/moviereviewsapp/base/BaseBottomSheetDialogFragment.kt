@@ -7,11 +7,10 @@ import android.view.ViewGroup
 import androidx.viewbinding.ViewBinding
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 
-abstract class BaseBottomSheetDialogFragment<B : ViewBinding, P : BaseContract.BasePresenter>(
+abstract class BaseBottomSheetDialogFragment<B : ViewBinding>(
     val bindingFactory: (LayoutInflater, ViewGroup?, Boolean) -> B
 ) : BottomSheetDialogFragment(), BaseContract.BaseView {
     private lateinit var binding: B
-    private lateinit var presenter: P
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -23,23 +22,14 @@ abstract class BaseBottomSheetDialogFragment<B : ViewBinding, P : BaseContract.B
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        initPresenter()
+        observeViewModel()
         initView()
     }
 
     fun getViewBinding(): B = binding
-    fun getPresenter(): P = presenter
-    fun setPresenter(presenter: P) {
-        this.presenter = presenter
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        presenter.onDestroy()
-    }
 
     abstract fun initView()
-    abstract fun initPresenter()
+    override fun observeViewModel() {}
     override fun showContent(isContentVisible: Boolean) {}
     override fun showLoading(isLoading: Boolean) {}
     override fun showError(isErrorEnabled: Boolean, msg: String?) {}

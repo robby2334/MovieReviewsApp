@@ -1,4 +1,4 @@
-package com.dev.divig.moviereviewsapp.data.model
+package com.dev.divig.moviereviewsapp.data.local.model
 
 import androidx.annotation.NonNull
 import androidx.room.ColumnInfo
@@ -25,13 +25,17 @@ data class MovieEntity(
     var releaseDate: String?,
 
     @ColumnInfo(name = "runtime")
-    var runtime: Int,
+    var runtime: Int? = 0,
+
+    @ColumnInfo(name = "voteAverage")
+    var voteAverage: Double?,
 
     @ColumnInfo(name = "posterPath")
     var posterPath: String?,
 
     @ColumnInfo(name = "backdropPath")
     var backdropPath: String?,
-){
-    val basePosterUrl get() = "https://image.tmdb.org/t/p/w500"
-}
+
+    @ColumnInfo(name = "isFavorite")
+    var isFavorite: Boolean = false
+)

@@ -4,9 +4,9 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import com.dev.divig.moviereviewsapp.data.local.model.MovieEntity
+import com.dev.divig.moviereviewsapp.data.local.model.ReviewEntity
 import com.dev.divig.moviereviewsapp.data.local.room.dao.MoviesDao
-import com.dev.divig.moviereviewsapp.data.model.MovieEntity
-import com.dev.divig.moviereviewsapp.data.model.ReviewEntity
 
 @Database(
     entities = [MovieEntity::class, ReviewEntity::class],
