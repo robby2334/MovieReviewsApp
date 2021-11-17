@@ -17,7 +17,10 @@ import com.dev.divig.moviereviewsapp.databinding.ActivityDetailBinding
 import com.dev.divig.moviereviewsapp.ui.detail.bottomsheetreview.ReviewsBottomSheet
 import com.dev.divig.moviereviewsapp.utils.Constant
 import com.dev.divig.moviereviewsapp.utils.Utils
+import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener
 import dagger.hilt.android.AndroidEntryPoint
+import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer
+
 
 @AndroidEntryPoint
 class DetailActivity :
@@ -114,10 +117,18 @@ class DetailActivity :
         val imgBackdrop =
             (Constant.BASE_URL_IMAGE + movie.backdropPath).toUri().buildUpon().scheme("https")
                 .build()
-        getViewBinding().imgCollapsing.load(imgBackdrop) {
-            placeholder(R.color.color_secondary_variant)
-            error(R.drawable.ic_broken_image)
-        }
+//        getViewBinding().imgCollapsing.load(imgBackdrop) {
+//            placeholder(R.color.color_secondary_variant)
+//            error(R.drawable.ic_broken_image)
+//        }
+
+        getViewBinding().youtubePlayerView.addYouTubePlayerListener(object : AbstractYouTubePlayerListener() {
+            override fun onReady(youTubePlayer: YouTubePlayer) {
+                val videoId = "rJHCtij6vaA"
+                youTubePlayer.loadVideo(videoId, 0f)
+            }
+        })
+
         val imgPoster =
             (Constant.BASE_URL_IMAGE + movie.posterPath).toUri().buildUpon().scheme("https")
                 .build()

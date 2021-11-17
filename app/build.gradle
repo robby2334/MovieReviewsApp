@@ -91,6 +91,9 @@ dependencies {
     implementation("com.google.dagger:hilt-android:$hiltVersion")
     kapt("com.google.dagger:hilt-android-compiler:$hiltVersion")
 
+    //youtube player
+    implementation "com.pierfrancescosoffritti.androidyoutubeplayer:core:$ytbPlayerVersion"
+
     //testing
     testImplementation "junit:junit:$junitVersion"
     androidTestImplementation "androidx.test:rules:$androidXTestVersion"
