@@ -3,28 +3,28 @@ package com.dev.divig.moviereviewsapp.ui.main.movie
 import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
-import com.denzcoskun.imageslider.constants.ScaleTypes
-import com.denzcoskun.imageslider.models.SlideModel
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.dev.divig.moviereviewsapp.R
 import com.dev.divig.moviereviewsapp.base.BaseFragment
 import com.dev.divig.moviereviewsapp.base.model.Resource
 import com.dev.divig.moviereviewsapp.data.local.model.MovieEntity
 import com.dev.divig.moviereviewsapp.databinding.FragmentMovieBinding
-import com.dev.divig.moviereviewsapp.ui.about.AboutActivity
 import com.dev.divig.moviereviewsapp.ui.detail.DetailActivity
-import com.dev.divig.moviereviewsapp.ui.main.movie.adapter.MovieAdapter
-import com.dev.divig.moviereviewsapp.utils.Constant
+import com.dev.divig.moviereviewsapp.ui.main.movie.adapter.ParentItemAdapter
+import com.dev.divig.moviereviewsapp.ui.main.movie.model.ParentEntity
+import com.dev.divig.moviereviewsapp.utils.SpacesItemDecoration
+import com.dev.divig.moviereviewsapp.utils.Utils
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class MovieFragment : BaseFragment<FragmentMovieBinding>(FragmentMovieBinding::inflate),
     MovieFragmentContract.View {
-
+    private lateinit var movies: List<MovieEntity>
     private val viewModel: MovieFragmentViewModel by viewModels()
 
     override fun initView() {
-        getMovies()
-        setupAppbar()
+        initSwipeRefresh()
+        getMovies(false)
     }
 
     override fun observeViewModel() {
@@ -42,63 +42,85 @@ class MovieFragment : BaseFragment<FragmentMovieBinding>(FragmentMovieBinding::i
                             showContent(false)
                         } else {
                             showContent(true)
+                            movies = it
                             setupRecyclerView(it)
-                            setupBanner(it)
                         }
                     }
                 }
                 is Resource.Error -> {
                     showLoading(false)
                     showError(true, response.message)
-                    showContent(false)
                 }
             }
         }
     }
 
-    override fun getMovies() {
-        viewModel.getMovies()
+    override fun getMovies(update: Boolean) {
+        viewModel.getMovies(update)
     }
 
     override fun setupRecyclerView(movies: List<MovieEntity>) {
-        val adapter = MovieAdapter(
-            MovieAdapter.OnClickListener {
+        val parentAdapter = ParentItemAdapter(parentItemList(movies),
+            {
+                Toast.makeText(
+                    requireContext(),
+                    "Show All ${it.parentItemTitle}",
+                    Toast.LENGTH_SHORT
+                ).show()
+            },
+            {
                 navigateToDetail(it)
-            }
+            })
+
+        with(getViewBinding().rvMovie) {
+            adapter = parentAdapter
+            layoutManager = LinearLayoutManager(requireContext())
+            addItemDecoration(
+                SpacesItemDecoration(
+                    Utils.dpToPixels(
+                        requireContext(),
+                        0
+                    )
+                )
+            )
+        }
+    }
+
+    private fun parentItemList(movies: List<MovieEntity>): List<ParentEntity> {
+        val itemList: MutableList<ParentEntity> = ArrayList()
+        itemList.add(
+            ParentEntity(
+                getString(R.string.text_title_image_slider),
+                movies
+            )
         )
-        adapter.submitList(movies)
-        getViewBinding().rvMovie.adapter = adapter
+        itemList.add(
+            ParentEntity(
+                getString(R.string.text_title_now_playing_movies),
+                movies.sortedByDescending { Utils.dateToMillis(it.releaseDate) }
+            )
+        )
+
+        val listGenrePlaceholder: MutableList<String> =
+            resources.getStringArray(R.array.genre_name_list).toMutableList()
+
+        listGenrePlaceholder.forEach { value ->
+            val item = ParentEntity(
+                value,
+                movies.filter { item -> splitGenre(item.genres).find { it == value } == value }
+            )
+            if (item.childItemList.isNotEmpty() && item.childItemList.size >= 4) itemList.add(item)
+        }
+        return itemList
+    }
+
+    private fun splitGenre(genre: String?): Array<String> {
+        return genre.orEmpty().split(", ".toRegex()).dropLastWhile { it.isEmpty() }
+            .toTypedArray()
     }
 
     private fun navigateToDetail(movie: MovieEntity) {
         DetailActivity.startActivity(requireContext(), movie.id)
-    }
-
-    private fun navigateToAbout() {
-        AboutActivity.startActivity(requireContext())
-    }
-
-    override fun setupBanner(movie: List<MovieEntity>) {
-        val imageList = ArrayList<SlideModel>().apply {
-            add(SlideModel(Constant.BASE_URL_IMAGE + movie[0].backdropPath, ""))
-            add(SlideModel(Constant.BASE_URL_IMAGE + movie[2].backdropPath, ""))
-            add(SlideModel(Constant.BASE_URL_IMAGE + movie[4].backdropPath, ""))
-            add(SlideModel(Constant.BASE_URL_IMAGE + movie[6].backdropPath, ""))
-            add(SlideModel(Constant.BASE_URL_IMAGE + movie[8].backdropPath, ""))
-        }
-        getViewBinding().imgSlider.setImageList(imageList, ScaleTypes.FIT)
-    }
-
-    private fun setupAppbar() {
-        getViewBinding().toolbarMovie.setOnMenuItemClickListener {
-            when (it.itemId) {
-                R.id.menu_about -> {
-                    navigateToAbout()
-                    true
-                }
-                else -> true
-            }
-        }
     }
 
     override fun showContent(isContentVisible: Boolean) {
@@ -117,5 +139,12 @@ class MovieFragment : BaseFragment<FragmentMovieBinding>(FragmentMovieBinding::i
     override fun showError(isErrorEnabled: Boolean, msg: String?) {
         if (isErrorEnabled) Toast.makeText(requireContext(), msg.orEmpty(), Toast.LENGTH_SHORT)
             .show()
+    }
+
+    override fun initSwipeRefresh() {
+        getViewBinding().srlContent.setOnRefreshListener {
+            getViewBinding().srlContent.isRefreshing = false
+            getMovies(true)
+        }
     }
 }

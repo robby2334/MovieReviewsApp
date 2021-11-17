@@ -11,17 +11,33 @@
     app:layout_constraintTop_toTopOf="parent"
     tools:background="@color/color_primary">
 
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_170sdp"
+        android:background="@color/white" />
+
+    <View
+        android:layout_width="@dimen/_95sdp"
+        android:layout_height="@dimen/_16sdp"
+        android:layout_marginStart="@dimen/_12sdp"
+        android:layout_marginTop="@dimen/_14sdp"
+        android:background="@drawable/bg_corner"
+        android:backgroundTint="@color/white" />
+
     <TableRow
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:padding="@dimen/_6sdp">
+        android:paddingStart="@dimen/_6sdp"
+        android:paddingTop="0dp"
+        android:paddingEnd="@dimen/_6sdp"
+        android:paddingBottom="@dimen/_6sdp">
 
         <include
             layout="@layout/item_movie_placeholder"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/_8sdp"
+            android:layout_marginStart="@dimen/_7sdp"
             android:layout_marginTop="@dimen/_8sdp"
             android:layout_marginEnd="@dimen/_8sdp"
             android:layout_weight="1" />
@@ -45,17 +61,28 @@
             android:layout_weight="1" />
     </TableRow>
 
+    <View
+        android:layout_width="@dimen/_95sdp"
+        android:layout_height="@dimen/_16sdp"
+        android:layout_marginStart="@dimen/_12sdp"
+        android:layout_marginTop="@dimen/_6sdp"
+        android:background="@drawable/bg_corner"
+        android:backgroundTint="@color/white" />
+
     <TableRow
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:padding="@dimen/_6sdp">
+        android:paddingStart="@dimen/_6sdp"
+        android:paddingTop="0dp"
+        android:paddingEnd="@dimen/_6sdp"
+        android:paddingBottom="@dimen/_6sdp">
 
         <include
             layout="@layout/item_movie_placeholder"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/_8sdp"
+            android:layout_marginStart="@dimen/_7sdp"
             android:layout_marginTop="@dimen/_8sdp"
             android:layout_marginEnd="@dimen/_8sdp"
             android:layout_weight="1" />
@@ -79,17 +106,73 @@
             android:layout_weight="1" />
     </TableRow>
 
+    <View
+        android:layout_width="@dimen/_95sdp"
+        android:layout_height="@dimen/_16sdp"
+        android:layout_marginStart="@dimen/_12sdp"
+        android:layout_marginTop="@dimen/_6sdp"
+        android:background="@drawable/bg_corner"
+        android:backgroundTint="@color/white" />
+
     <TableRow
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:padding="@dimen/_6sdp">
+        android:paddingStart="@dimen/_6sdp"
+        android:paddingTop="0dp"
+        android:paddingEnd="@dimen/_6sdp"
+        android:paddingBottom="@dimen/_6sdp">
+
+        <include
+            layout="@layout/item_movie_placeholder"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_7sdp"
+            android:layout_marginTop="@dimen/_8sdp"
+            android:layout_marginEnd="@dimen/_8sdp"
+            android:layout_weight="1" />
 
         <include
             layout="@layout/item_movie_placeholder"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/_8sdp"
+            android:layout_marginTop="@dimen/_8sdp"
+            android:layout_marginEnd="@dimen/_8sdp"
+            android:layout_weight="1" />
+
+        <include
+            layout="@layout/item_movie_placeholder"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_8sdp"
+            android:layout_marginTop="@dimen/_8sdp"
+            android:layout_marginEnd="@dimen/_8sdp"
+            android:layout_weight="1" />
+    </TableRow>
+
+    <View
+        android:layout_width="@dimen/_95sdp"
+        android:layout_height="@dimen/_16sdp"
+        android:layout_marginStart="@dimen/_12sdp"
+        android:layout_marginTop="@dimen/_6sdp"
+        android:background="@drawable/bg_corner"
+        android:backgroundTint="@color/white" />
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingStart="@dimen/_6sdp"
+        android:paddingTop="0dp"
+        android:paddingEnd="@dimen/_6sdp"
+        android:paddingBottom="@dimen/_6sdp">
+
+        <include
+            layout="@layout/item_movie_placeholder"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_7sdp"
             android:layout_marginTop="@dimen/_8sdp"
             android:layout_marginEnd="@dimen/_8sdp"
             android:layout_weight="1" />

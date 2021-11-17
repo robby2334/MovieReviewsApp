@@ -35,7 +35,7 @@ class DetailViewModel @Inject constructor(private val repository: DetailReposito
         viewModelScope.launch(Dispatchers.IO) {
             try {
                 var movie = repository.getDetailMovie(id)
-                if (movie.title.isNullOrEmpty() || movie.genres.isNullOrEmpty()) {
+                if (movie.title.isNullOrEmpty() || movie.runtime == 0) {
                     val response = repository.getDetailMovieFromNetwork(id)
 
                     val genres = StringBuilder().append("")

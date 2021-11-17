@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/_170sdp"
+    tools:background="@color/color_primary">
+
+    <com.denzcoskun.imageslider.ImageSlider
+        android:id="@+id/img_slider"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:iss_auto_cycle="true"
+        app:iss_delay="500"
+        app:iss_error_image="@color/color_secondary_variant"
+        app:iss_period="2000"
+        app:iss_placeholder="@android:color/transparent"
+        app:iss_selected_dot="@drawable/ic_indicator_active"
+        app:iss_title_background="@android:color/transparent"
+        app:iss_unselected_dot="@drawable/ic_indicator_inactive"
+        tools:ignore="MissingConstraints" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/gradient_img_slider" />
+
+    <TextView
+        android:id="@+id/tv_img_title"
+        style="@style/Text.Bold.Movie.App"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:textColor="@color/white"
+        android:textSize="@dimen/_14ssp"
+        app:layout_constraintBottom_toTopOf="@id/tv_img_genre"
+        app:layout_constraintStart_toStartOf="@id/tv_img_genre"
+        tools:text="Nussa (2021)" />
+
+    <TextView
+        android:id="@+id/tv_img_genre"
+        style="@style/Text.Light.Movie.App"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:layout_marginStart="@dimen/_14sdp"
+        android:paddingBottom="@dimen/_18sdp"
+        android:textColor="@color/color_secondary"
+        android:textSize="@dimen/_10ssp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:text="Animation, Family" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
