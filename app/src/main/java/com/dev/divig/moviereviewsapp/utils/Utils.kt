@@ -29,6 +29,12 @@ object Utils {
         return formatter.format(originalDate as Date)
     }
 
+    fun getDate(): String {
+        val calendar = Calendar.getInstance(TimeZone.getDefault())
+        val formatter = SimpleDateFormat(Constant.RELEASE_DATE_PATTERN, Locale.getDefault())
+        return formatter.format(calendar.time)
+    }
+
     fun dateToMillis(value: String?): Long {
         val date = value ?: "0000-00-00"
         val formatterPrev =
