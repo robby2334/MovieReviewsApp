@@ -50,6 +50,10 @@ class LocalDataSourceImpl @Inject constructor(
         return moviesDao.insertMovies(movies).size
     }
 
+    override suspend fun insertMovie(movie: MovieEntity): Long {
+        return moviesDao.insertMovie(movie)
+    }
+
     override suspend fun updateMovie(movie: MovieEntity): Int {
         return moviesDao.updateMovie(movie)
     }

@@ -33,7 +33,7 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@color/black_alpha_35" />
+                android:background="@color/black_alpha_45" />
 
             <ImageButton
                 android:id="@+id/iv_btn_back"

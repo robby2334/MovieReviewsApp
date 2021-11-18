@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.dev.divig.moviereviewsapp.base.model.Resource
 import com.dev.divig.moviereviewsapp.data.local.model.MovieEntity
+import com.dev.divig.moviereviewsapp.utils.Utils
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -20,12 +21,12 @@ class MovieFragmentViewModel @Inject constructor(private val repository: MovieFr
 
     override fun getMoviesLiveData(): LiveData<Resource<List<MovieEntity>>> = repositoryLiveData
 
-    override fun getMovies() {
+    override fun getMovies(update: Boolean) {
         repositoryLiveData.value = Resource.Loading()
         viewModelScope.launch(Dispatchers.IO) {
             try {
                 var movies = repository.getMovies()
-                if (movies.isEmpty()) {
+                if (movies.isEmpty() || update) {
                     val response = repository.getMoviesFromNetwork()
 
                     if (response.success == false) {
@@ -35,17 +36,26 @@ class MovieFragmentViewModel @Inject constructor(private val repository: MovieFr
                         }
                     } else {
                         val movieList = ArrayList<MovieEntity>()
-                        response.results.forEach { value ->
+                        response.results.forEach { item ->
+                            val genres = StringBuilder().append("")
+                            item.genreIds?.forEachIndexed { index, value ->
+                                if (index < item.genreIds.size - 1) {
+                                    genres.append("${Utils.getGenreName(value)}, ")
+                                } else {
+                                    genres.append(Utils.getGenreName(value))
+                                }
+                            }
+
                             val movieEntity = MovieEntity(
-                                value.id,
-                                value.title,
-                                value.overview,
-                                null,
-                                value.releaseDate,
+                                item.id,
+                                item.title,
+                                item.overview,
+                                genres.toString(),
+                                item.releaseDate,
                                 0,
-                                value.voteAverage,
-                                value.posterPath,
-                                value.backdropPath
+                                item.voteAverage,
+                                item.posterPath,
+                                item.backdropPath
                             )
                             movieList.add(movieEntity)
                         }
