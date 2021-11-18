@@ -28,4 +28,18 @@
     <string name="text_title_ratings">Ratings</string>
     <string name="message_empty_movies">There was a problem loading the list of movies.</string>
     <string name="message_no_review">it\'s a little empty here! No reviews have been submitted yet.</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="image_view_logo">Image View Logo Login</string>
+    <string name="forgot_password">Forgot Password ?</string>
+    <string name="log_in">Log In</string>
+    <string name="full_name">Full Name</string>
+    <string name="email">Email</string>
+    <string name="register">Register</string>
+    <string name="password">Password</string>
+    <string name="re_enter_password">Re-Enter Password</string>
+    <string name="signup">SignUp</string>
+    <string name="iv_logo_register">Image View Logo Register</string>
+    <string name="full_name_register">Full Name Register</string>
+    <string name="password_register">Password Register</string>
 </resources>

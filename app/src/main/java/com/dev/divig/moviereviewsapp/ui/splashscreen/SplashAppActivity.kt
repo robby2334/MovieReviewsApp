@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import com.dev.divig.moviereviewsapp.ui.intro.IntroActivity
+import com.dev.divig.moviereviewsapp.ui.login.LoginActivity
 import com.dev.divig.moviereviewsapp.ui.main.MainActivity
 import dagger.hilt.android.AndroidEntryPoint
 
