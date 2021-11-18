@@ -5,6 +5,7 @@ import com.dev.divig.moviereviewsapp.data.network.datasource.movie.MovieApiDataS
 import com.dev.divig.moviereviewsapp.ui.detail.DetailRepository
 import com.dev.divig.moviereviewsapp.ui.detail.bottomsheetreview.ReviewsBottomSheetRepository
 import com.dev.divig.moviereviewsapp.ui.intro.IntroRepository
+import com.dev.divig.moviereviewsapp.ui.main.favorite.FavoriteRepository
 import com.dev.divig.moviereviewsapp.ui.main.movie.MovieFragmentRepository
 import com.dev.divig.moviereviewsapp.ui.main.search.SearchRepository
 import com.dev.divig.moviereviewsapp.ui.splashscreen.SplashAppRepository
@@ -49,6 +50,14 @@ object RepositoryModule {
         movieApiDataSource: MovieApiDataSource
     ): SearchRepository {
         return SearchRepository(movieApiDataSource)
+    }
+
+    @Provides
+    @Singleton
+    fun provideFavoriteRepository(
+        localDataSource: LocalDataSource
+    ): FavoriteRepository {
+        return FavoriteRepository(localDataSource)
     }
 
     @Provides
