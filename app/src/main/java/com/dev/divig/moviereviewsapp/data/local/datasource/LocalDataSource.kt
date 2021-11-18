@@ -16,6 +16,8 @@ interface LocalDataSource {
 
     suspend fun insertMovies(movies: List<MovieEntity>): Int
 
+    suspend fun insertMovie(movie: MovieEntity): Long
+
     suspend fun updateMovie(movie: MovieEntity): Int
 
     suspend fun setFavoriteMovie(movie: MovieEntity, newState: Boolean): Int

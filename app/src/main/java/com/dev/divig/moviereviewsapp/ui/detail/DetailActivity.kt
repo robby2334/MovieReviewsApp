@@ -97,13 +97,14 @@ class DetailActivity :
 
     private fun getExtras() {
         val id = intent.getIntExtra(Constant.KEY_EXTRA_ID, 0)
+        val isSearch = intent.getBooleanExtra(Constant.KEY_EXTRA_IS_SEARCH, false)
         movieId = id
-        getMovieDetail(id)
+        getMovieDetail(id, isSearch)
         getReviewByMovieId(movieId)
     }
 
-    private fun getMovieDetail(id: Int) {
-        viewModel.getMovie(id)
+    private fun getMovieDetail(id: Int, isSearch: Boolean) {
+        viewModel.getMovie(id, isSearch)
     }
 
     private fun getReviewByMovieId(movieId: Int) {
@@ -178,9 +179,10 @@ class DetailActivity :
     }
 
     companion object {
-        fun startActivity(context: Context?, id: Int) {
+        fun startActivity(context: Context?, id: Int, isSearch: Boolean) {
             val intent = Intent(context, DetailActivity::class.java).apply {
                 putExtra(Constant.KEY_EXTRA_ID, id)
+                putExtra(Constant.KEY_EXTRA_IS_SEARCH, isSearch)
             }
             context?.startActivity(intent)
         }

@@ -6,6 +6,7 @@ import com.dev.divig.moviereviewsapp.ui.detail.DetailRepository
 import com.dev.divig.moviereviewsapp.ui.detail.bottomsheetreview.ReviewsBottomSheetRepository
 import com.dev.divig.moviereviewsapp.ui.intro.IntroRepository
 import com.dev.divig.moviereviewsapp.ui.main.movie.MovieFragmentRepository
+import com.dev.divig.moviereviewsapp.ui.main.search.SearchRepository
 import com.dev.divig.moviereviewsapp.ui.splashscreen.SplashAppRepository
 import dagger.Module
 import dagger.Provides
@@ -40,6 +41,14 @@ object RepositoryModule {
         movieApiDataSource: MovieApiDataSource
     ): MovieFragmentRepository {
         return MovieFragmentRepository(localDataSource, movieApiDataSource)
+    }
+
+    @Provides
+    @Singleton
+    fun provideSearchRepository(
+        movieApiDataSource: MovieApiDataSource
+    ): SearchRepository {
+        return SearchRepository(movieApiDataSource)
     }
 
     @Provides

@@ -6,7 +6,8 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:padding="@dimen/_4sdp"
+    android:paddingStart="@dimen/_10sdp"
+    android:paddingEnd="0dp"
     tools:background="@color/color_primary">
 
     <androidx.cardview.widget.CardView
@@ -47,10 +48,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingStart="0dp"
-            android:paddingEnd="@dimen/_2sdp"
+            android:paddingEnd="@dimen/_4sdp"
             android:textColor="@color/color_secondary"
             android:textSize="@dimen/_10ssp"
-            tools:text="10.5" />
+            tools:text="5.5" />
 
         <RatingBar
             android:id="@+id/rating_bar"

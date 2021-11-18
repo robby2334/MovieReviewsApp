@@ -9,14 +9,14 @@ import com.dev.divig.moviereviewsapp.data.network.model.response.movie.Movie
 
 interface MovieFragmentContract {
     interface View : BaseContract.BaseView {
-        fun getMovies()
+        fun getMovies(update: Boolean)
         fun setupRecyclerView(movies: List<MovieEntity>)
-        fun setupBanner(movie: List<MovieEntity>)
+        fun initSwipeRefresh()
     }
 
     interface ViewModel {
         fun getMoviesLiveData(): LiveData<Resource<List<MovieEntity>>>
-        fun getMovies()
+        fun getMovies(update: Boolean)
     }
 
     interface Repository {
