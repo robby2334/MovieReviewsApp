@@ -118,7 +118,13 @@ class ParentItemAdapter(
                 val childItemAdapter = ChildItemAdapter {
                     onClickItemChild(it)
                 }
-                childItemAdapter.submitList(childItemList)
+
+                val childList = if (childItemList.size > 10) {
+                    childItemList.subList(0, 10)
+                } else {
+                    childItemList
+                }
+                childItemAdapter.submitList(childList)
                 binding.childRecyclerView.apply {
                     this.layoutManager = layoutManager
                     addItemDecoration(

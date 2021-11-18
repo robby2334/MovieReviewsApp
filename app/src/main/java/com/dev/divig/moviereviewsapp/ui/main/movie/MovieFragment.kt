@@ -19,7 +19,6 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class MovieFragment : BaseFragment<FragmentMovieBinding>(FragmentMovieBinding::inflate),
     MovieFragmentContract.View {
-    private lateinit var movies: List<MovieEntity>
     private val viewModel: MovieFragmentViewModel by viewModels()
 
     override fun initView() {
@@ -42,7 +41,6 @@ class MovieFragment : BaseFragment<FragmentMovieBinding>(FragmentMovieBinding::i
                             showContent(false)
                         } else {
                             showContent(true)
-                            movies = it
                             setupRecyclerView(it)
                         }
                     }
@@ -97,7 +95,9 @@ class MovieFragment : BaseFragment<FragmentMovieBinding>(FragmentMovieBinding::i
         itemList.add(
             ParentEntity(
                 getString(R.string.text_title_now_playing_movies),
-                movies.sortedByDescending { Utils.dateToMillis(it.releaseDate) }
+                movies.filter {
+                    Utils.dateToMillis(it.releaseDate) <= Utils.dateToMillis(Utils.getDate())
+                }.sortedByDescending { Utils.dateToMillis(it.releaseDate) }
             )
         )
 
