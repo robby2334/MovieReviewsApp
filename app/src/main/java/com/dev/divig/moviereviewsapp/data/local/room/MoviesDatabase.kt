@@ -10,7 +10,7 @@ import com.dev.divig.moviereviewsapp.data.local.room.dao.MoviesDao
 
 @Database(
     entities = [MovieEntity::class, ReviewEntity::class],
-    version = 1,
+    version = 2,
     exportSchema = false
 )
 abstract class MoviesDatabase : RoomDatabase() {
@@ -26,8 +26,9 @@ abstract class MoviesDatabase : RoomDatabase() {
                 val instance = Room.databaseBuilder(
                     context.applicationContext,
                     MoviesDatabase::class.java,
-                    DB_NAME
-                ).build()
+                    DB_NAME)
+                    .fallbackToDestructiveMigration()
+                    .build()
                 INSTANCE = instance
                 instance
             }

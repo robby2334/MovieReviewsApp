@@ -7,6 +7,7 @@ import androidx.lifecycle.viewModelScope
 import com.dev.divig.moviereviewsapp.base.model.Resource
 import com.dev.divig.moviereviewsapp.data.local.model.MovieEntity
 import com.dev.divig.moviereviewsapp.data.local.model.ReviewEntity
+import com.dev.divig.moviereviewsapp.utils.Constant
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -27,6 +28,10 @@ class DetailViewModel @Inject constructor(private val repository: DetailReposito
         viewModelScope.launch(Dispatchers.IO) {
             val newState = !movie.isFavorite
             repository.setFavoriteMovie(movie, newState)
+            val movieData = repository.getDetailMovie(movie.id)
+            viewModelScope.launch(Dispatchers.Main) {
+                movieRepositoryLiveData.value = Resource.Success(movieData)
+            }
         }
     }
 
@@ -53,6 +58,13 @@ class DetailViewModel @Inject constructor(private val repository: DetailReposito
                                 Resource.Error(response.statusMessage.orEmpty())
                         }
                     } else {
+                        val listVideos = response.videos?.results
+                        val videoKey = if (!listVideos.isNullOrEmpty()) {
+                            listVideos.filter { it.type == Constant.TRAILER }.let {
+                                it[0].key
+                            }
+                        } else null
+                        
                         val movieEntity = MovieEntity(
                             id,
                             response.title,
@@ -62,7 +74,8 @@ class DetailViewModel @Inject constructor(private val repository: DetailReposito
                             response.runtime,
                             response.voteAverage,
                             response.posterPath,
-                            response.backdropPath
+                            response.backdropPath,
+                            videoKey
                         )
                         if (isSearch) {
                             repository.insertMovie(movieEntity)

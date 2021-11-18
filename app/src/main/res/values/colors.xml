@@ -9,6 +9,7 @@
     <color name="black_alpha_85">#D9000000</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="blue_700">#151E27</color>
     <color name="color_primary">#0F161E</color>
     <color name="color_primary_variant">#1F2A33</color>
     <color name="color_secondary">#FCCF00</color>

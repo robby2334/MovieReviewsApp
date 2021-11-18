@@ -35,4 +35,7 @@
         <item name="android:textColorHint">@color/color_secondary_variant</item>
     </style>
 
+    <style name="Theme.MovieReviewsApp.FloatingActionButton" parent="Theme.MovieReviewsApp">
+        <item name="colorSecondary">@color/blue_700</item>
+    </style>
 </resources>

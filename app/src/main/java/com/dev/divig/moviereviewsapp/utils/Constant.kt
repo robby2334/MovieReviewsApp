@@ -8,6 +8,7 @@ object Constant {
     const val API_KEY = BuildConfig.api_key
     const val BASE_URL_IMAGE = BuildConfig.image_url
     const val VIDEOS = "videos"
+    const val TRAILER = "Trailer"
     const val DATABASE_DATE_PATTERN = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
     const val DATE_PATTERN = "d MMM yyyy HH:mm:ss"
     const val RELEASE_DATE_PATTERN = "yyyy-MM-dd"
