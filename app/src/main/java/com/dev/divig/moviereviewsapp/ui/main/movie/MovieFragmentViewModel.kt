@@ -55,7 +55,8 @@ class MovieFragmentViewModel @Inject constructor(private val repository: MovieFr
                                 0,
                                 item.voteAverage,
                                 item.posterPath,
-                                item.backdropPath
+                                item.backdropPath,
+                                null
                             )
                             movieList.add(movieEntity)
                         }

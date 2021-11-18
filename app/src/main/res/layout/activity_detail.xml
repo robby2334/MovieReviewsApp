@@ -26,9 +26,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:autoPlay="false"
-                app:showYouTubeButton="true"
                 app:showFullScreenButton="false"
-                />
+                app:showYouTubeButton="true" />
 
             <View
                 android:layout_width="match_parent"
@@ -74,4 +73,17 @@
             </com.facebook.shimmer.ShimmerFrameLayout>
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab_add_to_favorite"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end|bottom"
+        android:layout_marginEnd="18dp"
+        android:layout_marginBottom="18dp"
+        android:theme="@style/Theme.MovieReviewsApp.FloatingActionButton"
+        android:contentDescription="@string/text_title_favorite"
+        android:src="@drawable/ic_favorite_outlined_24"
+        app:tint="@null"
+        app:layout_behavior="@string/hide_bottom_view_on_scroll_behavior" />
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

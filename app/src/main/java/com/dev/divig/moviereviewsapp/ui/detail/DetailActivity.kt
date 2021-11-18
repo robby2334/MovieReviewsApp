@@ -4,7 +4,6 @@ import android.content.Context
 import android.content.Intent
 import android.widget.Toast
 import androidx.activity.viewModels
-import androidx.core.net.toUri
 import androidx.core.view.isGone
 import androidx.core.view.isVisible
 import coil.load
@@ -17,15 +16,15 @@ import com.dev.divig.moviereviewsapp.databinding.ActivityDetailBinding
 import com.dev.divig.moviereviewsapp.ui.detail.bottomsheetreview.ReviewsBottomSheet
 import com.dev.divig.moviereviewsapp.utils.Constant
 import com.dev.divig.moviereviewsapp.utils.Utils
+import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener
 import dagger.hilt.android.AndroidEntryPoint
-import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer
-
 
 @AndroidEntryPoint
 class DetailActivity :
     BaseActivity<ActivityDetailBinding>(ActivityDetailBinding::inflate),
     DetailContract.View {
+    private lateinit var movie: MovieEntity
     private val viewModel: DetailViewModel by viewModels()
     private var movieId: Int = 0
 
@@ -48,6 +47,7 @@ class DetailActivity :
                     showLoading(false)
                     showContent(true)
                     response.data?.let {
+                        movie = it
                         fetchDataMovie(it)
                     }
                 }
@@ -96,6 +96,9 @@ class DetailActivity :
         getViewBinding().detailMovie.itemReview.layoutItemReview.setOnClickListener {
             openReviewsBottomSheet()
         }
+        getViewBinding().fabAddToFavorite.setOnClickListener {
+            setFavoriteMovie()
+        }
     }
 
     private fun getExtras() {
@@ -114,25 +117,27 @@ class DetailActivity :
         viewModel.getReviewsByMovieId(movieId)
     }
 
+    private fun setFavoriteMovie() {
+        viewModel.setFavoriteMovie(movie)
+    }
+
     override fun fetchDataMovie(movie: MovieEntity) {
-        val imgBackdrop =
-            (Constant.BASE_URL_IMAGE + movie.backdropPath).toUri().buildUpon().scheme("https")
-                .build()
+        setFabFavorite(movie.isFavorite)
+//        val imgBackdrop = Constant.BASE_URL_IMAGE + movie.backdropPath
 //        getViewBinding().imgCollapsing.load(imgBackdrop) {
 //            placeholder(R.color.color_secondary_variant)
 //            error(R.drawable.ic_broken_image)
 //        }
 
-        getViewBinding().youtubePlayerView.addYouTubePlayerListener(object : AbstractYouTubePlayerListener() {
+        getViewBinding().youtubePlayerView.addYouTubePlayerListener(object :
+            AbstractYouTubePlayerListener() {
             override fun onReady(youTubePlayer: YouTubePlayer) {
-                val videoId = "rJHCtij6vaA"
+                val videoId = movie.videoKey.orEmpty()
                 youTubePlayer.loadVideo(videoId, 0f)
             }
         })
 
-        val imgPoster =
-            (Constant.BASE_URL_IMAGE + movie.posterPath).toUri().buildUpon().scheme("https")
-                .build()
+        val imgPoster = Constant.BASE_URL_IMAGE + movie.posterPath
         getViewBinding().detailMovie.ivPoster.load(imgPoster) {
             placeholder(R.drawable.loading_animation)
             error(R.drawable.ic_broken_image)
@@ -162,6 +167,14 @@ class DetailActivity :
     private fun showEmptyPlaceholder(isVisible: Boolean) {
         getViewBinding().detailMovie.layoutScenario.layoutComponentScenario.isVisible = isVisible
         getViewBinding().detailMovie.itemReview.layoutItemReview.isGone = isVisible
+    }
+
+    private fun setFabFavorite(state: Boolean) {
+        if (state) {
+            getViewBinding().fabAddToFavorite.load(R.drawable.ic_favorite_filled_24)
+        } else {
+            getViewBinding().fabAddToFavorite.load(R.drawable.ic_favorite_outlined_24)
+        }
     }
 
     override fun showContent(isContentVisible: Boolean) {
