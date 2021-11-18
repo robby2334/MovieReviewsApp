@@ -19,8 +19,8 @@
 
         <ImageView
             android:id="@+id/iv_movie_poster"
-            android:layout_width="@dimen/_80sdp"
-            android:layout_height="@dimen/_120sdp"
+            android:layout_width="@dimen/_100sdp"
+            android:layout_height="@dimen/_150sdp"
             android:background="@color/white"
             android:importantForAccessibility="no" />
 

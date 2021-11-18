@@ -83,7 +83,8 @@ class ParentItemAdapter(
                     override fun onItemSelected(position: Int) {
                         DetailActivity.startActivity(
                             binding.root.context,
-                            childItemList[listNumber[position]].id
+                            childItemList[listNumber[position]].id,
+                            false
                         )
                     }
                 })

@@ -30,12 +30,12 @@ class DetailViewModel @Inject constructor(private val repository: DetailReposito
         }
     }
 
-    override fun getMovie(id: Int) {
+    override fun getMovie(id: Int, isSearch: Boolean) {
         movieRepositoryLiveData.value = Resource.Loading()
         viewModelScope.launch(Dispatchers.IO) {
             try {
                 var movie = repository.getDetailMovie(id)
-                if (movie.title.isNullOrEmpty() || movie.runtime == 0) {
+                if (isSearch || movie.title.isNullOrEmpty() || movie.runtime == 0) {
                     val response = repository.getDetailMovieFromNetwork(id)
 
                     val genres = StringBuilder().append("")
@@ -64,7 +64,11 @@ class DetailViewModel @Inject constructor(private val repository: DetailReposito
                             response.posterPath,
                             response.backdropPath
                         )
-                        repository.updateMovie(movieEntity)
+                        if (isSearch) {
+                            repository.insertMovie(movieEntity)
+                        } else {
+                            repository.updateMovie(movieEntity)
+                        }
                     }
                     movie = repository.getDetailMovie(id)
                 }

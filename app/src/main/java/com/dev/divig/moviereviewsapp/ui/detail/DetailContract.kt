@@ -19,11 +19,12 @@ interface DetailContract {
         fun getMovieLiveData(): LiveData<Resource<MovieEntity>>
         fun getReviewLiveData(): LiveData<Resource<ReviewEntity?>>
         fun setFavoriteMovie(movie: MovieEntity)
-        fun getMovie(id: Int)
+        fun getMovie(id: Int, isSearch: Boolean)
         fun getReviewsByMovieId(movieId: Int)
     }
 
     interface Repository {
+        suspend fun insertMovie(movie: MovieEntity): Long
         suspend fun updateMovie(movie: MovieEntity): Int
         suspend fun setFavoriteMovie(movie: MovieEntity, newState: Boolean): Int
         suspend fun getDetailMovie(id: Int): MovieEntity

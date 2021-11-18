@@ -120,7 +120,7 @@ class MovieFragment : BaseFragment<FragmentMovieBinding>(FragmentMovieBinding::i
     }
 
     private fun navigateToDetail(movie: MovieEntity) {
-        DetailActivity.startActivity(requireContext(), movie.id)
+        DetailActivity.startActivity(requireContext(), movie.id, false)
     }
 
     override fun showContent(isContentVisible: Boolean) {

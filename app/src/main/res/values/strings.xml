@@ -13,6 +13,7 @@
     <string name="text_placeholder_welcome">Welcome to</string>
     <string name="text_placeholder_next">Next</string>
     <string name="text_placeholder_show_all_reviews">Show All Reviews</string>
+    <string name="text_placeholder_query_hint">Search…</string>
     <string name="text_title_genre">Genre</string>
     <string name="text_title_date_release">Date Release</string>
     <string name="text_title_overview">Overview</string>
@@ -28,8 +29,12 @@
     <string name="text_title_ratings">Ratings</string>
     <string name="text_title_image_slider">Image Slider</string>
     <string name="text_title_now_playing_movies">Now Playing Movies</string>
+    <string name="text_title_search_movies">Search Movies</string>
+    <string name="text_title_no_search_result">No Results Found</string>
     <string name="message_empty_movies">There was a problem loading the list of movies.</string>
     <string name="message_no_review">it\'s a little empty here! No reviews have been submitted yet.</string>
+    <string name="message_search_movies">Find your favorite movies.</string>
+    <string name="message_no_search_result">Please check you have the right spelling,or try different keywords.</string>
 
     <string-array name="genre_name_list">
         <item>Action</item>
