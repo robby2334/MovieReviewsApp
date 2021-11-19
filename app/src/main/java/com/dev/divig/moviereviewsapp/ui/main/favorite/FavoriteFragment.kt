@@ -25,11 +25,11 @@ class FavoriteFragment : BaseFragment<FragmentFavoriteBinding>(FragmentFavoriteB
     }
 
     private fun initScenarioComponent() {
-        getViewBinding().layoutScenario.ivScenario.load(R.drawable.ic_no_reviews_placeholder)
+        getViewBinding().layoutScenario.ivScenario.load(R.drawable.ic_favorite_placeholder)
         getViewBinding().layoutScenario.tvTitle.text =
-            getString(R.string.text_title_no_review)
+            getString(R.string.text_title_favorite_placeholder)
         getViewBinding().layoutScenario.tvDesc.text =
-            getString(R.string.message_no_review)
+            getString(R.string.message_favorite_placeholder)
     }
 
     override fun observeViewModel() {

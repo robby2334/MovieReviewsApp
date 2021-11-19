@@ -22,6 +22,7 @@
     <string name="text_title_cancel">Cancel</string>
     <string name="text_title_all_reviews">All Reviews</string>
     <string name="text_title_no_review">Uh-oh! No Reviews Yet</string>
+    <string name="text_title_favorite_placeholder">Start Saving All Your Favorite Movies</string>
     <string name="text_title_movie">Movie</string>
     <string name="text_title_search">Search</string>
     <string name="text_title_favorite">Favorite</string>
@@ -33,6 +34,7 @@
     <string name="text_title_no_search_result">No Results Found</string>
     <string name="message_empty_movies">There was a problem loading the list of movies.</string>
     <string name="message_no_review">it\'s a little empty here! No reviews have been submitted yet.</string>
+    <string name="message_favorite_placeholder">Tap the favorite icon in all your favorite movies and we will save them all here.</string>
     <string name="message_search_movies">Find your favorite movies.</string>
     <string name="message_no_search_result">Please check you have the right spelling,or try different keywords.</string>
 
