@@ -11,6 +11,7 @@ import com.dev.divig.moviereviewsapp.data.local.model.MovieEntity
 import com.dev.divig.moviereviewsapp.databinding.FragmentMovieBinding
 import com.dev.divig.moviereviewsapp.ui.detail.DetailActivity
 import com.dev.divig.moviereviewsapp.ui.main.movie.adapter.ParentItemAdapter
+import com.dev.divig.moviereviewsapp.ui.main.movie.bottomsheet.MovieBottomSheet
 import com.dev.divig.moviereviewsapp.ui.main.movie.model.ParentEntity
 import com.dev.divig.moviereviewsapp.utils.SpacesItemDecoration
 import com.dev.divig.moviereviewsapp.utils.Utils
@@ -18,8 +19,8 @@ import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class MovieFragment : BaseFragment<FragmentMovieBinding>(FragmentMovieBinding::inflate),
-    MovieFragmentContract.View {
-    private val viewModel: MovieFragmentViewModel by viewModels()
+    MovieContract.View {
+    private val viewModel: MovieViewModel by viewModels()
 
     override fun initView() {
         initSwipeRefresh()
@@ -27,7 +28,7 @@ class MovieFragment : BaseFragment<FragmentMovieBinding>(FragmentMovieBinding::i
     }
 
     override fun observeViewModel() {
-        viewModel.getMoviesLiveData().observe(this) { response ->
+        viewModel.getMoviesLiveData().observe(viewLifecycleOwner) { response ->
             when (response) {
                 is Resource.Loading -> {
                     showLoading(true)
@@ -60,11 +61,7 @@ class MovieFragment : BaseFragment<FragmentMovieBinding>(FragmentMovieBinding::i
     override fun setupRecyclerView(movies: List<MovieEntity>) {
         val parentAdapter = ParentItemAdapter(parentItemList(movies),
             {
-                Toast.makeText(
-                    requireContext(),
-                    "Show All ${it.parentItemTitle}",
-                    Toast.LENGTH_SHORT
-                ).show()
+                showBottomSheetMovies(it.parentItemTitle)
             },
             {
                 navigateToDetail(it)
@@ -107,20 +104,21 @@ class MovieFragment : BaseFragment<FragmentMovieBinding>(FragmentMovieBinding::i
         listGenrePlaceholder.forEach { value ->
             val item = ParentEntity(
                 value,
-                movies.filter { item -> splitGenre(item.genres).find { it == value } == value }
+                movies.filter { item ->
+                    Utils.splitGenre(item.genres).find { it == value } == value
+                }
             )
             if (item.childItemList.isNotEmpty() && item.childItemList.size >= 4) itemList.add(item)
         }
         return itemList
     }
 
-    private fun splitGenre(genre: String?): Array<String> {
-        return genre.orEmpty().split(", ".toRegex()).dropLastWhile { it.isEmpty() }
-            .toTypedArray()
-    }
-
     private fun navigateToDetail(movie: MovieEntity) {
         DetailActivity.startActivity(requireContext(), movie.id, false)
+    }
+
+    private fun showBottomSheetMovies(genre: String) {
+        MovieBottomSheet(genre).show(childFragmentManager, null)
     }
 
     override fun showContent(isContentVisible: Boolean) {

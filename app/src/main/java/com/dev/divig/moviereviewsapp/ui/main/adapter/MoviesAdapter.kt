@@ -1,4 +1,4 @@
-package com.dev.divig.moviereviewsapp.ui.main.favorite.adapter
+package com.dev.divig.moviereviewsapp.ui.main.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -11,8 +11,8 @@ import com.dev.divig.moviereviewsapp.data.local.model.MovieEntity
 import com.dev.divig.moviereviewsapp.databinding.ItemMovieBinding
 import com.dev.divig.moviereviewsapp.utils.Constant
 
-class FavoriteAdapter(private val itemClick: (MovieEntity) -> Unit) :
-    ListAdapter<MovieEntity, FavoriteAdapter.ViewHolder>(FavoriteAdapter) {
+class MoviesAdapter(private val itemClick: (MovieEntity) -> Unit) :
+    ListAdapter<MovieEntity, MoviesAdapter.ViewHolder>(MoviesAdapter) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val binding = ItemMovieBinding.inflate(LayoutInflater.from(parent.context), parent, false)

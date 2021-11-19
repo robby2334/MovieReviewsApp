@@ -10,7 +10,7 @@ import com.dev.divig.moviereviewsapp.base.model.Resource
 import com.dev.divig.moviereviewsapp.data.local.model.MovieEntity
 import com.dev.divig.moviereviewsapp.databinding.FragmentFavoriteBinding
 import com.dev.divig.moviereviewsapp.ui.detail.DetailActivity
-import com.dev.divig.moviereviewsapp.ui.main.favorite.adapter.FavoriteAdapter
+import com.dev.divig.moviereviewsapp.ui.main.adapter.MoviesAdapter
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -60,12 +60,12 @@ class FavoriteFragment : BaseFragment<FragmentFavoriteBinding>(FragmentFavoriteB
     }
 
     override fun setupRecyclerView(movies: List<MovieEntity>) {
-        val favoriteAdapter = FavoriteAdapter {
+        val moviesAdapter = MoviesAdapter {
             navigateToDetail(it)
         }
-        favoriteAdapter.submitList(movies)
+        moviesAdapter.submitList(movies)
         getViewBinding().rvMovie.apply {
-            adapter = favoriteAdapter
+            adapter = moviesAdapter
         }
     }
 

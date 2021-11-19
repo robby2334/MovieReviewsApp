@@ -69,6 +69,11 @@ object Utils {
 
     private fun getRandomNumber() = (1..19).random()
 
+    fun splitGenre(genre: String?): Array<String> {
+        return genre.orEmpty().split(", ".toRegex()).dropLastWhile { it.isEmpty() }
+            .toTypedArray()
+    }
+
     fun getGenreName(genreId: Int): String {
         val genreMap: MutableMap<Int, String> = HashMap()
         genreMap[28] = "Action"
@@ -89,7 +94,7 @@ object Utils {
         genreMap[10770] = "TV Movie"
         genreMap[53] = "Thriller"
         genreMap[10752] = "War"
-        genreMap[7] = "Western"
+        genreMap[37] = "Western"
 
         var result = ""
         genreMap.forEach {

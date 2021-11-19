@@ -13,9 +13,9 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class MovieFragmentViewModel @Inject constructor(private val repository: MovieFragmentRepository) :
+class MovieViewModel @Inject constructor(private val repository: MovieRepository) :
     ViewModel(),
-    MovieFragmentContract.ViewModel {
+    MovieContract.ViewModel {
 
     private val repositoryLiveData = MutableLiveData<Resource<List<MovieEntity>>>()
 

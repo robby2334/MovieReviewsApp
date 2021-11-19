@@ -17,4 +17,5 @@ object Constant {
     const val FIVE = 5
     const val ITEM_TYPE_IMAGE_SLIDER = 1
     const val ITEM_TYPE_CHILD = 2
+    const val NOW_PLAYING_MOVIES = "Now Playing Movies"
 }

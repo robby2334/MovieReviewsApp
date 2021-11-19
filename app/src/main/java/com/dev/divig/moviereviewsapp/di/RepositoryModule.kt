@@ -6,7 +6,8 @@ import com.dev.divig.moviereviewsapp.ui.detail.DetailRepository
 import com.dev.divig.moviereviewsapp.ui.detail.bottomsheetreview.ReviewsBottomSheetRepository
 import com.dev.divig.moviereviewsapp.ui.intro.IntroRepository
 import com.dev.divig.moviereviewsapp.ui.main.favorite.FavoriteRepository
-import com.dev.divig.moviereviewsapp.ui.main.movie.MovieFragmentRepository
+import com.dev.divig.moviereviewsapp.ui.main.movie.MovieRepository
+import com.dev.divig.moviereviewsapp.ui.main.movie.bottomsheet.MovieBottomSheetRepository
 import com.dev.divig.moviereviewsapp.ui.main.search.SearchRepository
 import com.dev.divig.moviereviewsapp.ui.splashscreen.SplashAppRepository
 import dagger.Module
@@ -40,8 +41,8 @@ object RepositoryModule {
     fun provideMovieFragmentRepository(
         localDataSource: LocalDataSource,
         movieApiDataSource: MovieApiDataSource
-    ): MovieFragmentRepository {
-        return MovieFragmentRepository(localDataSource, movieApiDataSource)
+    ): MovieRepository {
+        return MovieRepository(localDataSource, movieApiDataSource)
     }
 
     @Provides
@@ -75,5 +76,13 @@ object RepositoryModule {
         localDataSource: LocalDataSource
     ): ReviewsBottomSheetRepository {
         return ReviewsBottomSheetRepository(localDataSource)
+    }
+
+    @Provides
+    @Singleton
+    fun provideMovieBottomSheetRepository(
+        localDataSource: LocalDataSource
+    ): MovieBottomSheetRepository {
+        return MovieBottomSheetRepository(localDataSource)
     }
 }

@@ -7,7 +7,7 @@ import com.dev.divig.moviereviewsapp.data.local.model.MovieEntity
 import com.dev.divig.moviereviewsapp.data.network.model.response.movie.BaseMovieResponse
 import com.dev.divig.moviereviewsapp.data.network.model.response.movie.Movie
 
-interface MovieFragmentContract {
+interface MovieContract {
     interface View : BaseContract.BaseView {
         fun getMovies(update: Boolean)
         fun setupRecyclerView(movies: List<MovieEntity>)
