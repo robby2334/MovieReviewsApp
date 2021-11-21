@@ -10,7 +10,7 @@ class RegisterRepository
 @Inject constructor(
     private val authApiDataSource: AuthApiDataSource
 ) : RegisterContract.Repository {
-    override suspend fun postRegisterUser(registerRequest: AuthRequest): BaseAuthResponse<UserData, String> {
+    override suspend fun postRegister(registerRequest: AuthRequest): BaseAuthResponse<UserData, String> {
         return authApiDataSource.postRegisterUser(registerRequest)
     }
 }

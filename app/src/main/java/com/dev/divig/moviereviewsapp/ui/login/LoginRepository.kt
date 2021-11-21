@@ -11,7 +11,7 @@ class LoginRepository @Inject constructor(
     private val authApiDataSource: AuthApiDataSource,
     private val localDataSource: LocalDataSource
 ) : LoginContract.Repository {
-    override fun saveSession(authToken: String) {
+    override fun saveSessionLogin(authToken: String) {
         localDataSource.authToken(authToken)
     }
 

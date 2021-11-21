@@ -18,10 +18,10 @@ class LoginViewModel @Inject constructor(private val repository: LoginRepository
 
     private val syncUserLiveData = MutableLiveData<Resource<UserData>>()
 
-    override fun getLoginResultLiveData(): LiveData<Resource<UserData>> = syncUserLiveData
+    override fun getLoginLiveData(): LiveData<Resource<UserData>> = syncUserLiveData
 
-    override fun saveSession(authToken: String) {
-        repository.saveSession(authToken)
+    override fun saveSessionLogin(authToken: String) {
+        repository.saveSessionLogin(authToken)
     }
 
     override fun loginUser(loginRequest: AuthRequest) {

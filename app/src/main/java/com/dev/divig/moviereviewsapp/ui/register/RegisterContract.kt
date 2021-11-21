@@ -7,10 +7,14 @@ import com.dev.divig.moviereviewsapp.data.network.model.response.auth.BaseAuthRe
 import com.dev.divig.moviereviewsapp.data.network.model.response.auth.UserData
 
 interface RegisterContract {
-
     interface View {
         fun initView()
         fun initViewModel()
+        fun toolbar()
+        fun setOnClickListener()
+        fun loadingState(isLoadingVisible: Boolean)
+        fun checkValidation() : Boolean
+        fun navigateToLogin()
     }
 
     interface ViewModel {
@@ -19,6 +23,6 @@ interface RegisterContract {
     }
 
     interface Repository {
-        suspend fun postRegisterUser(registerRequest: AuthRequest): BaseAuthResponse<UserData, String>
+        suspend fun postRegister(registerRequest: AuthRequest): BaseAuthResponse<UserData, String>
     }
 }

@@ -30,7 +30,7 @@ class SplashAppActivity : AppCompatActivity(),
     }
 
     override fun navigateToIntroPage() {
-        IntroActivity.startActivity(this)
+        LoginActivity.startActivity(this)
     }
 
     override fun navigateToMainPage() {

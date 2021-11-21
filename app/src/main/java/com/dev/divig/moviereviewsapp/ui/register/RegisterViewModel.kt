@@ -23,7 +23,7 @@ class RegisterViewModel @Inject constructor(private val repository: RegisterRepo
         registerUserLiveData.value = Resource.Loading()
         viewModelScope.launch(Dispatchers.IO) {
             try {
-                val response = repository.postRegisterUser(registerRequest)
+                val response = repository.postRegister(registerRequest)
                 viewModelScope.launch(Dispatchers.Main) {
                     registerUserLiveData.value = Resource.Success(response.data)
                 }

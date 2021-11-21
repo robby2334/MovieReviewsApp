@@ -30,16 +30,35 @@
     <string name="message_no_review">it\'s a little empty here! No reviews have been submitted yet.</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="image_view_logo">Image View Logo Login</string>
-    <string name="forgot_password">Forgot Password ?</string>
-    <string name="log_in">Log In</string>
-    <string name="full_name">Full Name</string>
-    <string name="email">Email</string>
-    <string name="register">Register</string>
-    <string name="password">Password</string>
-    <string name="re_enter_password">Re-Enter Password</string>
-    <string name="signup">SignUp</string>
-    <string name="iv_logo_register">Image View Logo Register</string>
-    <string name="full_name_register">Full Name Register</string>
-    <string name="password_register">Password Register</string>
+    <string name="text_placeholder_coin_price">$%s</string>
+    <string name="text_hint_email">Email</string>
+    <string name="text_hint_username">Username</string>
+    <string name="text_hint_password">Password</string>
+    <string name="text_btn_register">Sign Up</string>
+    <string name="text_btn_login">Log In</string>
+    <string name="error_email_empty">Email Should be Filled</string>
+    <string name="error_password_empty">Password Should be Filled</string>
+    <string name="error_username_empty">Username Should be Filled</string>
+    <string name="error_email_invalid">Email is Invalid</string>
+    <string name="text_create_account">Create an Account</string>
+    <string name="text_register_success">Register Success!</string>
+    <string name="text_title_toolbar_register">Register Account</string>
+    <string name="text_login_success">Login Success !</string>
+    <string name="text_title_toolbar_login">Login</string>
+
+    <string name="text_dialog_logout_task_positive">Yes</string>
+    <string name="text_dialog_logout_task_negative">No</string>
+    <string name="text_icon_menu_logout">Logout</string>
+    <string name="text_logout_dialog">Do you want to Logout ?</string>
+    <string name="image_logo_login">Image Logo Login</string>
+    <string name="tv_sign_up_register">Sign Up</string>
+    <string name="tv_log_in_register">Log In</string>
+    <string name="tv_log_in_login">Log In</string>
+    <string name="tv_sign_up_login">Sign Up</string>
+    <string name="iv_logo_register">TODO</string>
+    <string name="sign_up_complete">Sign-Up Complete</string>
+    <string name="ok_signup_complete">OK</string>
+    <string name="image_signup_compete">TODO</string>
+
+
 </resources>
