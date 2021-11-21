@@ -2,6 +2,9 @@ package com.dev.divig.moviereviewsapp.utils
 
 import android.app.Activity
 import android.content.Context
+import android.net.ConnectivityManager
+import android.net.NetworkCapabilities
+import android.os.Build
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import java.text.SimpleDateFormat
@@ -101,5 +104,24 @@ object Utils {
             if (it.key == genreId) result = it.value
         }
         return result
+    }
+
+    fun Context.isInternetAvailable(): Boolean {
+        val cm = getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+        @Suppress("DEPRECATION")
+        when {
+            Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q -> {
+                val cap = cm.getNetworkCapabilities(cm.activeNetwork) ?: return false
+                return cap.hasCapability(NetworkCapabilities.NET_CAPABILITY_INTERNET)
+            }
+            else -> {
+                val networks = cm.allNetworks
+                for (n in networks) {
+                    val nInfo = cm.getNetworkInfo(n)
+                    if (nInfo != null && nInfo.isConnected) return true
+                }
+            }
+        }
+        return false
     }
 }

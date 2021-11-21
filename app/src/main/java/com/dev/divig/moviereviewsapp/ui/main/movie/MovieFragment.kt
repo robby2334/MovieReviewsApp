@@ -18,9 +18,11 @@ import com.dev.divig.moviereviewsapp.utils.Utils
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class MovieFragment : BaseFragment<FragmentMovieBinding>(FragmentMovieBinding::inflate),
+class MovieFragment :
+    BaseFragment<FragmentMovieBinding, MovieViewModel>(FragmentMovieBinding::inflate),
     MovieContract.View {
-    private val viewModel: MovieViewModel by viewModels()
+
+    override val viewModelInstance: MovieViewModel by viewModels()
 
     override fun initView() {
         initSwipeRefresh()
@@ -28,7 +30,7 @@ class MovieFragment : BaseFragment<FragmentMovieBinding>(FragmentMovieBinding::i
     }
 
     override fun observeViewModel() {
-        viewModel.getMoviesLiveData().observe(viewLifecycleOwner) { response ->
+        getViewModel().getMoviesLiveData().observe(viewLifecycleOwner) { response ->
             when (response) {
                 is Resource.Loading -> {
                     showLoading(true)
@@ -55,7 +57,7 @@ class MovieFragment : BaseFragment<FragmentMovieBinding>(FragmentMovieBinding::i
     }
 
     override fun getMovies(update: Boolean) {
-        viewModel.getMovies(update)
+        getViewModel().getMovies(update)
     }
 
     override fun setupRecyclerView(movies: List<MovieEntity>) {

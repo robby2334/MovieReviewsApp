@@ -16,10 +16,11 @@ import com.dev.divig.moviereviewsapp.utils.Utils
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class SearchFragment : BaseFragment<FragmentSearchBinding>(FragmentSearchBinding::inflate),
+class SearchFragment :
+    BaseFragment<FragmentSearchBinding, SearchViewModel>(FragmentSearchBinding::inflate),
     SearchContract.View {
 
-    private val viewModel: SearchViewModel by viewModels()
+    override val viewModelInstance: SearchViewModel by viewModels()
 
     override fun initView() {
         showLoading(false)
@@ -28,7 +29,7 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(FragmentSearchBinding
     }
 
     override fun observeViewModel() {
-        viewModel.getMoviesLiveData().observe(viewLifecycleOwner) { response ->
+        getViewModel().getMoviesLiveData().observe(viewLifecycleOwner) { response ->
             when (response) {
                 is Resource.Loading -> {
                     showScenarioPlaceholder(isVisible = false, isEmptySearch = true)
@@ -73,7 +74,7 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(FragmentSearchBinding
     }
 
     override fun searchMovies(query: String) {
-        viewModel.searchMovies(query)
+        getViewModel().searchMovies(query)
     }
 
     override fun setupRecyclerView(movies: List<Movie>) {

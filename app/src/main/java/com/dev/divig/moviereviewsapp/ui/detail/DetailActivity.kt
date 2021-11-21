@@ -22,10 +22,11 @@ import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class DetailActivity :
-    BaseActivity<ActivityDetailBinding>(ActivityDetailBinding::inflate),
+    BaseActivity<ActivityDetailBinding, DetailViewModel>(ActivityDetailBinding::inflate),
     DetailContract.View {
     private lateinit var movie: MovieEntity
-    private val viewModel: DetailViewModel by viewModels()
+
+    override val viewModelInstance: DetailViewModel by viewModels()
     private var movieId: Int = 0
 
     override fun initView() {
@@ -37,7 +38,7 @@ class DetailActivity :
     }
 
     override fun observeViewModel() {
-        viewModel.getMovieLiveData().observe(this) { response ->
+        getViewModel().getMovieLiveData().observe(this) { response ->
             when (response) {
                 is Resource.Loading -> {
                     showLoading(true)
@@ -59,7 +60,7 @@ class DetailActivity :
             }
         }
 
-        viewModel.getReviewLiveData().observe(this) { response ->
+        getViewModel().getReviewLiveData().observe(this) { response ->
             when (response) {
                 is Resource.Loading -> {
                 }
@@ -78,7 +79,7 @@ class DetailActivity :
         }
     }
 
-    private fun initScenarioComponent() {
+    override fun initScenarioComponent() {
         getViewBinding().detailMovie.layoutScenario.ivScenario.load(R.drawable.ic_no_reviews_placeholder)
         getViewBinding().detailMovie.layoutScenario.tvTitle.text =
             getString(R.string.text_title_no_review)
@@ -110,15 +111,15 @@ class DetailActivity :
     }
 
     private fun getMovieDetail(id: Int, isSearch: Boolean) {
-        viewModel.getMovie(id, isSearch)
+        getViewModel().getMovie(id, isSearch)
     }
 
     private fun getReviewByMovieId(movieId: Int) {
-        viewModel.getReviewsByMovieId(movieId)
+        getViewModel().getReviewsByMovieId(movieId)
     }
 
     private fun setFavoriteMovie() {
-        viewModel.setFavoriteMovie(movie)
+        getViewModel().setFavoriteMovie(movie)
     }
 
     override fun fetchDataMovie(movie: MovieEntity) {
@@ -164,17 +165,17 @@ class DetailActivity :
         ReviewsBottomSheet(movieId).show(supportFragmentManager, null)
     }
 
-    private fun showEmptyPlaceholder(isVisible: Boolean) {
-        getViewBinding().detailMovie.layoutScenario.layoutComponentScenario.isVisible = isVisible
-        getViewBinding().detailMovie.itemReview.layoutItemReview.isGone = isVisible
-    }
-
     private fun setFabFavorite(state: Boolean) {
         if (state) {
             getViewBinding().fabAddToFavorite.load(R.drawable.ic_favorite_filled_24)
         } else {
             getViewBinding().fabAddToFavorite.load(R.drawable.ic_favorite_outlined_24)
         }
+    }
+
+    override fun showEmptyPlaceholder(isVisible: Boolean) {
+        getViewBinding().detailMovie.layoutScenario.layoutComponentScenario.isVisible = isVisible
+        getViewBinding().detailMovie.itemReview.layoutItemReview.isGone = isVisible
     }
 
     override fun showContent(isContentVisible: Boolean) {
@@ -198,8 +199,7 @@ class DetailActivity :
             this,
             msg.orEmpty(),
             Toast.LENGTH_SHORT
-        )
-            .show()
+        ).show()
     }
 
     companion object {

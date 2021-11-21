@@ -14,17 +14,15 @@ import com.dev.divig.moviereviewsapp.ui.main.adapter.MoviesAdapter
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class FavoriteFragment : BaseFragment<FragmentFavoriteBinding>(FragmentFavoriteBinding::inflate),
+class FavoriteFragment :
+    BaseFragment<FragmentFavoriteBinding, FavoriteViewModel>(FragmentFavoriteBinding::inflate),
     FavoriteContract.View {
 
-    private val viewModel: FavoriteViewModel by viewModels()
+    override val viewModelInstance: FavoriteViewModel by viewModels()
 
-    override fun initView() {
-        initScenarioComponent()
-        observeViewModel()
-    }
+    override fun initView() {}
 
-    private fun initScenarioComponent() {
+    override fun initScenarioComponent() {
         getViewBinding().layoutScenario.ivScenario.load(R.drawable.ic_favorite_placeholder)
         getViewBinding().layoutScenario.tvTitle.text =
             getString(R.string.text_title_favorite_placeholder)
@@ -33,7 +31,7 @@ class FavoriteFragment : BaseFragment<FragmentFavoriteBinding>(FragmentFavoriteB
     }
 
     override fun observeViewModel() {
-        viewModel.getFavoriteLiveData().observe(viewLifecycleOwner) { response ->
+        getViewModel().getFavoriteLiveData().observe(viewLifecycleOwner) { response ->
             when (response) {
                 is Resource.Loading -> {
                     showEmptyPlaceholder(false)
@@ -56,7 +54,7 @@ class FavoriteFragment : BaseFragment<FragmentFavoriteBinding>(FragmentFavoriteB
     }
 
     override fun getFavMovies() {
-        viewModel.getFavMovies()
+        getViewModel().getFavMovies()
     }
 
     override fun setupRecyclerView(movies: List<MovieEntity>) {
@@ -73,7 +71,7 @@ class FavoriteFragment : BaseFragment<FragmentFavoriteBinding>(FragmentFavoriteB
         DetailActivity.startActivity(requireContext(), movie.id, false)
     }
 
-    private fun showEmptyPlaceholder(isVisible: Boolean) {
+    override fun showEmptyPlaceholder(isVisible: Boolean) {
         getViewBinding().layoutScenario.layoutComponentScenario.isVisible = isVisible
         getViewBinding().rvMovie.isGone = isVisible
     }

@@ -23,11 +23,11 @@ import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class MovieBottomSheet(private val genre: String) :
-    BaseBottomSheetDialogFragment<FragmentBottomSheetMoviesBinding>(
+    BaseBottomSheetDialogFragment<FragmentBottomSheetMoviesBinding, MovieBottomSheetViewModel>(
         FragmentBottomSheetMoviesBinding::inflate
     ), MovieBottomSheetContract.View {
 
-    private val viewModel: MovieBottomSheetViewModel by viewModels()
+    override val viewModelInstance: MovieBottomSheetViewModel by viewModels()
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         val dialog = BottomSheetDialog(requireContext(), theme)
@@ -53,12 +53,10 @@ class MovieBottomSheet(private val genre: String) :
 
     override fun initView() {
         getViewBinding().tvGenreTitle.text = genre
-        initScenarioComponent()
-        observeViewModel()
         getMovies()
     }
 
-    private fun initScenarioComponent() {
+    override fun initScenarioComponent() {
         getViewBinding().layoutScenario.ivScenario.load(R.drawable.ic_no_reviews_placeholder)
         getViewBinding().layoutScenario.tvTitle.text =
             getString(R.string.text_title_no_review)
@@ -67,7 +65,7 @@ class MovieBottomSheet(private val genre: String) :
     }
 
     override fun observeViewModel() {
-        viewModel.getMoviesLiveData().observe(viewLifecycleOwner) { response ->
+        getViewModel().getMoviesLiveData().observe(viewLifecycleOwner) { response ->
             when (response) {
                 is Resource.Loading -> {
                     showEmptyPlaceholder(false)
@@ -90,7 +88,7 @@ class MovieBottomSheet(private val genre: String) :
     }
 
     override fun getMovies() {
-        viewModel.getMovies()
+        getViewModel().getMovies()
     }
 
     override fun setupRecyclerView(movies: List<MovieEntity>) {
@@ -117,7 +115,7 @@ class MovieBottomSheet(private val genre: String) :
         DetailActivity.startActivity(requireContext(), movie.id, false)
     }
 
-    private fun showEmptyPlaceholder(isVisible: Boolean) {
+    override fun showEmptyPlaceholder(isVisible: Boolean) {
         getViewBinding().layoutScenario.layoutComponentScenario.isVisible = isVisible
         getViewBinding().rvMovie.isGone = isVisible
     }
