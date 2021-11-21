@@ -28,4 +28,26 @@
     <string name="text_title_ratings">Ratings</string>
     <string name="message_empty_movies">There was a problem loading the list of movies.</string>
     <string name="message_no_review">it\'s a little empty here! No reviews have been submitted yet.</string>
+    <string name="text_profile">Profile</string>
+    <string name="text_email">Email</string>
+    <string name="text_placeholder_email">jhondoe@gmail.com</string>
+    <string name="text_name">Name</string>
+    <string name="text_placeholder_name">Jhon Doe</string>
+    <string name="text_change_password">Change Password</string>
+    <string name="text_change_profile">Change Profile</string>
+    <string name="text_about">About</string>
+    <string name="text_development">Development by</string>
+    <string name="text_placeholder_name_app">Movie Review App</string>
+    <string name="text_placeholder_log_out">Log Out</string>
+    <string name="text_confirm_logout">Confirm Logout</string>
+    <string name="text_challenge">Challenge | Chapter VI</string>
+    <string name="text_hint_full_name">Full Name</string>
+    <string name="text_tittle_change_profile">Change Profile</string>
+    <string name="text_button_save">Save</string>
+    <string name="text_quiestions_logout">Are you sure you want to logout?</string>
+    <string name="text_button_oke">Oke</string>
+    <string name="text_button_cancel">Cancel</string>
+    <string name="error_email_empty">Email Should be Filled</string>
+    <string name="error_email_invalid">Email is Invalid</string>
+    <string name="error_password_empty">Password Should be Filled</string>
 </resources>

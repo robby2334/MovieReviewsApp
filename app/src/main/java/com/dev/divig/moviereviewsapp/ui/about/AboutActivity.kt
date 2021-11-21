@@ -4,9 +4,9 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.dev.divig.moviereviewsapp.BuildConfig
 import com.dev.divig.moviereviewsapp.R
 import com.dev.divig.moviereviewsapp.databinding.ActivityAboutBinding
+import com.intuit.sdp.BuildConfig
 
 class AboutActivity : AppCompatActivity() {
     private lateinit var binding: ActivityAboutBinding

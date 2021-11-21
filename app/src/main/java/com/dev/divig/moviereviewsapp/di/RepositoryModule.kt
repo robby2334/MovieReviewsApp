@@ -1,11 +1,13 @@
 package com.dev.divig.moviereviewsapp.di
 
 import com.dev.divig.moviereviewsapp.data.local.datasource.LocalDataSource
+import com.dev.divig.moviereviewsapp.data.network.datasource.auth.AuthApiDataSource
 import com.dev.divig.moviereviewsapp.data.network.datasource.movie.MovieApiDataSource
 import com.dev.divig.moviereviewsapp.ui.detail.DetailRepository
 import com.dev.divig.moviereviewsapp.ui.detail.bottomsheetreview.ReviewsBottomSheetRepository
 import com.dev.divig.moviereviewsapp.ui.intro.IntroRepository
 import com.dev.divig.moviereviewsapp.ui.main.movie.MovieFragmentRepository
+import com.dev.divig.moviereviewsapp.ui.main.profile.ProfileRepository
 import com.dev.divig.moviereviewsapp.ui.splashscreen.SplashAppRepository
 import dagger.Module
 import dagger.Provides
@@ -57,5 +59,14 @@ object RepositoryModule {
         localDataSource: LocalDataSource
     ): ReviewsBottomSheetRepository {
         return ReviewsBottomSheetRepository(localDataSource)
+    }
+
+    @Provides
+    @Singleton
+    fun provideProfileRepository(
+        authApiDataSource: AuthApiDataSource,
+        localDataSource: LocalDataSource
+    ): ProfileRepository {
+        return ProfileRepository(authApiDataSource,localDataSource)
     }
 }
