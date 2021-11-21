@@ -14,11 +14,10 @@ import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class ReviewsBottomSheet(private val movieId: Int) :
-    BaseBottomSheetDialogFragment<FragmentBottomSheetReviewBinding>(
+    BaseBottomSheetDialogFragment<FragmentBottomSheetReviewBinding, ReviewsBottomSheetViewModel>(
         FragmentBottomSheetReviewBinding::inflate
     ), ReviewsBottomSheetContract.View {
-
-    private val viewModel: ReviewsBottomSheetViewModel by viewModels()
+    override val viewModelInstance: ReviewsBottomSheetViewModel by viewModels()
 
     override fun initView() {
         getReviews()
@@ -32,7 +31,7 @@ class ReviewsBottomSheet(private val movieId: Int) :
     }
 
     override fun observeViewModel() {
-        viewModel.getReviewsLiveData().observe(viewLifecycleOwner) { response ->
+        getViewModel().getReviewsLiveData().observe(viewLifecycleOwner) { response ->
             when (response) {
                 is Resource.Loading -> {
                     showEmptyPlaceholder(false)
@@ -60,7 +59,7 @@ class ReviewsBottomSheet(private val movieId: Int) :
     }
 
     override fun getReviews() {
-        viewModel.getReviewsByMovieId(movieId)
+        getViewModel().getReviewsByMovieId(movieId)
     }
 
     override fun setListData(reviews: List<ReviewEntity>?) {
@@ -70,7 +69,7 @@ class ReviewsBottomSheet(private val movieId: Int) :
     }
 
 
-    private fun showEmptyPlaceholder(isVisible: Boolean) {
+    override fun showEmptyPlaceholder(isVisible: Boolean) {
         getViewBinding().layoutScenario.layoutComponentScenario.isVisible = isVisible
     }
 

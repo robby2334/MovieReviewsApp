@@ -9,5 +9,7 @@ data class Video(
     @SerializedName("key")
     val key: String?,
     @SerializedName("site")
-    val site: String?
+    val site: String?,
+    @SerializedName("type")
+    val type: String?
 )

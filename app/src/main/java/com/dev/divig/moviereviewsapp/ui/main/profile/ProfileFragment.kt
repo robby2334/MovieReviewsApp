@@ -9,10 +9,11 @@ import com.dev.divig.moviereviewsapp.ui.main.profile.dialogchangeprofileandlogou
 import com.dev.divig.moviereviewsapp.utils.Constant
 import dagger.hilt.android.AndroidEntryPoint
 
-@AndroidEntryPoint
-class ProfileFragment : BaseFragment<FragmentProfileBinding>(FragmentProfileBinding::inflate),
-    ProfileContract.View {
-    private val viewModel: ProfileViewModel by viewModels()
+class ProfileFragment :
+    BaseFragment<FragmentProfileBinding, ProfileViewModel>(FragmentProfileBinding::inflate) {
+
+    override val viewModelInstance: ProfileViewModel by viewModels()
+
     override fun initView() {
         setClickListeners()
     }

@@ -19,11 +19,11 @@ import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class IntroActivity :
-    BaseActivity<ActivityIntroBinding>(ActivityIntroBinding::inflate),
+    BaseActivity<ActivityIntroBinding, IntroViewModel>(ActivityIntroBinding::inflate),
     IntroContract.View {
     private lateinit var introDataAdapter: IntroAdapter
     private lateinit var indicatorContainer: LinearLayout
-    private val viewModel: IntroViewModel by viewModels()
+    override val viewModelInstance: IntroViewModel by viewModels()
 
     override fun initView() {
         setIntro()
@@ -124,7 +124,7 @@ class IntroActivity :
     }
 
     override fun navigateToMainPage() {
-        viewModel.setStateFirstRunApp()
+        getViewModel().setStateFirstRunApp()
         MainActivity.startActivity(this)
     }
 

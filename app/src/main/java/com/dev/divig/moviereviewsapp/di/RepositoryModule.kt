@@ -6,6 +6,10 @@ import com.dev.divig.moviereviewsapp.data.network.datasource.movie.MovieApiDataS
 import com.dev.divig.moviereviewsapp.ui.detail.DetailRepository
 import com.dev.divig.moviereviewsapp.ui.detail.bottomsheetreview.ReviewsBottomSheetRepository
 import com.dev.divig.moviereviewsapp.ui.intro.IntroRepository
+import com.dev.divig.moviereviewsapp.ui.main.favorite.FavoriteRepository
+import com.dev.divig.moviereviewsapp.ui.main.movie.MovieRepository
+import com.dev.divig.moviereviewsapp.ui.main.movie.bottomsheet.MovieBottomSheetRepository
+import com.dev.divig.moviereviewsapp.ui.main.search.SearchRepository
 import com.dev.divig.moviereviewsapp.ui.main.movie.MovieFragmentRepository
 import com.dev.divig.moviereviewsapp.ui.main.profile.ProfileRepository
 import com.dev.divig.moviereviewsapp.ui.splashscreen.SplashAppRepository
@@ -40,8 +44,24 @@ object RepositoryModule {
     fun provideMovieFragmentRepository(
         localDataSource: LocalDataSource,
         movieApiDataSource: MovieApiDataSource
-    ): MovieFragmentRepository {
-        return MovieFragmentRepository(localDataSource, movieApiDataSource)
+    ): MovieRepository {
+        return MovieRepository(localDataSource, movieApiDataSource)
+    }
+
+    @Provides
+    @Singleton
+    fun provideSearchRepository(
+        movieApiDataSource: MovieApiDataSource
+    ): SearchRepository {
+        return SearchRepository(movieApiDataSource)
+    }
+
+    @Provides
+    @Singleton
+    fun provideFavoriteRepository(
+        localDataSource: LocalDataSource
+    ): FavoriteRepository {
+        return FavoriteRepository(localDataSource)
     }
 
     @Provides
@@ -59,6 +79,14 @@ object RepositoryModule {
         localDataSource: LocalDataSource
     ): ReviewsBottomSheetRepository {
         return ReviewsBottomSheetRepository(localDataSource)
+    }
+
+    @Provides
+    @Singleton
+    fun provideMovieBottomSheetRepository(
+        localDataSource: LocalDataSource
+    ): MovieBottomSheetRepository {
+        return MovieBottomSheetRepository(localDataSource)
     }
 
     @Provides

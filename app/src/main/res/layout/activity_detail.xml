@@ -21,19 +21,18 @@
             app:layout_scrollFlags="scroll|enterAlways|enterAlwaysCollapsed"
             app:maxLines="3">
 
-            <ImageView
-                android:id="@+id/img_collapsing"
+            <com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
+                android:id="@+id/youtube_player_view"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:importantForAccessibility="no"
-                android:scaleType="centerCrop"
-                app:layout_collapseMode="parallax"
-                tools:src="@color/color_secondary_variant" />
+                android:layout_height="wrap_content"
+                app:autoPlay="false"
+                app:showFullScreenButton="false"
+                app:showYouTubeButton="true" />
 
             <View
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@color/black_alpha_35" />
+                android:background="@color/black_alpha_45" />
 
             <ImageButton
                 android:id="@+id/iv_btn_back"
@@ -74,4 +73,17 @@
             </com.facebook.shimmer.ShimmerFrameLayout>
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab_add_to_favorite"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end|bottom"
+        android:layout_marginEnd="18dp"
+        android:layout_marginBottom="18dp"
+        android:theme="@style/Theme.MovieReviewsApp.FloatingActionButton"
+        android:contentDescription="@string/text_title_favorite"
+        android:src="@drawable/ic_favorite_outlined_24"
+        app:tint="@null"
+        app:layout_behavior="@string/hide_bottom_view_on_scroll_behavior" />
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

@@ -30,8 +30,12 @@
         <item name="android:textColor">@color/white</item>
     </style>
 
-    <style name="Theme.MovieReviewsApp.ActionBar" parent="Theme.MovieReviewsApp">
-        <item name="android:textColorPrimary">@color/white</item>
+    <style name="Theme.MovieReviewsApp.SearchView" parent="Theme.MovieReviewsApp">
+        <item name="android:editTextColor">@color/color_secondary_variant</item>
+        <item name="android:textColorHint">@color/color_secondary_variant</item>
     </style>
 
+    <style name="Theme.MovieReviewsApp.FloatingActionButton" parent="Theme.MovieReviewsApp">
+        <item name="colorSecondary">@color/blue_700</item>
+    </style>
 </resources>

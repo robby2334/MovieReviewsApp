@@ -1,13 +1,65 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/color_primary"
     tools:context=".ui.main.search.SearchFragment">
 
-    <TextView
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cv_search_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/_12sdp"
+        app:cardBackgroundColor="@color/color_primary_variant"
+        app:cardCornerRadius="@dimen/_4sdp">
+
+        <androidx.appcompat.widget.SearchView
+            android:id="@+id/sv_movies"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/color_primary_variant"
+            android:theme="@style/Theme.MovieReviewsApp.SearchView"
+            app:closeIcon="@drawable/ic_close_24"
+            app:iconifiedByDefault="false"
+            app:queryHint="@string/text_placeholder_query_hint"
+            app:searchIcon="@drawable/ic_search_24" />
+    </androidx.cardview.widget.CardView>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_movie"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/text_title_search" />
+        android:layout_below="@+id/cv_search_view"
+        android:clipToPadding="false"
+        android:overScrollMode="never"
+        android:paddingStart="@dimen/_8sdp"
+        android:paddingEnd="@dimen/_8sdp"
+        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+        app:spanCount="3"
+        tools:itemCount="16"
+        tools:listitem="@layout/item_movie" />
 
-</FrameLayout>
+    <com.facebook.shimmer.ShimmerFrameLayout
+        android:id="@+id/sfl_search_placeholder"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/cv_search_view"
+        tools:visibility="gone">
+
+        <include layout="@layout/layout_search_placeholder" />
+    </com.facebook.shimmer.ShimmerFrameLayout>
+
+    <include
+        android:id="@+id/layout_scenario"
+        layout="@layout/component_scenario_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_marginStart="@dimen/_12sdp"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:layout_marginEnd="@dimen/_12sdp"
+        android:visibility="gone" />
+
+</RelativeLayout>

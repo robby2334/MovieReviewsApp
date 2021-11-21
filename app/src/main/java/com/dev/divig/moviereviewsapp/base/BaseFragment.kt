@@ -5,12 +5,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModel
 import androidx.viewbinding.ViewBinding
+import com.dev.divig.moviereviewsapp.utils.Utils.isInternetAvailable
 
-abstract class BaseFragment<B : ViewBinding>(
+abstract class BaseFragment<B : ViewBinding, VM : ViewModel>(
     val bindingFactory: (LayoutInflater, ViewGroup?, Boolean) -> B
 ) : Fragment(), BaseContract.BaseView {
     private lateinit var binding: B
+    abstract val viewModelInstance: VM
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -22,14 +25,21 @@ abstract class BaseFragment<B : ViewBinding>(
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        observeViewModel()
         initView()
+        observeViewModel()
+        initScenarioComponent()
     }
 
     fun getViewBinding(): B = binding
+    fun getViewModel(): VM = viewModelInstance
+    fun checkInternetConnection(): Boolean {
+        return requireActivity().isInternetAvailable()
+    }
 
     abstract fun initView()
     override fun observeViewModel() {}
+    override fun initScenarioComponent() {}
+    override fun showEmptyPlaceholder(isVisible: Boolean) {}
     override fun showContent(isContentVisible: Boolean) {}
     override fun showLoading(isLoading: Boolean) {}
     override fun showError(isErrorEnabled: Boolean, msg: String?) {}

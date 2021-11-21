@@ -13,6 +13,10 @@ class DetailRepository @Inject constructor(
     private val localDataSource: LocalDataSource,
     private val networkDataSource: MovieApiDataSource
 ) : DetailContract.Repository {
+    override suspend fun insertMovie(movie: MovieEntity): Long {
+        return localDataSource.insertMovie(movie)
+    }
+
     override suspend fun updateMovie(movie: MovieEntity): Int {
         return localDataSource.updateMovie(movie)
     }

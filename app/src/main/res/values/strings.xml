@@ -13,6 +13,7 @@
     <string name="text_placeholder_welcome">Welcome to</string>
     <string name="text_placeholder_next">Next</string>
     <string name="text_placeholder_show_all_reviews">Show All Reviews</string>
+    <string name="text_placeholder_query_hint">Search…</string>
     <string name="text_title_genre">Genre</string>
     <string name="text_title_date_release">Date Release</string>
     <string name="text_title_overview">Overview</string>
@@ -21,13 +22,43 @@
     <string name="text_title_cancel">Cancel</string>
     <string name="text_title_all_reviews">All Reviews</string>
     <string name="text_title_no_review">Uh-oh! No Reviews Yet</string>
+    <string name="text_title_favorite_placeholder">Start Saving All Your Favorite Movies</string>
     <string name="text_title_movie">Movie</string>
     <string name="text_title_search">Search</string>
     <string name="text_title_favorite">Favorite</string>
     <string name="text_title_profile">Profile</string>
     <string name="text_title_ratings">Ratings</string>
+    <string name="text_title_image_slider">Image Slider</string>
+    <string name="text_title_now_playing_movies">Now Playing Movies</string>
+    <string name="text_title_search_movies">Search Movies</string>
+    <string name="text_title_no_search_result">No Results Found</string>
     <string name="message_empty_movies">There was a problem loading the list of movies.</string>
     <string name="message_no_review">it\'s a little empty here! No reviews have been submitted yet.</string>
+    <string name="message_favorite_placeholder">Tap the favorite icon in all your favorite movies and we will save them all here.</string>
+    <string name="message_search_movies">Find your favorite movies.</string>
+    <string name="message_no_search_result">Please check you have the right spelling,or try different keywords.</string>
+
+    <string-array name="genre_name_list">
+        <item>Action</item>
+        <item>Adventure</item>
+        <item>Animation</item>
+        <item>Comedy</item>
+        <item>Crime</item>
+        <item>Documentary</item>
+        <item>Drama</item>
+        <item>Family</item>
+        <item>Fantasy</item>
+        <item>History</item>
+        <item>Horror</item>
+        <item>Music</item>
+        <item>Mystery</item>
+        <item>Romance</item>
+        <item>Science Fiction</item>
+        <item>TV Movie</item>
+        <item>Thriller</item>
+        <item>War</item>
+        <item>Western</item>
+    </string-array>
     <string name="text_profile">Profile</string>
     <string name="text_email">Email</string>
     <string name="text_placeholder_email">jhondoe@gmail.com</string>

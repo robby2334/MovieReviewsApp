@@ -7,10 +7,10 @@ import com.dev.divig.moviereviewsapp.data.network.model.response.movie.BaseMovie
 import com.dev.divig.moviereviewsapp.data.network.model.response.movie.Movie
 import javax.inject.Inject
 
-class MovieFragmentRepository @Inject constructor(
+class MovieRepository @Inject constructor(
     private val localDataSource: LocalDataSource,
     private val movieApiDataSource: MovieApiDataSource
-) : MovieFragmentContract.Repository {
+) : MovieContract.Repository {
     override suspend fun insertMovies(movies: List<MovieEntity>): Int {
         return localDataSource.insertMovies(movies)
     }
