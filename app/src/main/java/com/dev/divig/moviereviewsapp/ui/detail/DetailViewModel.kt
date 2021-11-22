@@ -7,6 +7,7 @@ import androidx.lifecycle.viewModelScope
 import com.dev.divig.moviereviewsapp.base.model.Resource
 import com.dev.divig.moviereviewsapp.data.local.model.MovieEntity
 import com.dev.divig.moviereviewsapp.data.local.model.ReviewEntity
+import com.dev.divig.moviereviewsapp.utils.Constant
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -27,15 +28,19 @@ class DetailViewModel @Inject constructor(private val repository: DetailReposito
         viewModelScope.launch(Dispatchers.IO) {
             val newState = !movie.isFavorite
             repository.setFavoriteMovie(movie, newState)
+            val movieData = repository.getDetailMovie(movie.id)
+            viewModelScope.launch(Dispatchers.Main) {
+                movieRepositoryLiveData.value = Resource.Success(movieData)
+            }
         }
     }
 
-    override fun getMovie(id: Int) {
+    override fun getMovie(id: Int, isSearch: Boolean) {
         movieRepositoryLiveData.value = Resource.Loading()
         viewModelScope.launch(Dispatchers.IO) {
             try {
                 var movie = repository.getDetailMovie(id)
-                if (movie.title.isNullOrEmpty() || movie.genres.isNullOrEmpty()) {
+                if (isSearch || movie.title.isNullOrEmpty() || movie.runtime == 0) {
                     val response = repository.getDetailMovieFromNetwork(id)
 
                     val genres = StringBuilder().append("")
@@ -53,6 +58,13 @@ class DetailViewModel @Inject constructor(private val repository: DetailReposito
                                 Resource.Error(response.statusMessage.orEmpty())
                         }
                     } else {
+                        val listVideos = response.videos?.results
+                        val videoKey = if (!listVideos.isNullOrEmpty()) {
+                            listVideos.filter { it.type == Constant.TRAILER }.let {
+                                it[0].key
+                            }
+                        } else null
+                        
                         val movieEntity = MovieEntity(
                             id,
                             response.title,
@@ -62,9 +74,14 @@ class DetailViewModel @Inject constructor(private val repository: DetailReposito
                             response.runtime,
                             response.voteAverage,
                             response.posterPath,
-                            response.backdropPath
+                            response.backdropPath,
+                            videoKey
                         )
-                        repository.updateMovie(movieEntity)
+                        if (isSearch) {
+                            repository.insertMovie(movieEntity)
+                        } else {
+                            repository.updateMovie(movieEntity)
+                        }
                     }
                     movie = repository.getDetailMovie(id)
                 }

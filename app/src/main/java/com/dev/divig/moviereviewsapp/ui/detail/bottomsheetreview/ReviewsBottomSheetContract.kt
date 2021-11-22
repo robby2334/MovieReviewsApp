@@ -7,7 +7,6 @@ import com.dev.divig.moviereviewsapp.data.local.model.ReviewEntity
 
 interface ReviewsBottomSheetContract {
     interface View : BaseContract.BaseView {
-        fun initScenarioComponent()
         fun getReviews()
         fun setListData(reviews: List<ReviewEntity>?)
     }

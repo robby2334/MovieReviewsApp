@@ -1,13 +1,236 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/color_primary"
     tools:context=".ui.main.profile.ProfileFragment">
 
-    <TextView
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/toolbar_profile"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/text_title_profile" />
+        android:layout_height="?attr/actionBarSize"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:title="@string/text_title_profile"
+        app:titleTextColor="@color/color_secondary_variant" />
 
-</FrameLayout>
+    <View
+        android:id="@+id/view"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginBottom="@dimen/_16sdp"
+        android:background="@color/color_primary_variant"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/toolbar_profile" />
+
+    <LinearLayout
+        android:id="@+id/ll_username"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingTop="@dimen/_12sdp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/toolbar_profile">
+
+        <TextView
+            style="@style/Text.Bold.Movie.App"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_12sdp"
+            android:text="@string/text_placeholder_username"
+            android:textColor="@color/color_secondary"
+            android:textSize="@dimen/_12ssp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/toolbar_profile" />
+
+        <TextView
+            android:id="@+id/tv_username"
+            style="@style/Text.Light.Movie.App"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_12sdp"
+            android:textColor="@color/color_secondary_variant"
+            android:textSize="@dimen/_12ssp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/toolbar_profile"
+            tools:text="mrifkinuryanta" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_email"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingTop="@dimen/_12sdp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/ll_username">
+
+        <TextView
+            style="@style/Text.Bold.Movie.App"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_12sdp"
+            android:text="@string/text_placeholder_email"
+            android:textColor="@color/color_secondary"
+            android:textSize="@dimen/_12ssp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/toolbar_profile" />
+
+        <TextView
+            android:id="@+id/tv_email"
+            style="@style/Text.Light.Movie.App"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_12sdp"
+            android:textColor="@color/color_secondary_variant"
+            android:textSize="@dimen/_12ssp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/toolbar_profile"
+            tools:text="mrifkinuryanta@gmail.com" />
+    </LinearLayout>
+
+    <View
+        android:id="@+id/view_1"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="@dimen/_16sdp"
+        android:background="@color/color_primary_variant"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/ll_email" />
+
+    <TableRow
+        android:id="@+id/tr_btn_change_profile"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/draw_ripple_bordered"
+        android:paddingTop="@dimen/_14sdp"
+        android:paddingBottom="@dimen/_14sdp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/view_1">
+
+        <TextView
+            android:id="@+id/tv_title_change_profile"
+            style="@style/Text.Bold.Movie.App"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginStart="@dimen/_12sdp"
+            android:layout_weight="1"
+            android:drawablePadding="@dimen/_12sdp"
+            android:text="@string/text_title_change_profile"
+            android:textColor="@color/color_secondary_variant"
+            android:textSize="@dimen/_14ssp"
+            app:drawableStartCompat="@drawable/ic_change_profile" />
+
+        <ImageView
+            android:id="@+id/iv_change_profile"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/_12sdp"
+            android:importantForAccessibility="no"
+            android:src="@drawable/ic_arrow_right_24" />
+    </TableRow>
+
+    <View
+        android:id="@+id/view_2"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/color_primary_variant"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tr_btn_change_profile"
+        tools:ignore="MissingConstraints" />
+
+    <TableRow
+        android:id="@+id/tr_btn_about"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/draw_ripple_bordered"
+        android:paddingTop="@dimen/_14sdp"
+        android:paddingBottom="@dimen/_14sdp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/view_2">
+
+        <TextView
+            android:id="@+id/tv_title_about"
+            style="@style/Text.Bold.Movie.App"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginStart="@dimen/_12sdp"
+            android:layout_weight="1"
+            android:drawablePadding="@dimen/_12sdp"
+            android:text="@string/text_title_about"
+            android:textColor="@color/color_secondary_variant"
+            android:textSize="@dimen/_14ssp"
+            app:drawableStartCompat="@drawable/ic_about" />
+
+        <ImageView
+            android:id="@+id/iv_about"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/_12sdp"
+            android:importantForAccessibility="no"
+            android:src="@drawable/ic_arrow_right_24" />
+    </TableRow>
+
+    <View
+        android:id="@+id/view_3"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/color_primary_variant"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tr_btn_about"
+        tools:ignore="MissingConstraints" />
+
+    <TableRow
+        android:id="@+id/tr_btn_logout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/draw_ripple_bordered"
+        android:paddingTop="@dimen/_14sdp"
+        android:paddingBottom="@dimen/_14sdp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/view_3">
+
+        <TextView
+            android:id="@+id/tv_title_logout"
+            style="@style/Text.Bold.Movie.App"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginStart="@dimen/_12sdp"
+            android:layout_weight="1"
+            android:drawablePadding="@dimen/_12sdp"
+            android:text="@string/text_placeholder_logout"
+            android:textColor="@color/color_secondary_variant"
+            android:textSize="@dimen/_14ssp"
+            app:drawableStartCompat="@drawable/ic_logout" />
+
+        <ImageView
+            android:id="@+id/iv_logout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/_12sdp"
+            android:importantForAccessibility="no"
+            android:src="@drawable/ic_arrow_right_24" />
+    </TableRow>
+
+    <View
+        android:id="@+id/view_4"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/color_primary_variant"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tr_btn_logout"
+        tools:ignore="MissingConstraints" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -2,7 +2,7 @@ package com.dev.divig.moviereviewsapp.data.local.preference
 
 import android.content.Context
 import android.content.SharedPreferences
-import com.dev.divig.moviereviewsapp.BuildConfig
+import com.intuit.sdp.BuildConfig
 import dagger.hilt.android.qualifiers.ApplicationContext
 import javax.inject.Inject
 

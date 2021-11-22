@@ -4,7 +4,6 @@ import android.content.Context
 import android.content.Intent
 import android.widget.Toast
 import androidx.activity.viewModels
-import androidx.core.net.toUri
 import androidx.core.view.isGone
 import androidx.core.view.isVisible
 import coil.load
@@ -17,13 +16,17 @@ import com.dev.divig.moviereviewsapp.databinding.ActivityDetailBinding
 import com.dev.divig.moviereviewsapp.ui.detail.bottomsheetreview.ReviewsBottomSheet
 import com.dev.divig.moviereviewsapp.utils.Constant
 import com.dev.divig.moviereviewsapp.utils.Utils
+import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer
+import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class DetailActivity :
-    BaseActivity<ActivityDetailBinding>(ActivityDetailBinding::inflate),
+    BaseActivity<ActivityDetailBinding, DetailViewModel>(ActivityDetailBinding::inflate),
     DetailContract.View {
-    private val viewModel: DetailViewModel by viewModels()
+    private lateinit var movie: MovieEntity
+
+    override val viewModelInstance: DetailViewModel by viewModels()
     private var movieId: Int = 0
 
     override fun initView() {
@@ -35,7 +38,7 @@ class DetailActivity :
     }
 
     override fun observeViewModel() {
-        viewModel.getMovieLiveData().observe(this) { response ->
+        getViewModel().getMovieLiveData().observe(this) { response ->
             when (response) {
                 is Resource.Loading -> {
                     showLoading(true)
@@ -45,6 +48,7 @@ class DetailActivity :
                     showLoading(false)
                     showContent(true)
                     response.data?.let {
+                        movie = it
                         fetchDataMovie(it)
                     }
                 }
@@ -56,7 +60,7 @@ class DetailActivity :
             }
         }
 
-        viewModel.getReviewLiveData().observe(this) { response ->
+        getViewModel().getReviewLiveData().observe(this) { response ->
             when (response) {
                 is Resource.Loading -> {
                 }
@@ -75,7 +79,7 @@ class DetailActivity :
         }
     }
 
-    private fun initScenarioComponent() {
+    override fun initScenarioComponent() {
         getViewBinding().detailMovie.layoutScenario.ivScenario.load(R.drawable.ic_no_reviews_placeholder)
         getViewBinding().detailMovie.layoutScenario.tvTitle.text =
             getString(R.string.text_title_no_review)
@@ -93,34 +97,48 @@ class DetailActivity :
         getViewBinding().detailMovie.itemReview.layoutItemReview.setOnClickListener {
             openReviewsBottomSheet()
         }
+        getViewBinding().fabAddToFavorite.setOnClickListener {
+            setFavoriteMovie()
+        }
     }
 
     private fun getExtras() {
         val id = intent.getIntExtra(Constant.KEY_EXTRA_ID, 0)
+        val isSearch = intent.getBooleanExtra(Constant.KEY_EXTRA_IS_SEARCH, false)
         movieId = id
-        getMovieDetail(id)
+        getMovieDetail(id, isSearch)
         getReviewByMovieId(movieId)
     }
 
-    private fun getMovieDetail(id: Int) {
-        viewModel.getMovie(id)
+    private fun getMovieDetail(id: Int, isSearch: Boolean) {
+        getViewModel().getMovie(id, isSearch)
     }
 
     private fun getReviewByMovieId(movieId: Int) {
-        viewModel.getReviewsByMovieId(movieId)
+        getViewModel().getReviewsByMovieId(movieId)
+    }
+
+    private fun setFavoriteMovie() {
+        getViewModel().setFavoriteMovie(movie)
     }
 
     override fun fetchDataMovie(movie: MovieEntity) {
-        val imgBackdrop =
-            (Constant.BASE_URL_IMAGE + movie.backdropPath).toUri().buildUpon().scheme("https")
-                .build()
-        getViewBinding().imgCollapsing.load(imgBackdrop) {
-            placeholder(R.color.color_secondary_variant)
-            error(R.drawable.ic_broken_image)
-        }
-        val imgPoster =
-            (Constant.BASE_URL_IMAGE + movie.posterPath).toUri().buildUpon().scheme("https")
-                .build()
+        setFabFavorite(movie.isFavorite)
+//        val imgBackdrop = Constant.BASE_URL_IMAGE + movie.backdropPath
+//        getViewBinding().imgCollapsing.load(imgBackdrop) {
+//            placeholder(R.color.color_secondary_variant)
+//            error(R.drawable.ic_broken_image)
+//        }
+
+        getViewBinding().youtubePlayerView.addYouTubePlayerListener(object :
+            AbstractYouTubePlayerListener() {
+            override fun onReady(youTubePlayer: YouTubePlayer) {
+                val videoId = movie.videoKey.orEmpty()
+                youTubePlayer.loadVideo(videoId, 0f)
+            }
+        })
+
+        val imgPoster = Constant.BASE_URL_IMAGE + movie.posterPath
         getViewBinding().detailMovie.ivPoster.load(imgPoster) {
             placeholder(R.drawable.loading_animation)
             error(R.drawable.ic_broken_image)
@@ -147,7 +165,15 @@ class DetailActivity :
         ReviewsBottomSheet(movieId).show(supportFragmentManager, null)
     }
 
-    private fun showEmptyPlaceholder(isVisible: Boolean) {
+    private fun setFabFavorite(state: Boolean) {
+        if (state) {
+            getViewBinding().fabAddToFavorite.load(R.drawable.ic_favorite_filled_24)
+        } else {
+            getViewBinding().fabAddToFavorite.load(R.drawable.ic_favorite_outlined_24)
+        }
+    }
+
+    override fun showEmptyPlaceholder(isVisible: Boolean) {
         getViewBinding().detailMovie.layoutScenario.layoutComponentScenario.isVisible = isVisible
         getViewBinding().detailMovie.itemReview.layoutItemReview.isGone = isVisible
     }
@@ -173,14 +199,14 @@ class DetailActivity :
             this,
             msg.orEmpty(),
             Toast.LENGTH_SHORT
-        )
-            .show()
+        ).show()
     }
 
     companion object {
-        fun startActivity(context: Context?, id: Int) {
+        fun startActivity(context: Context?, id: Int, isSearch: Boolean) {
             val intent = Intent(context, DetailActivity::class.java).apply {
                 putExtra(Constant.KEY_EXTRA_ID, id)
+                putExtra(Constant.KEY_EXTRA_IS_SEARCH, isSearch)
             }
             context?.startActivity(intent)
         }
