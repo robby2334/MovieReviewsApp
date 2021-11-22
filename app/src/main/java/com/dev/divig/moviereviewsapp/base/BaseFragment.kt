@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModel
 import androidx.viewbinding.ViewBinding
+import com.dev.divig.moviereviewsapp.utils.Utils
 import com.dev.divig.moviereviewsapp.utils.Utils.isInternetAvailable
 
 abstract class BaseFragment<B : ViewBinding, VM : ViewModel>(
@@ -34,6 +35,10 @@ abstract class BaseFragment<B : ViewBinding, VM : ViewModel>(
     fun getViewModel(): VM = viewModelInstance
     fun checkInternetConnection(): Boolean {
         return requireActivity().isInternetAvailable()
+    }
+
+    fun hideSoftKeyboard() {
+        Utils.hideSoftKeyboard(requireActivity(), binding.root)
     }
 
     abstract fun initView()

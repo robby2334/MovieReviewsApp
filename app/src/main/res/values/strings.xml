@@ -4,7 +4,6 @@
     <string name="text_desc_intro_2">The choice of movies is very wide and diverse. It will help you choose the best movies</string>
     <string name="text_desc_intro_3">Let\'s get access to a huge number of great reviews on all movies</string>
     <string name="text_navigate_to_main_page">Start Finding Reviews</string>
-    <string name="text_placeholder_about">About</string>
     <string name="text_placeholder_version">Version %s</string>
     <string name="text_placeholder_copyright">© 2021 Team 1</string>
     <string name="text_placeholder_development">Development by</string>
@@ -14,6 +13,7 @@
     <string name="text_placeholder_next">Next</string>
     <string name="text_placeholder_show_all_reviews">Show All Reviews</string>
     <string name="text_placeholder_query_hint">Search…</string>
+    <string name="text_title_about">About</string>
     <string name="text_title_genre">Genre</string>
     <string name="text_title_date_release">Date Release</string>
     <string name="text_title_overview">Overview</string>
@@ -37,6 +37,20 @@
     <string name="message_favorite_placeholder">Tap the favorite icon in all your favorite movies and we will save them all here.</string>
     <string name="message_search_movies">Find your favorite movies.</string>
     <string name="message_no_search_result">Please check you have the right spelling,or try different keywords.</string>
+    <string name="text_placeholder_username">Username</string>
+    <string name="text_placeholder_email">Email</string>
+    <string name="text_title_change_password">Change Password</string>
+    <string name="text_title_change_profile">Change Profile</string>
+    <string name="text_title_logout">Confirm Logout</string>
+    <string name="text_tittle_change_profile">Change Profile</string>
+    <string name="text_placeholder_update">Update</string>
+    <string name="text_desc_logout">Are you sure you want to logout?</string>
+    <string name="error_username_empty">Username Should be Filled</string>
+    <string name="error_email_empty">Email Should be Filled</string>
+    <string name="error_email_invalid">Email is Invalid</string>
+    <string name="text_placeholder_logout">Logout</string>
+    <string name="text_placeholder_close">Close</string>
+    <string name="message_lost_connection">Connection/signal lost - Please reconnect.</string>
 
     <string-array name="genre_name_list">
         <item>Action</item>
@@ -59,26 +73,4 @@
         <item>War</item>
         <item>Western</item>
     </string-array>
-    <string name="text_profile">Profile</string>
-    <string name="text_email">Email</string>
-    <string name="text_placeholder_email">jhondoe@gmail.com</string>
-    <string name="text_name">Name</string>
-    <string name="text_placeholder_name">Jhon Doe</string>
-    <string name="text_change_password">Change Password</string>
-    <string name="text_change_profile">Change Profile</string>
-    <string name="text_about">About</string>
-    <string name="text_development">Development by</string>
-    <string name="text_placeholder_name_app">Movie Review App</string>
-    <string name="text_placeholder_log_out">Log Out</string>
-    <string name="text_confirm_logout">Confirm Logout</string>
-    <string name="text_challenge">Challenge | Chapter VI</string>
-    <string name="text_hint_full_name">Full Name</string>
-    <string name="text_tittle_change_profile">Change Profile</string>
-    <string name="text_button_save">Save</string>
-    <string name="text_quiestions_logout">Are you sure you want to logout?</string>
-    <string name="text_button_oke">Oke</string>
-    <string name="text_button_cancel">Cancel</string>
-    <string name="error_email_empty">Email Should be Filled</string>
-    <string name="error_email_invalid">Email is Invalid</string>
-    <string name="error_password_empty">Password Should be Filled</string>
 </resources>

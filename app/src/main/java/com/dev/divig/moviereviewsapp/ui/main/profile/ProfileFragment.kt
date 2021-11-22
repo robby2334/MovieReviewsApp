@@ -5,12 +5,14 @@ import androidx.fragment.app.viewModels
 import com.dev.divig.moviereviewsapp.base.BaseFragment
 import com.dev.divig.moviereviewsapp.base.model.Resource
 import com.dev.divig.moviereviewsapp.databinding.FragmentProfileBinding
-import com.dev.divig.moviereviewsapp.ui.main.profile.dialogchangeprofileandlogout.ChangeProfileAndLogoutDialog
+import com.dev.divig.moviereviewsapp.ui.main.profile.dialog.CustomDialogFragment
 import com.dev.divig.moviereviewsapp.utils.Constant
 import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class ProfileFragment :
-    BaseFragment<FragmentProfileBinding, ProfileViewModel>(FragmentProfileBinding::inflate) {
+    BaseFragment<FragmentProfileBinding, ProfileViewModel>(FragmentProfileBinding::inflate),
+    ProfileContract.View {
 
     override val viewModelInstance: ProfileViewModel by viewModels()
 
@@ -18,23 +20,20 @@ class ProfileFragment :
         setClickListeners()
     }
 
-    override fun fetchData(username : String,email : String) {
-        getViewBinding().tvName.text = username
-        getViewBinding().tvEmail.text = email
-    }
-
     override fun setClickListeners() {
-        getViewBinding().ivBtnChangeProfile.setOnClickListener {
+        getViewBinding().trBtnChangeProfile.setOnClickListener {
             showChangeProfileDialog()
         }
-        getViewBinding().ivBtnLogout.setOnClickListener {
+        getViewBinding().trBtnAbout.setOnClickListener {
+            showAboutDialog()
+        }
+        getViewBinding().trBtnLogout.setOnClickListener {
             showLogoutDialog()
         }
     }
 
-
     override fun observeViewModel() {
-        viewModel.getUserLiveData().observe(viewLifecycleOwner) { response ->
+        getViewModel().getUserLiveData().observe(viewLifecycleOwner) { response ->
             when (response) {
                 is Resource.Loading -> {
                     showLoading(true)
@@ -44,7 +43,7 @@ class ProfileFragment :
                     showLoading(false)
                     showContent(true)
                     response.data?.let {
-                        fetchData(it.first,it.second)
+                        fetchData(it.first, it.second)
                     }
                 }
                 is Resource.Error -> {
@@ -56,15 +55,31 @@ class ProfileFragment :
         }
     }
 
+    override fun fetchData(username: String, email: String) {
+        getViewBinding().tvUsername.text = username
+        getViewBinding().tvEmail.text = email
+    }
+
+    override fun getUserData() {
+        getViewModel().getUserData()
+    }
+
     override fun showChangeProfileDialog() {
-        ChangeProfileAndLogoutDialog(Constant.TYPE_CHANGE_PROFILE_DIALOG) {}.show(
+        CustomDialogFragment(Constant.TYPE_CHANGE_PROFILE_DIALOG) {}.show(
+            childFragmentManager,
+            null
+        )
+    }
+
+    override fun showAboutDialog() {
+        CustomDialogFragment(Constant.TYPE_ABOUT_DIALOG) {}.show(
             childFragmentManager,
             null
         )
     }
 
     override fun showLogoutDialog() {
-        ChangeProfileAndLogoutDialog(Constant.TYPE_LOGOUT_DIALOG){
+        CustomDialogFragment(Constant.TYPE_LOGOUT_DIALOG) {
             //goToLoginPage
             Toast.makeText(requireContext(), "Go To Login Page", Toast.LENGTH_SHORT).show()
             it?.dismiss()
@@ -72,5 +87,10 @@ class ProfileFragment :
             childFragmentManager,
             null
         )
+    }
+
+    override fun onResume() {
+        super.onResume()
+        getUserData()
     }
 }

@@ -18,8 +18,9 @@ object Constant {
     const val ITEM_TYPE_IMAGE_SLIDER = 1
     const val ITEM_TYPE_CHILD = 2
     const val NOW_PLAYING_MOVIES = "Now Playing Movies"
-    const val ACTION_UPDATE = 101
-    const val ACTION_GET = 102
     const val TYPE_CHANGE_PROFILE_DIALOG = "type_change_profile_dialog"
+    const val TYPE_ABOUT_DIALOG = "type_about"
     const val TYPE_LOGOUT_DIALOG = "type_logout_dialog"
+    const val ACTION_GET = 10
+    const val ACTION_UPDATE = 11
 }

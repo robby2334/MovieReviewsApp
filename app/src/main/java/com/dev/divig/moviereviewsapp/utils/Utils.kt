@@ -7,11 +7,20 @@ import android.net.NetworkCapabilities
 import android.os.Build
 import android.view.View
 import android.view.inputmethod.InputMethodManager
+import android.widget.Toast
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.HashMap
 
 object Utils {
+    fun showToast(context: Context, msg: String) {
+        Toast.makeText(context, msg, Toast.LENGTH_SHORT).show()
+    }
+
+    fun showToastLong(context: Context, msg: String) {
+        Toast.makeText(context, msg, Toast.LENGTH_LONG).show()
+    }
+
     fun convertRuntime(runtime: Int): String {
         val hours = runtime / Constant.ONE_HOURS
         val minutes = runtime % Constant.ONE_HOURS

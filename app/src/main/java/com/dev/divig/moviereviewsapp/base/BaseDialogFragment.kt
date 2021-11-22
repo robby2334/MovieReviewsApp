@@ -2,22 +2,30 @@ package com.dev.divig.moviereviewsapp.base
 
 import android.os.Bundle
 import android.view.LayoutInflater
-import androidx.appcompat.app.AppCompatActivity
+import android.view.View
+import android.view.ViewGroup
+import androidx.fragment.app.DialogFragment
 import androidx.lifecycle.ViewModel
 import androidx.viewbinding.ViewBinding
 import com.dev.divig.moviereviewsapp.utils.Utils
 import com.dev.divig.moviereviewsapp.utils.Utils.isInternetAvailable
 
-abstract class BaseActivity<B : ViewBinding, VM : ViewModel>(
-    val bindingFactory: (LayoutInflater) -> B
-) : AppCompatActivity(), BaseContract.BaseView {
+abstract class BaseDialogFragment<B : ViewBinding, VM : ViewModel>(
+    val bindingFactory: (LayoutInflater, ViewGroup?, Boolean) -> B
+) : DialogFragment(), BaseContract.BaseView {
     private lateinit var binding: B
     abstract val viewModelInstance: VM
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        binding = bindingFactory(layoutInflater)
-        setContentView(binding.root)
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
+        binding = bindingFactory(inflater, container, false)
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         initView()
         observeViewModel()
         initScenarioComponent()
@@ -26,11 +34,11 @@ abstract class BaseActivity<B : ViewBinding, VM : ViewModel>(
     fun getViewBinding(): B = binding
     fun getViewModel(): VM = viewModelInstance
     fun checkInternetConnection(): Boolean {
-        return applicationContext.isInternetAvailable()
+        return requireActivity().isInternetAvailable()
     }
 
     fun hideSoftKeyboard() {
-        Utils.hideSoftKeyboard(this, binding.root)
+        Utils.hideSoftKeyboard(requireActivity(), binding.root)
     }
 
     abstract fun initView()

@@ -9,9 +9,9 @@ import com.dev.divig.moviereviewsapp.ui.intro.IntroRepository
 import com.dev.divig.moviereviewsapp.ui.main.favorite.FavoriteRepository
 import com.dev.divig.moviereviewsapp.ui.main.movie.MovieRepository
 import com.dev.divig.moviereviewsapp.ui.main.movie.bottomsheet.MovieBottomSheetRepository
-import com.dev.divig.moviereviewsapp.ui.main.search.SearchRepository
-import com.dev.divig.moviereviewsapp.ui.main.movie.MovieFragmentRepository
 import com.dev.divig.moviereviewsapp.ui.main.profile.ProfileRepository
+import com.dev.divig.moviereviewsapp.ui.main.profile.dialog.CustomDialogRepository
+import com.dev.divig.moviereviewsapp.ui.main.search.SearchRepository
 import com.dev.divig.moviereviewsapp.ui.splashscreen.SplashAppRepository
 import dagger.Module
 import dagger.Provides
@@ -66,6 +66,15 @@ object RepositoryModule {
 
     @Provides
     @Singleton
+    fun provideProfileRepository(
+        authApiDataSource: AuthApiDataSource,
+        localDataSource: LocalDataSource
+    ): ProfileRepository {
+        return ProfileRepository(authApiDataSource, localDataSource)
+    }
+
+    @Provides
+    @Singleton
     fun provideDetailRepository(
         localDataSource: LocalDataSource,
         movieApiDataSource: MovieApiDataSource
@@ -91,10 +100,10 @@ object RepositoryModule {
 
     @Provides
     @Singleton
-    fun provideProfileRepository(
+    fun provideCustomDialogRepository(
         authApiDataSource: AuthApiDataSource,
         localDataSource: LocalDataSource
-    ): ProfileRepository {
-        return ProfileRepository(authApiDataSource,localDataSource)
+    ): CustomDialogRepository {
+        return CustomDialogRepository(authApiDataSource, localDataSource)
     }
 }

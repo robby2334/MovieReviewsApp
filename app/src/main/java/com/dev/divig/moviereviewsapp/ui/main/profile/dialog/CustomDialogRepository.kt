@@ -1,4 +1,4 @@
-package com.dev.divig.moviereviewsapp.ui.main.profile.dialogchangeprofileandlogout
+package com.dev.divig.moviereviewsapp.ui.main.profile.dialog
 
 import com.dev.divig.moviereviewsapp.data.local.datasource.LocalDataSource
 import com.dev.divig.moviereviewsapp.data.network.datasource.auth.AuthApiDataSource
@@ -6,10 +6,10 @@ import com.dev.divig.moviereviewsapp.data.network.model.response.auth.BaseAuthRe
 import com.dev.divig.moviereviewsapp.data.network.model.response.auth.UserData
 import javax.inject.Inject
 
-class ChangeProfileAndLogoutRepository @Inject constructor(
+class CustomDialogRepository @Inject constructor(
     private val authApiDataSource: AuthApiDataSource,
     private val localDataSource: LocalDataSource
-) : ChangeProfileAndLogoutContract.Repository {
+) : CustomDialogContract.Repository {
     override fun setLoginSession() {
         localDataSource.isLoginSession(false)
     }
@@ -22,7 +22,10 @@ class ChangeProfileAndLogoutRepository @Inject constructor(
         return localDataSource.loginEmail(value)
     }
 
-    override suspend fun putUserData(username: String, email: String): BaseAuthResponse<UserData, String> {
-        return authApiDataSource.putUserData(username,email)
+    override suspend fun putUserData(
+        username: String,
+        email: String
+    ): BaseAuthResponse<UserData, String> {
+        return authApiDataSource.putUserData(username, email)
     }
 }

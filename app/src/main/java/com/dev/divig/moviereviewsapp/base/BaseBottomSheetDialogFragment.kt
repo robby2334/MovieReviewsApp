@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModel
 import androidx.viewbinding.ViewBinding
+import com.dev.divig.moviereviewsapp.utils.Utils
 import com.dev.divig.moviereviewsapp.utils.Utils.isInternetAvailable
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 
@@ -34,6 +35,10 @@ abstract class BaseBottomSheetDialogFragment<B : ViewBinding, VM : ViewModel>(
     fun getViewModel(): VM = viewModelInstance
     fun checkInternetConnection(): Boolean {
         return requireActivity().isInternetAvailable()
+    }
+
+    fun hideSoftKeyboard() {
+        Utils.hideSoftKeyboard(requireActivity(), binding.root)
     }
 
     abstract fun initView()
