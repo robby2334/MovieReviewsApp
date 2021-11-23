@@ -1,6 +1,5 @@
 package com.dev.divig.moviereviewsapp.ui.main.movie
 
-import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -34,16 +33,13 @@ class MovieFragment :
             when (response) {
                 is Resource.Loading -> {
                     showLoading(true)
-                    showContent(false)
                 }
                 is Resource.Success -> {
                     showLoading(false)
                     response.data?.let {
                         if (it.isEmpty()) {
                             showError(true, getString(R.string.message_empty_movies))
-                            showContent(false)
                         } else {
-                            showContent(true)
                             setupRecyclerView(it)
                         }
                     }
@@ -57,7 +53,21 @@ class MovieFragment :
     }
 
     override fun getMovies(update: Boolean) {
-        getViewModel().getMovies(update)
+        if (checkInternetConnection()) {
+            getViewModel().getMovies(update)
+        } else {
+            Utils.noInternetDialog(
+                requireActivity(),
+                getString(R.string.text_placeholder_close),
+                {
+                    getMovies(update)
+                    it?.dismiss()
+                },
+                {
+                    it?.dismiss()
+                }
+            )
+        }
     }
 
     override fun setupRecyclerView(movies: List<MovieEntity>) {
@@ -123,10 +133,6 @@ class MovieFragment :
         MovieBottomSheet(genre).show(childFragmentManager, null)
     }
 
-    override fun showContent(isContentVisible: Boolean) {
-        getViewBinding().rvMovie.isVisible = isContentVisible
-    }
-
     override fun showLoading(isLoading: Boolean) {
         getViewBinding().sflMainPlaceholder.isVisible = isLoading
         if (isLoading) {
@@ -137,8 +143,9 @@ class MovieFragment :
     }
 
     override fun showError(isErrorEnabled: Boolean, msg: String?) {
-        if (isErrorEnabled) Toast.makeText(requireContext(), msg.orEmpty(), Toast.LENGTH_SHORT)
-            .show()
+        if (msg.isNullOrEmpty().not()) {
+            showSnackBarError(msg)
+        }
     }
 
     override fun initSwipeRefresh() {

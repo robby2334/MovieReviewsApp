@@ -4,7 +4,7 @@
     <string name="error_email_empty">Email Should be Filled</string>
     <string name="error_email_invalid">Email is Invalid</string>
     <string name="error_password_empty">Password Should be Filled</string>
-    <string name="message_empty_movies">There was a problem loading the list of movies.</string>
+    <string name="message_empty_movies">There was a problem loading the data, please try again.</string>
     <string name="message_no_review">it\'s a little empty here! No reviews have been submitted yet.</string>
     <string name="message_favorite_placeholder">Tap the favorite icon in all your favorite movies and we will save them all here.</string>
     <string name="message_search_movies">Find your favorite movies.</string>

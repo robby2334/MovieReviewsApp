@@ -110,7 +110,7 @@
         style="@style/Text.Bold.Movie.App"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/_8sdp"
+        android:layout_marginBottom="@dimen/_10sdp"
         android:text="@string/text_title_logout"
         android:textColor="@color/color_secondary_variant"
         android:textSize="@dimen/_16ssp"
@@ -122,11 +122,10 @@
         style="@style/Text.Light.Movie.App"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/_8sdp"
         android:layout_marginBottom="@dimen/_16sdp"
         android:text="@string/message_logout"
         android:textColor="@color/color_secondary_variant"
-        android:textSize="@dimen/_14ssp"
+        android:textSize="@dimen/_12ssp"
         app:layout_constraintBottom_toTopOf="@id/btn_negative"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintStart_toStartOf="@+id/tv_title_logout_dialog" />
@@ -261,7 +260,7 @@
         android:layout_height="wrap_content"
         android:visibility="gone"
         app:constraint_referenced_ids="tv_dialog_change_profile,tv_title_username_dialog,til_username,tv_title_email_dialog,til_email"
-        tools:visibility="visible" />
+        tools:visibility="gone" />
 
     <androidx.constraintlayout.widget.Group
         android:id="@+id/group_about_layout"
@@ -275,7 +274,7 @@
         android:id="@+id/group_logout_layout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:visibility="gone"
+        android:visibility="visible"
         app:constraint_referenced_ids="tv_title_logout_dialog,tv_desc_logout_dialog" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
