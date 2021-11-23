@@ -12,6 +12,7 @@ import com.dev.divig.moviereviewsapp.data.network.model.response.movie.Movie
 import com.dev.divig.moviereviewsapp.databinding.FragmentSearchBinding
 import com.dev.divig.moviereviewsapp.ui.detail.DetailActivity
 import com.dev.divig.moviereviewsapp.ui.main.search.adapter.SearchAdapter
+import com.dev.divig.moviereviewsapp.utils.Constant
 import com.dev.divig.moviereviewsapp.utils.Utils
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -19,27 +20,27 @@ import dagger.hilt.android.AndroidEntryPoint
 class SearchFragment :
     BaseFragment<FragmentSearchBinding, SearchViewModel>(FragmentSearchBinding::inflate),
     SearchContract.View {
-
+    private lateinit var query: String
     override val viewModelInstance: SearchViewModel by viewModels()
 
     override fun initView() {
         showLoading(false)
         initSearchView()
-        showScenarioPlaceholder(isVisible = true, isEmptySearch = false)
+        showScenarioPlaceholder(isVisible = true, Constant.TYPE_PLACEHOLDER)
     }
 
     override fun observeViewModel() {
         getViewModel().getMoviesLiveData().observe(viewLifecycleOwner) { response ->
             when (response) {
                 is Resource.Loading -> {
-                    showScenarioPlaceholder(isVisible = false, isEmptySearch = true)
+                    showScenarioPlaceholder(isVisible = false, Constant.TYPE_EMPTY)
                     showLoading(true)
                 }
                 is Resource.Success -> {
                     showLoading(false)
                     response.data?.let {
                         if (it.isEmpty()) {
-                            showScenarioPlaceholder(isVisible = true, isEmptySearch = true)
+                            showScenarioPlaceholder(isVisible = true, Constant.TYPE_EMPTY)
                         } else {
                             setupRecyclerView(it)
                         }
@@ -47,7 +48,7 @@ class SearchFragment :
                 }
                 is Resource.Error -> {
                     showLoading(false)
-                    showScenarioPlaceholder(isVisible = false, isEmptySearch = true)
+                    showScenarioPlaceholder(isVisible = false, Constant.TYPE_EMPTY)
                     showError(true, response.message)
                 }
             }
@@ -61,6 +62,7 @@ class SearchFragment :
                     return true
                 } else {
                     setupRecyclerView(emptyList())
+                    this@SearchFragment.query = query
                     searchMovies(query)
                     Utils.hideSoftKeyboard(requireActivity(), getViewBinding().svMovies)
                 }
@@ -74,7 +76,11 @@ class SearchFragment :
     }
 
     override fun searchMovies(query: String) {
-        getViewModel().searchMovies(query)
+        if (checkInternetConnection()) {
+            getViewModel().searchMovies(query)
+        } else {
+            showScenarioPlaceholder(isVisible = true, Constant.TYPE_LOST_CONNECTION)
+        }
     }
 
     override fun setupRecyclerView(movies: List<Movie>) {
@@ -91,26 +97,44 @@ class SearchFragment :
         DetailActivity.startActivity(requireContext(), movie.id, true)
     }
 
-    override fun showScenarioPlaceholder(isVisible: Boolean, isEmptySearch: Boolean) {
+    override fun showScenarioPlaceholder(isVisible: Boolean, type: Int) {
         getViewBinding().rvMovie.isGone = isVisible
-        setScenarioComponent(isEmptySearch)
+        setScenarioComponent(type)
         getViewBinding().layoutScenario.layoutComponentScenario.isVisible = isVisible
     }
 
-    override fun setScenarioComponent(isEmptySearch: Boolean) {
-        val imgDrawable: Int
-        val title: String
-        val desc: String
-        if (isEmptySearch) {
-            imgDrawable = R.drawable.ic_no_search_results
-            title = getString(R.string.text_title_no_search_result)
-            desc = getString(R.string.message_no_search_result)
-        } else {
-            imgDrawable = R.drawable.ic_search_movies
-            title = getString(R.string.text_title_search_movies)
-            desc = getString(R.string.message_search_movies)
+    override fun setScenarioComponent(type: Int) {
+        when (type) {
+            Constant.TYPE_PLACEHOLDER -> {
+                setupScenario(
+                    R.drawable.ic_search_movies,
+                    getString(R.string.text_title_search_movies),
+                    getString(R.string.message_search_movies)
+                )
+            }
+            Constant.TYPE_EMPTY -> {
+                setupScenario(
+                    R.drawable.ic_no_search_results,
+                    getString(R.string.text_title_no_search_result),
+                    getString(R.string.message_no_search_result)
+                )
+            }
+            Constant.TYPE_LOST_CONNECTION -> {
+                setupScenario(
+                    R.drawable.ic_no_internet_connection,
+                    getString(R.string.text_title_lost_connection),
+                    getString(R.string.message_dialog_lost_connection)
+                )
+                getViewBinding().layoutScenario.btnActionRetry.isVisible = true
+                getViewBinding().layoutScenario.btnActionRetry.setOnClickListener {
+                    searchMovies(query)
+                }
+            }
         }
+    }
 
+    private fun setupScenario(imgDrawable: Int, title: String, desc: String) {
+        getViewBinding().layoutScenario.btnActionRetry.isVisible = false
         getViewBinding().layoutScenario.ivScenario.load(imgDrawable)
         getViewBinding().layoutScenario.tvTitle.text = title
         getViewBinding().layoutScenario.tvDesc.text = desc

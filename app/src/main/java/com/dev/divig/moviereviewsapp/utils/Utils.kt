@@ -61,7 +61,7 @@ object Utils {
     fun dateFormatter(value: String?): String? {
         val date = value ?: "0000-00-00T00:00:00.000Z"
         val formatterPrev =
-            SimpleDateFormat(Constant.DATABASE_DATE_PATTERN, Locale.getDefault())
+            SimpleDateFormat(Constant.DATE_PATTERN_DATABASE, Locale.getDefault())
         val originalDate = formatterPrev.parse(date)
 
         val formatter = SimpleDateFormat(Constant.DATE_PATTERN, Locale.getDefault())
@@ -70,14 +70,14 @@ object Utils {
 
     fun getDate(): String {
         val calendar = Calendar.getInstance(TimeZone.getDefault())
-        val formatter = SimpleDateFormat(Constant.RELEASE_DATE_PATTERN, Locale.getDefault())
+        val formatter = SimpleDateFormat(Constant.DATE_PATTERN_RELEASE, Locale.getDefault())
         return formatter.format(calendar.time)
     }
 
     fun dateToMillis(value: String?): Long {
         val date = value ?: "0000-00-00"
         val formatterPrev =
-            SimpleDateFormat(Constant.RELEASE_DATE_PATTERN, Locale.getDefault())
+            SimpleDateFormat(Constant.DATE_PATTERN_RELEASE, Locale.getDefault())
         val originalDate = formatterPrev.parse(date) as Date
         return originalDate.time
     }

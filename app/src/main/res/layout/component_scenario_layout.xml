@@ -16,7 +16,7 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:src="@drawable/ic_no_reviews_placeholder" />
+        tools:src="@drawable/ic_no_internet_connection" />
 
     <TextView
         android:id="@+id/tv_title"
@@ -24,19 +24,38 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textAlignment="center"
+        android:textColor="@color/color_secondary"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/iv_scenario"
-        tools:text="Empty Data" />
+        tools:text="@string/text_title_lost_connection" />
 
     <TextView
         android:id="@+id/tv_desc"
         style="@style/Text.Light.Movie.App"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:paddingTop="@dimen/_4sdp"
         android:textAlignment="center"
         android:textSize="@dimen/_10ssp"
         app:layout_constraintTop_toBottomOf="@id/tv_title"
-        tools:text="An error occurred while entering data." />
+        tools:text="@string/message_dialog_lost_connection" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_action_retry"
+        style="@style/Text.Bold.Movie.App"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_8sdp"
+        android:backgroundTint="@color/color_secondary"
+        android:text="@string/text_placeholder_retry"
+        android:textColor="@color/color_primary"
+        android:textSize="@dimen/_10ssp"
+        android:visibility="gone"
+        app:cornerRadius="@dimen/_25sdp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_desc"
+        tools:visibility="visible" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

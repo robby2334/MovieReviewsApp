@@ -8,7 +8,7 @@ import com.dev.divig.moviereviewsapp.R
 import com.dev.divig.moviereviewsapp.data.local.model.UserEntity
 import com.dev.divig.moviereviewsapp.databinding.ItemLoginRegisterBinding
 import com.dev.divig.moviereviewsapp.utils.Constant
-import com.dev.divig.moviereviewsapp.utils.ValidationString
+import com.dev.divig.moviereviewsapp.utils.StringUtils
 
 class LoginAdapter(
     private val itemList: List<String>,
@@ -107,7 +107,7 @@ class LoginAdapter(
                 binding.tilEmail.error =
                     binding.root.context.getString(R.string.error_email_empty)
             }
-            ValidationString.isEmailValid(email).not() -> {
+            StringUtils.isEmailValid(email).not() -> {
                 isFormValid = false
                 binding.tilEmail.isErrorEnabled = true
                 binding.tilEmail.error =

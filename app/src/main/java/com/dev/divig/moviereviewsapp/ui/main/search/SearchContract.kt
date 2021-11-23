@@ -11,8 +11,8 @@ interface SearchContract {
         fun initSearchView()
         fun searchMovies(query: String)
         fun setupRecyclerView(movies: List<Movie>)
-        fun showScenarioPlaceholder(isVisible: Boolean, isEmptySearch: Boolean)
-        fun setScenarioComponent(isEmptySearch: Boolean)
+        fun showScenarioPlaceholder(isVisible: Boolean, type: Int)
+        fun setScenarioComponent(type: Int)
     }
 
     interface ViewModel {

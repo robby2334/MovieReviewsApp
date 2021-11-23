@@ -9,9 +9,9 @@ object Constant {
     const val BASE_URL_IMAGE = BuildConfig.image_url
     const val VIDEOS = "videos"
     const val TRAILER = "Trailer"
-    const val DATABASE_DATE_PATTERN = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
+    const val DATE_PATTERN_DATABASE = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
     const val DATE_PATTERN = "d MMM yyyy HH:mm:ss"
-    const val RELEASE_DATE_PATTERN = "yyyy-MM-dd"
+    const val DATE_PATTERN_RELEASE = "yyyy-MM-dd"
     const val ONE_HOURS = 60
     const val ZERO_FLOAT = 0F
     const val FOURTEEN_FLOAT = 14F
@@ -24,8 +24,9 @@ object Constant {
     const val TYPE_CHANGE_PROFILE_DIALOG = "type_change_profile_dialog"
     const val TYPE_ABOUT_DIALOG = "type_about"
     const val TYPE_LOGOUT_DIALOG = "type_logout_dialog"
-    const val ACTION_GET = 10
-    const val ACTION_UPDATE = 11
-    const val ACTION_LOGIN = 12
-    const val ACTION_REGISTER = 13
+    const val TYPE_PLACEHOLDER = 101
+    const val TYPE_EMPTY = 102
+    const val TYPE_LOST_CONNECTION = 103
+    const val ACTION_LOGIN = 10
+    const val ACTION_REGISTER = 11
 }
