@@ -16,9 +16,9 @@ interface CustomDialogContract {
     }
 
     interface ViewModel {
-        fun getUserLiveData(): LiveData<Resource<Pair<Int, UserEntity>>>
+        fun getUserLiveData(): LiveData<Resource<UserEntity>>
         fun setLoginSession()
-        fun getUserData()
+        fun getUserData(): UserEntity
         fun updateUserData(username: String, email: String)
     }
 

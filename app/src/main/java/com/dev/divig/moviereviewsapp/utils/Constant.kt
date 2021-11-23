@@ -14,13 +14,18 @@ object Constant {
     const val RELEASE_DATE_PATTERN = "yyyy-MM-dd"
     const val ONE_HOURS = 60
     const val ZERO_FLOAT = 0F
+    const val FOURTEEN_FLOAT = 14F
     const val FIVE = 5
     const val ITEM_TYPE_IMAGE_SLIDER = 1
     const val ITEM_TYPE_CHILD = 2
+    const val ITEM_TYPE_LOGIN = 3
+    const val ITEM_TYPE_REGISTER = 4
     const val NOW_PLAYING_MOVIES = "Now Playing Movies"
     const val TYPE_CHANGE_PROFILE_DIALOG = "type_change_profile_dialog"
     const val TYPE_ABOUT_DIALOG = "type_about"
     const val TYPE_LOGOUT_DIALOG = "type_logout_dialog"
     const val ACTION_GET = 10
     const val ACTION_UPDATE = 11
+    const val ACTION_LOGIN = 12
+    const val ACTION_REGISTER = 13
 }

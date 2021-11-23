@@ -11,7 +11,7 @@ class CustomDialogRepository @Inject constructor(
     private val localDataSource: LocalDataSource
 ) : CustomDialogContract.Repository {
     override fun setLoginSession() {
-        localDataSource.isLoginSession(false)
+        localDataSource.isLoginSession(true)
     }
 
     override fun loginUsername(value: String?): String? {

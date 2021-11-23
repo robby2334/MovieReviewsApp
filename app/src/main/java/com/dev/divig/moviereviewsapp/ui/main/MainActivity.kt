@@ -34,7 +34,9 @@ class MainActivity : AppCompatActivity() {
     companion object {
         @JvmStatic
         fun startActivity(context: Context?) {
-            val intent = Intent(context, MainActivity::class.java)
+            val intent = Intent(context, MainActivity::class.java).apply {
+                flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
+            }
             context?.startActivity(intent)
         }
     }

@@ -26,9 +26,10 @@ object RepositoryModule {
     @Provides
     @Singleton
     fun provideSplashScreenRepository(
-        localDataSource: LocalDataSource
+        localDataSource: LocalDataSource,
+        authApiDataSource: AuthApiDataSource
     ): SplashAppRepository {
-        return SplashAppRepository(localDataSource)
+        return SplashAppRepository(localDataSource, authApiDataSource)
     }
 
     @Provides

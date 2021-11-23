@@ -11,11 +11,24 @@ class LoginRepository @Inject constructor(
     private val authApiDataSource: AuthApiDataSource,
     private val localDataSource: LocalDataSource
 ) : LoginContract.Repository {
+    override fun saveLoginUsername(value: String?) {
+        localDataSource.loginUsername(value)
+    }
+
+    override fun saveLoginEmail(value: String?) {
+        localDataSource.loginEmail(value)
+    }
+
     override fun saveSessionLogin(authToken: String) {
         localDataSource.authToken(authToken)
+        localDataSource.isLoginSession(false)
     }
 
     override suspend fun postLoginUser(loginRequest: AuthRequest): BaseAuthResponse<UserData, String> {
         return authApiDataSource.postLoginUser(loginRequest)
+    }
+
+    override suspend fun postRegister(registerRequest: AuthRequest): BaseAuthResponse<UserData, String> {
+        return authApiDataSource.postRegisterUser(registerRequest)
     }
 }

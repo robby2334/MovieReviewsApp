@@ -1,24 +1,51 @@
 package com.dev.divig.moviereviewsapp.utils
 
 import android.app.Activity
+import android.app.Dialog
 import android.content.Context
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
 import android.os.Build
 import android.view.View
+import android.view.Window
 import android.view.inputmethod.InputMethodManager
+import android.widget.TextView
 import android.widget.Toast
+import androidx.core.content.ContextCompat
+import coil.load
+import com.dev.divig.moviereviewsapp.R
+import com.dev.divig.moviereviewsapp.databinding.LayoutMessageDialogBinding
+import com.google.android.material.snackbar.Snackbar
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.HashMap
 
 object Utils {
-    fun showToast(context: Context, msg: String) {
-        Toast.makeText(context, msg, Toast.LENGTH_SHORT).show()
-    }
-
     fun showToastLong(context: Context, msg: String) {
         Toast.makeText(context, msg, Toast.LENGTH_LONG).show()
+    }
+
+    fun showSnackBarSuccess(context: Context, view: View, msg: String) {
+        snackBar(context, view, msg, R.drawable.bg_corner_success)
+    }
+
+    fun showSnackBarError(context: Context, view: View, msg: String) {
+        snackBar(context, view, msg, R.drawable.bg_corner_error)
+    }
+
+    private fun snackBar(context: Context, view: View, msg: String, backgroundDrawable: Int) {
+        val snackBar = Snackbar.make(view, msg, Snackbar.LENGTH_LONG)
+        val snackView = snackBar.view
+        val tv = snackView.findViewById(com.google.android.material.R.id.snackbar_text) as TextView
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            tv.setTextAppearance(R.style.Text_Bold_Movie_App)
+        }
+        tv.textSize = Constant.FOURTEEN_FLOAT
+        tv.setTextColor(ContextCompat.getColor(context, R.color.white))
+        snackBar.view.background = ContextCompat.getDrawable(context, backgroundDrawable)
+        snackBar.show()
     }
 
     fun convertRuntime(runtime: Int): String {
@@ -132,5 +159,39 @@ object Utils {
             }
         }
         return false
+    }
+
+    fun noInternetDialog(
+        activity: Activity,
+        textButtonNegative: String,
+        onClickPositive: (dialog: Dialog?) -> Unit,
+        onClickNegative: (dialog: Dialog?) -> Unit
+    ) {
+        val dialogBinding = LayoutMessageDialogBinding.inflate(activity.layoutInflater)
+        val dialog = Dialog(activity)
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
+        dialog.setContentView(dialogBinding.root)
+        dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        dialog.setCancelable(false)
+        dialog.setCanceledOnTouchOutside(false)
+
+        val title = activity.getString(R.string.text_title_lost_connection)
+        val message = activity.getString(R.string.message_dialog_lost_connection)
+
+        dialogBinding.dialogTitle.text = title
+        dialogBinding.dialogMessage.text = message
+        dialogBinding.imgView.load(R.drawable.ic_no_internet_connection)
+
+        dialogBinding.btnDialogPositive.setOnClickListener {
+            dialog.dismiss()
+            onClickPositive(dialog)
+        }
+
+        dialogBinding.btnDialogNegative.text = textButtonNegative
+        dialogBinding.btnDialogNegative.setOnClickListener {
+            dialog.dismiss()
+            onClickNegative(dialog)
+        }
+        dialog.show()
     }
 }

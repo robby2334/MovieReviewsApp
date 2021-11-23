@@ -33,6 +33,14 @@ abstract class BaseActivity<B : ViewBinding, VM : ViewModel>(
         Utils.hideSoftKeyboard(this, binding.root)
     }
 
+    fun showSnackBarSuccess(msg: String?) {
+        Utils.showSnackBarSuccess(this, binding.root, msg.orEmpty())
+    }
+
+    fun showSnackBarError(msg: String?) {
+        Utils.showSnackBarError(this, binding.root, msg.orEmpty())
+    }
+
     abstract fun initView()
     override fun observeViewModel() {}
     override fun initScenarioComponent() {}

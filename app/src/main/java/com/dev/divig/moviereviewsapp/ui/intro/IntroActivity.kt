@@ -14,7 +14,7 @@ import com.dev.divig.moviereviewsapp.base.BaseActivity
 import com.dev.divig.moviereviewsapp.databinding.ActivityIntroBinding
 import com.dev.divig.moviereviewsapp.ui.intro.adapter.IntroAdapter
 import com.dev.divig.moviereviewsapp.ui.intro.model.Intro
-import com.dev.divig.moviereviewsapp.ui.main.MainActivity
+import com.dev.divig.moviereviewsapp.ui.login.LoginActivity
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -118,14 +118,14 @@ class IntroActivity :
                     getViewBinding().mbBtnNext.text = getString(R.string.text_navigate_to_main_page)
                 }
             } else {
-                navigateToMainPage()
+                navigateToLoginPage()
             }
         }
     }
 
-    override fun navigateToMainPage() {
+    override fun navigateToLoginPage() {
         getViewModel().setStateFirstRunApp()
-        MainActivity.startActivity(this)
+        LoginActivity.startActivity(this)
     }
 
     companion object {

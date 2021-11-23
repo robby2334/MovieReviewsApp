@@ -41,6 +41,14 @@ abstract class BaseDialogFragment<B : ViewBinding, VM : ViewModel>(
         Utils.hideSoftKeyboard(requireActivity(), binding.root)
     }
 
+    fun showSnackBarSuccess(msg: String?) {
+        Utils.showSnackBarSuccess(requireContext(), binding.root, msg.orEmpty())
+    }
+
+    fun showSnackBarError(msg: String?) {
+        Utils.showSnackBarError(requireContext(), binding.root, msg.orEmpty())
+    }
+
     abstract fun initView()
     override fun observeViewModel() {}
     override fun initScenarioComponent() {}

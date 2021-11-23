@@ -20,6 +20,10 @@
         <item name="android:navigationBarColor" tools:targetApi="l">@color/color_primary</item>
     </style>
 
+    <style name="LoginTheme" parent="Theme.MovieReviewsApp">
+        <item name="android:windowBackground">@drawable/img_background_login</item>
+    </style>
+
     <style name="Text.Light.Movie.App" parent="TextAppearance.AppCompat">
         <item name="android:fontFamily">@font/roboto_light</item>
         <item name="android:textColor">@color/white</item>

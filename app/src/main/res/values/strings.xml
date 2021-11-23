@@ -1,5 +1,23 @@
 <resources>
     <string name="app_name">Movie Reviews App</string>
+    <string name="error_username_empty">Username Should be Filled</string>
+    <string name="error_email_empty">Email Should be Filled</string>
+    <string name="error_email_invalid">Email is Invalid</string>
+    <string name="error_password_empty">Password Should be Filled</string>
+    <string name="message_empty_movies">There was a problem loading the list of movies.</string>
+    <string name="message_no_review">it\'s a little empty here! No reviews have been submitted yet.</string>
+    <string name="message_favorite_placeholder">Tap the favorite icon in all your favorite movies and we will save them all here.</string>
+    <string name="message_search_movies">Find your favorite movies.</string>
+    <string name="message_no_search_result">Please check you have the right spelling,or try different keywords.</string>
+    <string name="message_logout">Are you sure you want to logout?</string>
+    <string name="message_lost_connection">Connection/signal lost - Please reconnect.</string>
+    <string name="message_success_update">Update Success</string>
+    <string name="message_success_register">Successfully registered.</string>
+    <string name="message_error_login">There was a problem logging in, please check your username and/or password and try again.</string>
+    <string name="message_error_register">There was a problem signing up, please try again.</string>
+    <string name="message_error_update">There was a problem updating the profile, please try again.</string>
+    <string name="message_session_ended">The login session has ended, please login again.</string>
+    <string name="message_dialog_lost_connection">You don\'t seem to be connected to the internet. Please check your connection and try again or exit and retry later.</string>
     <string name="text_desc_intro_1">In this application you will find many interesting movie reviews</string>
     <string name="text_desc_intro_2">The choice of movies is very wide and diverse. It will help you choose the best movies</string>
     <string name="text_desc_intro_3">Let\'s get access to a huge number of great reviews on all movies</string>
@@ -13,6 +31,18 @@
     <string name="text_placeholder_next">Next</string>
     <string name="text_placeholder_show_all_reviews">Show All Reviews</string>
     <string name="text_placeholder_query_hint">Search…</string>
+    <string name="text_placeholder_password">Password</string>
+    <string name="text_placeholder_sign_up">Sign Up</string>
+    <string name="text_placeholder_sign_in">Sign In</string>
+    <string name="text_placeholder_sign_out">Sign Out</string>
+    <string name="text_placeholder_close">Close</string>
+    <string name="text_placeholder_retry">Retry</string>
+    <string name="text_placeholder_exit">Exit</string>
+    <string name="text_placeholder_username">Username</string>
+    <string name="text_placeholder_email">Email</string>
+    <string name="text_placeholder_update">Update</string>
+    <string name="text_hint_email">Email</string>
+    <string name="text_hint_username">Username</string>
     <string name="text_title_about">About</string>
     <string name="text_title_genre">Genre</string>
     <string name="text_title_date_release">Date Release</string>
@@ -32,25 +62,10 @@
     <string name="text_title_now_playing_movies">Now Playing Movies</string>
     <string name="text_title_search_movies">Search Movies</string>
     <string name="text_title_no_search_result">No Results Found</string>
-    <string name="message_empty_movies">There was a problem loading the list of movies.</string>
-    <string name="message_no_review">it\'s a little empty here! No reviews have been submitted yet.</string>
-    <string name="message_favorite_placeholder">Tap the favorite icon in all your favorite movies and we will save them all here.</string>
-    <string name="message_search_movies">Find your favorite movies.</string>
-    <string name="message_no_search_result">Please check you have the right spelling,or try different keywords.</string>
-    <string name="text_placeholder_username">Username</string>
-    <string name="text_placeholder_email">Email</string>
+    <string name="text_title_lost_connection">No Internet Connection</string>
     <string name="text_title_change_password">Change Password</string>
     <string name="text_title_change_profile">Change Profile</string>
     <string name="text_title_logout">Confirm Logout</string>
-    <string name="text_tittle_change_profile">Change Profile</string>
-    <string name="text_placeholder_update">Update</string>
-    <string name="text_desc_logout">Are you sure you want to logout?</string>
-    <string name="error_username_empty">Username Should be Filled</string>
-    <string name="error_email_empty">Email Should be Filled</string>
-    <string name="error_email_invalid">Email is Invalid</string>
-    <string name="text_placeholder_logout">Logout</string>
-    <string name="text_placeholder_close">Close</string>
-    <string name="message_lost_connection">Connection/signal lost - Please reconnect.</string>
 
     <string-array name="genre_name_list">
         <item>Action</item>
@@ -73,31 +88,4 @@
         <item>War</item>
         <item>Western</item>
     </string-array>
-
-    <string name="text_placeholder_coin_price">$%s</string>
-    <string name="text_hint_email">Email</string>
-    <string name="text_hint_username">Username</string>
-    <string name="text_hint_password">Password</string>
-    <string name="text_btn_register">Sign Up</string>
-    <string name="text_btn_login">Log In</string>
-    <string name="error_password_empty">Password Should be Filled</string>
-    <string name="text_create_account">Create an Account</string>
-    <string name="text_register_success">Register Success!</string>
-    <string name="text_title_toolbar_register">Register Account</string>
-    <string name="text_login_success">Login Success !</string>
-    <string name="text_title_toolbar_login">Login</string>
-
-    <string name="text_dialog_logout_task_positive">Yes</string>
-    <string name="text_dialog_logout_task_negative">No</string>
-    <string name="text_icon_menu_logout">Logout</string>
-    <string name="text_logout_dialog">Do you want to Logout ?</string>
-    <string name="image_logo_login">Image Logo Login</string>
-    <string name="tv_sign_up_register">Sign Up</string>
-    <string name="tv_log_in_register">Log In</string>
-    <string name="tv_log_in_login">Log In</string>
-    <string name="tv_sign_up_login">Sign Up</string>
-    <string name="iv_logo_register">TODO</string>
-    <string name="sign_up_complete">Sign-Up Complete</string>
-    <string name="ok_signup_complete">OK</string>
-    <string name="image_signup_compete">TODO</string>
 </resources>

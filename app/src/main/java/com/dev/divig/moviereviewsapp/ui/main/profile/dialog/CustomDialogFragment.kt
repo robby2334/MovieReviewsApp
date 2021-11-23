@@ -13,8 +13,6 @@ import com.dev.divig.moviereviewsapp.data.local.model.UserEntity
 import com.dev.divig.moviereviewsapp.databinding.FragmentCustomDialogBinding
 import com.dev.divig.moviereviewsapp.utils.Constant
 import com.dev.divig.moviereviewsapp.utils.StringUtils
-import com.dev.divig.moviereviewsapp.utils.Utils
-import com.dev.divig.moviereviewsapp.utils.Utils.isInternetAvailable
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -48,10 +46,7 @@ class CustomDialogFragment(
                 }
                 is Resource.Success -> {
                     showLoading(false)
-                    when (response.data?.first) {
-                        Constant.ACTION_GET -> fetchData(response.data.second)
-                        Constant.ACTION_UPDATE -> dialog?.dismiss()
-                    }
+                    onCallback(dialog)
                 }
                 is Resource.Error -> {
                     showLoading(false)
@@ -66,9 +61,7 @@ class CustomDialogFragment(
     }
 
     override fun showError(isErrorEnabled: Boolean, msg: String?) {
-        if (isErrorEnabled && msg.isNullOrEmpty().not()) {
-            Utils.showToastLong(requireContext(), msg.orEmpty())
-        }
+        showSnackBarError(getString(R.string.message_error_update))
     }
 
     private fun showChangeProfileDialog() {
@@ -78,13 +71,10 @@ class CustomDialogFragment(
         getViewBinding().btnPositive.setOnClickListener {
             hideSoftKeyboard()
             if (checkFormValidation()) {
-                if (requireActivity().isInternetAvailable()) {
+                if (checkInternetConnection()) {
                     updateUserData()
                 } else {
-                    Utils.showToastLong(
-                        requireContext(),
-                        getString(R.string.message_lost_connection)
-                    )
+                    showSnackBarError(getString(R.string.message_lost_connection))
                 }
             }
         }
@@ -155,7 +145,8 @@ class CustomDialogFragment(
     }
 
     override fun getUserData() {
-        getViewModel().getUserData()
+        val response = getViewModel().getUserData()
+        fetchData(response)
     }
 
     override fun updateUserData() {

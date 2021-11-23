@@ -1,10 +1,11 @@
 package com.dev.divig.moviereviewsapp.ui.main.profile
 
-import android.widget.Toast
 import androidx.fragment.app.viewModels
+import com.dev.divig.moviereviewsapp.R
 import com.dev.divig.moviereviewsapp.base.BaseFragment
 import com.dev.divig.moviereviewsapp.base.model.Resource
 import com.dev.divig.moviereviewsapp.databinding.FragmentProfileBinding
+import com.dev.divig.moviereviewsapp.ui.login.LoginActivity
 import com.dev.divig.moviereviewsapp.ui.main.profile.dialog.CustomDialogFragment
 import com.dev.divig.moviereviewsapp.utils.Constant
 import dagger.hilt.android.AndroidEntryPoint
@@ -17,6 +18,7 @@ class ProfileFragment :
     override val viewModelInstance: ProfileViewModel by viewModels()
 
     override fun initView() {
+        getUserData()
         setClickListeners()
     }
 
@@ -65,7 +67,11 @@ class ProfileFragment :
     }
 
     override fun showChangeProfileDialog() {
-        CustomDialogFragment(Constant.TYPE_CHANGE_PROFILE_DIALOG) {}.show(
+        CustomDialogFragment(Constant.TYPE_CHANGE_PROFILE_DIALOG) {
+            showSnackBarSuccess(getString(R.string.message_success_update))
+            getUserData()
+            it?.dismiss()
+        }.show(
             childFragmentManager,
             null
         )
@@ -80,17 +86,11 @@ class ProfileFragment :
 
     override fun showLogoutDialog() {
         CustomDialogFragment(Constant.TYPE_LOGOUT_DIALOG) {
-            //goToLoginPage
-            Toast.makeText(requireContext(), "Go To Login Page", Toast.LENGTH_SHORT).show()
             it?.dismiss()
+            LoginActivity.startActivity(requireContext())
         }.show(
             childFragmentManager,
             null
         )
-    }
-
-    override fun onResume() {
-        super.onResume()
-        getUserData()
     }
 }

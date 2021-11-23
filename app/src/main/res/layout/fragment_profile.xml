@@ -209,7 +209,7 @@
             android:layout_marginStart="@dimen/_12sdp"
             android:layout_weight="1"
             android:drawablePadding="@dimen/_12sdp"
-            android:text="@string/text_placeholder_logout"
+            android:text="@string/text_placeholder_sign_out"
             android:textColor="@color/color_secondary_variant"
             android:textSize="@dimen/_14ssp"
             app:drawableStartCompat="@drawable/ic_logout" />

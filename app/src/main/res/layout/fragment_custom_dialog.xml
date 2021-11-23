@@ -26,7 +26,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/_4sdp"
-        android:text="@string/text_tittle_change_profile"
+        android:text="@string/text_title_change_profile"
         android:textColor="@color/color_secondary_variant"
         android:textSize="@dimen/_16ssp"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -124,7 +124,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/_8sdp"
         android:layout_marginBottom="@dimen/_16sdp"
-        android:text="@string/text_desc_logout"
+        android:text="@string/message_logout"
         android:textColor="@color/color_secondary_variant"
         android:textSize="@dimen/_14ssp"
         app:layout_constraintBottom_toTopOf="@id/btn_negative"
@@ -156,10 +156,10 @@
         app:layout_constraintStart_toStartOf="parent">
 
         <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="@dimen/_100sdp"
+            android:layout_height="@dimen/_100sdp"
             android:importantForAccessibility="no"
-            android:src="@drawable/ic_logo_app" />
+            android:src="@drawable/ic_logo_app_vertical" />
 
         <TextView
             android:id="@+id/tv_placeholder_version"
@@ -215,38 +215,45 @@
         android:background="@android:color/transparent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <androidx.appcompat.widget.AppCompatButton
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/btn_negative"
         style="@style/Text.Bold.Movie.App"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_8sdp"
         android:layout_marginEnd="@dimen/_4sdp"
-        android:background="@drawable/bg_corner"
-        android:padding="@dimen/_8sdp"
+        android:backgroundTint="@color/color_secondary_variant"
+        android:paddingStart="@dimen/_16sdp"
+        android:paddingTop="@dimen/_4sdp"
+        android:paddingEnd="@dimen/_16sdp"
+        android:paddingBottom="@dimen/_4sdp"
         android:text="@string/text_title_cancel"
         android:textColor="@color/color_primary"
         android:textSize="@dimen/_14ssp"
+        app:cornerRadius="@dimen/_25sdp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@id/btn_positive"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <androidx.appcompat.widget.AppCompatButton
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/btn_positive"
         style="@style/Text.Bold.Movie.App"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/_4sdp"
-        android:background="@drawable/bg_corner"
         android:backgroundTint="@color/color_secondary"
-        android:padding="@dimen/_8sdp"
+        android:paddingStart="@dimen/_16sdp"
+        android:paddingTop="@dimen/_4sdp"
+        android:paddingEnd="@dimen/_16sdp"
+        android:paddingBottom="@dimen/_4sdp"
         android:text="@string/text_title_ok"
         android:textColor="@color/color_primary"
         android:textSize="@dimen/_14ssp"
+        app:cornerRadius="@dimen/_25sdp"
         app:layout_constraintBottom_toBottomOf="@+id/btn_negative"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/btn_negative"
         app:layout_constraintTop_toTopOf="@+id/btn_negative" />
-
 
     <androidx.constraintlayout.widget.Group
         android:id="@+id/group_change_profile_layout"
