@@ -16,6 +16,7 @@ object Constant {
     const val ZERO_FLOAT = 0F
     const val FOURTEEN_FLOAT = 14F
     const val FIVE = 5
+    const val TEEN = 10
     const val ITEM_TYPE_IMAGE_SLIDER = 1
     const val ITEM_TYPE_CHILD = 2
     const val ITEM_TYPE_LOGIN = 3

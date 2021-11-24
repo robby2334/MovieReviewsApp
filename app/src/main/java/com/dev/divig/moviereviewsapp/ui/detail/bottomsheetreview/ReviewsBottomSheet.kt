@@ -1,5 +1,9 @@
 package com.dev.divig.moviereviewsapp.ui.detail.bottomsheetreview
 
+import android.app.Dialog
+import android.os.Bundle
+import android.view.View
+import android.view.WindowManager
 import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
@@ -10,14 +14,39 @@ import com.dev.divig.moviereviewsapp.base.model.Resource
 import com.dev.divig.moviereviewsapp.data.local.model.ReviewEntity
 import com.dev.divig.moviereviewsapp.databinding.FragmentBottomSheetReviewBinding
 import com.dev.divig.moviereviewsapp.ui.detail.bottomsheetreview.adapter.ReviewsBottomSheetAdapter
+import com.google.android.material.bottomsheet.BottomSheetBehavior
+import com.google.android.material.bottomsheet.BottomSheetDialog
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class ReviewsBottomSheet(private val movieId: Int) :
+class ReviewsBottomSheet(private val movieId: Int, private val isFullScreen: Boolean) :
     BaseBottomSheetDialogFragment<FragmentBottomSheetReviewBinding, ReviewsBottomSheetViewModel>(
         FragmentBottomSheetReviewBinding::inflate
     ), ReviewsBottomSheetContract.View {
     override val viewModelInstance: ReviewsBottomSheetViewModel by viewModels()
+
+    override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
+        val dialog = BottomSheetDialog(requireContext(), theme)
+        if (isFullScreen) {
+            dialog.setOnShowListener {
+                val bottomSheetDialog = it as BottomSheetDialog
+                val parentLayout =
+                    bottomSheetDialog.findViewById<View>(R.id.design_bottom_sheet)
+                parentLayout?.let { view ->
+                    val behaviour = BottomSheetBehavior.from(view)
+                    setupFullHeight(view)
+                    behaviour.state = BottomSheetBehavior.STATE_EXPANDED
+                }
+            }
+        }
+        return dialog
+    }
+
+    private fun setupFullHeight(bottomSheet: View) {
+        val layoutParams = bottomSheet.layoutParams
+        layoutParams.height = WindowManager.LayoutParams.MATCH_PARENT
+        bottomSheet.layoutParams = layoutParams
+    }
 
     override fun initView() {
         getReviews()

@@ -13,14 +13,20 @@ interface DetailContract {
     interface View : BaseContract.BaseView {
         fun fetchDataMovie(movie: MovieEntity)
         fun fetchDataReview(review: ReviewEntity?)
+        fun getMovieDetail(movieId: Int, isSearch: Boolean)
+        fun getMovie(id: Int, isSearch: Boolean, update: Boolean)
+        fun getReviewsByMovieId(id: Int, update: Boolean)
+        fun setFavoriteMovie()
+        fun enterFullScreen()
+        fun exitFullScreen()
     }
 
     interface ViewModel {
         fun getMovieLiveData(): LiveData<Resource<MovieEntity>>
         fun getReviewLiveData(): LiveData<Resource<ReviewEntity?>>
         fun setFavoriteMovie(movie: MovieEntity)
-        fun getMovie(id: Int, isSearch: Boolean)
-        fun getReviewsByMovieId(movieId: Int)
+        fun getMovie(id: Int, isSearch: Boolean, update: Boolean)
+        fun getReviewsByMovieId(movieId: Int, update: Boolean)
     }
 
     interface Repository {

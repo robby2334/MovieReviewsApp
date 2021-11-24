@@ -274,7 +274,7 @@
         android:id="@+id/group_logout_layout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:visibility="visible"
+        android:visibility="gone"
         app:constraint_referenced_ids="tv_title_logout_dialog,tv_desc_logout_dialog" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

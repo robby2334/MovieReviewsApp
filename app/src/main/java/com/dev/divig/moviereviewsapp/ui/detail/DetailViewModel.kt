@@ -35,12 +35,12 @@ class DetailViewModel @Inject constructor(private val repository: DetailReposito
         }
     }
 
-    override fun getMovie(id: Int, isSearch: Boolean) {
+    override fun getMovie(id: Int, isSearch: Boolean, update: Boolean) {
         movieRepositoryLiveData.value = Resource.Loading()
         viewModelScope.launch(Dispatchers.IO) {
             try {
                 var movie = repository.getDetailMovie(id)
-                if (isSearch || movie.title.isNullOrEmpty() || movie.runtime == 0) {
+                if (isSearch || update) {
                     val response = repository.getDetailMovieFromNetwork(id)
 
                     val genres = StringBuilder().append("")
@@ -64,7 +64,7 @@ class DetailViewModel @Inject constructor(private val repository: DetailReposito
                                 it[0].key
                             }
                         } else null
-                        
+
                         val movieEntity = MovieEntity(
                             id,
                             response.title,
@@ -75,7 +75,8 @@ class DetailViewModel @Inject constructor(private val repository: DetailReposito
                             response.voteAverage,
                             response.posterPath,
                             response.backdropPath,
-                            videoKey
+                            videoKey,
+                            movie.isFavorite
                         )
                         if (isSearch) {
                             repository.insertMovie(movieEntity)
@@ -96,12 +97,12 @@ class DetailViewModel @Inject constructor(private val repository: DetailReposito
         }
     }
 
-    override fun getReviewsByMovieId(movieId: Int) {
+    override fun getReviewsByMovieId(movieId: Int, update: Boolean) {
         reviewRepositoryLiveData.value = Resource.Loading()
         viewModelScope.launch(Dispatchers.IO) {
             try {
                 var reviews = repository.getReviews(movieId)
-                if (reviews.isEmpty()) {
+                if (update) {
                     val response = repository.getReviewsFromNetwork(movieId)
 
                     if (response.success == false) {
