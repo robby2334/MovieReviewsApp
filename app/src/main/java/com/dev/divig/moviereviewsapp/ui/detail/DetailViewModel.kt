@@ -65,6 +65,8 @@ class DetailViewModel @Inject constructor(private val repository: DetailReposito
                             }
                         } else null
 
+                        val favorite = if (isSearch) false else movie.isFavorite
+
                         val movieEntity = MovieEntity(
                             id,
                             response.title,
@@ -76,7 +78,7 @@ class DetailViewModel @Inject constructor(private val repository: DetailReposito
                             response.posterPath,
                             response.backdropPath,
                             videoKey,
-                            movie.isFavorite
+                            favorite
                         )
                         if (isSearch) {
                             repository.insertMovie(movieEntity)
