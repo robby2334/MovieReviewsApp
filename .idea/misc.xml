@@ -3,22 +3,53 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/PROJECT APK/BinarAcademy/PlatinumChallenge/app/src/main/res/drawable/bg_bottom_sheet_dialog.xml" value="0.324537037037037" />
+        <entry key="..\:/PROJECT APK/BinarAcademy/PlatinumChallenge/app/src/main/res/drawable/bg_corner.xml" value="0.324537037037037" />
+        <entry key="..\:/PROJECT APK/BinarAcademy/PlatinumChallenge/app/src/main/res/drawable/bg_corner_error.xml" value="0.324537037037037" />
+        <entry key="..\:/PROJECT APK/BinarAcademy/PlatinumChallenge/app/src/main/res/drawable/bg_corner_success.xml" value="0.324537037037037" />
         <entry key="..\:/PROJECT APK/BinarAcademy/PlatinumChallenge/app/src/main/res/drawable/bg_edit_text.xml" value="0.324537037037037" />
-        <entry key="..\:/PROJECT APK/BinarAcademy/PlatinumChallenge/app/src/main/res/drawable/bg_movies.xml" value="0.324537037037037" />
-        <entry key="..\:/PROJECT APK/BinarAcademy/PlatinumChallenge/app/src/main/res/drawable/ic_indicator_active.xml" value="0.324537037037037" />
-        <entry key="..\:/PROJECT APK/BinarAcademy/PlatinumChallenge/app/src/main/res/drawable/ic_indicator_inactive.xml" value="0.324537037037037" />
-        <entry key="..\:/PROJECT APK/BinarAcademy/PlatinumChallenge/app/src/main/res/drawable/ic_launcher_foreground.xml" value="0.324537037037037" />
-        <entry key="..\:/PROJECT APK/BinarAcademy/PlatinumChallenge/app/src/main/res/drawable/loading_img.xml" value="0.324537037037037" />
+        <entry key="..\:/PROJECT APK/BinarAcademy/PlatinumChallenge/app/src/main/res/drawable/draw_ripple_bordered.xml" value="0.324537037037037" />
+        <entry key="..\:/PROJECT APK/BinarAcademy/PlatinumChallenge/app/src/main/res/drawable/ic_about.xml" value="0.324537037037037" />
+        <entry key="..\:/PROJECT APK/BinarAcademy/PlatinumChallenge/app/src/main/res/drawable/ic_change_profile.xml" value="0.324537037037037" />
+        <entry key="..\:/PROJECT APK/BinarAcademy/PlatinumChallenge/app/src/main/res/drawable/ic_close_24.xml" value="0.324537037037037" />
+        <entry key="..\:/PROJECT APK/BinarAcademy/PlatinumChallenge/app/src/main/res/drawable/ic_fast_forward_white_24dp.xml" value="0.324537037037037" />
+        <entry key="..\:/PROJECT APK/BinarAcademy/PlatinumChallenge/app/src/main/res/drawable/ic_fast_rewind_white_24dp.xml" value="0.324537037037037" />
+        <entry key="..\:/PROJECT APK/BinarAcademy/PlatinumChallenge/app/src/main/res/drawable/ic_favorite_outlined_24.xml" value="0.324537037037037" />
+        <entry key="..\:/PROJECT APK/BinarAcademy/PlatinumChallenge/app/src/main/res/drawable/ic_logo_app.xml" value="0.324537037037037" />
+        <entry key="..\:/PROJECT APK/BinarAcademy/PlatinumChallenge/app/src/main/res/drawable/ic_logo_app_horizontal.xml" value="0.2222222222222222" />
+        <entry key="..\:/PROJECT APK/BinarAcademy/PlatinumChallenge/app/src/main/res/drawable/ic_logo_app_vertical.xml" value="0.324537037037037" />
+        <entry key="..\:/PROJECT APK/BinarAcademy/PlatinumChallenge/app/src/main/res/drawable/ic_logout.xml" value="0.324537037037037" />
+        <entry key="..\:/PROJECT APK/BinarAcademy/PlatinumChallenge/app/src/main/res/drawable/ic_signup_complete.xml" value="0.324537037037037" />
         <entry key="..\:/PROJECT APK/BinarAcademy/PlatinumChallenge/app/src/main/res/layout/activity_about.xml" value="0.3101851851851852" />
         <entry key="..\:/PROJECT APK/BinarAcademy/PlatinumChallenge/app/src/main/res/layout/activity_detail.xml" value="0.3101851851851852" />
-        <entry key="..\:/PROJECT APK/BinarAcademy/PlatinumChallenge/app/src/main/res/layout/activity_main.xml" value="0.30481727574750833" />
-        <entry key="..\:/PROJECT APK/BinarAcademy/PlatinumChallenge/app/src/main/res/layout/activity_splash_screen.xml" value="0.3101851851851852" />
-        <entry key="..\:/PROJECT APK/BinarAcademy/PlatinumChallenge/app/src/main/res/layout/fragment_bottom_sheet_review.xml" value="0.25" />
-        <entry key="..\:/PROJECT APK/BinarAcademy/PlatinumChallenge/app/src/main/res/layout/item_movie.xml" value="0.3101851851851852" />
-        <entry key="..\:/PROJECT APK/BinarAcademy/PlatinumChallenge/app/src/main/res/layout/item_review.xml" value="0.33" />
-        <entry key="..\:/PROJECT APK/BinarAcademy/PlatinumChallenge/app/src/main/res/layout/item_review_placeholder.xml" value="0.33" />
-        <entry key="..\:/PROJECT APK/BinarAcademy/PlatinumChallenge/app/src/main/res/menu/menu_main.xml" value="0.3101851851851852" />
+        <entry key="..\:/PROJECT APK/BinarAcademy/PlatinumChallenge/app/src/main/res/layout/activity_intro.xml" value="0.3101851851851852" />
+        <entry key="..\:/PROJECT APK/BinarAcademy/PlatinumChallenge/app/src/main/res/layout/activity_login.xml" value="0.3101851851851852" />
+        <entry key="..\:/PROJECT APK/BinarAcademy/PlatinumChallenge/app/src/main/res/layout/activity_main.xml" value="0.3101851851851852" />
+        <entry key="..\:/PROJECT APK/BinarAcademy/PlatinumChallenge/app/src/main/res/layout/component_scenario_layout.xml" value="0.33" />
+        <entry key="..\:/PROJECT APK/BinarAcademy/PlatinumChallenge/app/src/main/res/layout/fragment_bottom_sheet_movies.xml" value="0.3101851851851852" />
+        <entry key="..\:/PROJECT APK/BinarAcademy/PlatinumChallenge/app/src/main/res/layout/fragment_bottom_sheet_review.xml" value="0.3101851851851852" />
+        <entry key="..\:/PROJECT APK/BinarAcademy/PlatinumChallenge/app/src/main/res/layout/fragment_change_profile_and_logout.xml" value="0.3101851851851852" />
+        <entry key="..\:/PROJECT APK/BinarAcademy/PlatinumChallenge/app/src/main/res/layout/fragment_custom_dialog.xml" value="0.33" />
+        <entry key="..\:/PROJECT APK/BinarAcademy/PlatinumChallenge/app/src/main/res/layout/fragment_favorite.xml" value="0.33" />
+        <entry key="..\:/PROJECT APK/BinarAcademy/PlatinumChallenge/app/src/main/res/layout/fragment_movie.xml" value="0.3101851851851852" />
+        <entry key="..\:/PROJECT APK/BinarAcademy/PlatinumChallenge/app/src/main/res/layout/fragment_profile.xml" value="0.39777983348751156" />
+        <entry key="..\:/PROJECT APK/BinarAcademy/PlatinumChallenge/app/src/main/res/layout/fragment_search.xml" value="0.2986577181208054" />
+        <entry key="..\:/PROJECT APK/BinarAcademy/PlatinumChallenge/app/src/main/res/layout/item_child.xml" value="0.67" />
+        <entry key="..\:/PROJECT APK/BinarAcademy/PlatinumChallenge/app/src/main/res/layout/item_login.xml" value="0.3101851851851852" />
+        <entry key="..\:/PROJECT APK/BinarAcademy/PlatinumChallenge/app/src/main/res/layout/item_login_register.xml" value="0.3101851851851852" />
+        <entry key="..\:/PROJECT APK/BinarAcademy/PlatinumChallenge/app/src/main/res/layout/item_register.xml" value="0.3101851851851852" />
+        <entry key="..\:/PROJECT APK/BinarAcademy/PlatinumChallenge/app/src/main/res/layout/item_review.xml" value="0.3940795559666975" />
+        <entry key="..\:/PROJECT APK/BinarAcademy/PlatinumChallenge/app/src/main/res/layout/layout_detail_movie.xml" value="0.3101851851851852" />
+        <entry key="..\:/PROJECT APK/BinarAcademy/PlatinumChallenge/app/src/main/res/layout/layout_dialog_message.xml" value="0.3101851851851852" />
+        <entry key="..\:/PROJECT APK/BinarAcademy/PlatinumChallenge/app/src/main/res/layout/layout_message_dialog.xml" value="0.3101851851851852" />
+        <entry key="..\:/PROJECT APK/BinarAcademy/PlatinumChallenge/app/src/main/res/layout/template_dialog.xml" value="0.3101851851851852" />
+        <entry key="..\:/Users/alunparanggi/AndroidStudioProjects/BinarAcademy/Chapter6/Challenge/MovieReviewsApp/app/src/main/res/drawable/bg_movies.xml" value="0.21944444444444444" />
+        <entry key="..\:/Users/alunparanggi/AndroidStudioProjects/BinarAcademy/Chapter6/Challenge/MovieReviewsApp/app/src/main/res/drawable/ic_about.xml" value="0.21944444444444444" />
+        <entry key="..\:/Users/alunparanggi/AndroidStudioProjects/BinarAcademy/Chapter6/Challenge/MovieReviewsApp/app/src/main/res/layout/activity_detail.xml" value="0.2076923076923077" />
+        <entry key="..\:/Users/alunparanggi/AndroidStudioProjects/BinarAcademy/Chapter6/Challenge/MovieReviewsApp/app/src/main/res/layout/activity_main.xml" value="0.17685185185185184" />
+        <entry key="..\:/Users/alunparanggi/AndroidStudioProjects/BinarAcademy/Chapter6/Challenge/MovieReviewsApp/app/src/main/res/layout/item_movie.xml" value="0.225" />
+        <entry key="..\:/Users/alunparanggi/AndroidStudioProjects/BinarAcademy/Chapter6/Challenge/MovieReviewsApp/app/src/main/res/layout/layout_detail_movie.xml" value="0.2076923076923077" />
+        <entry key="..\:/Users/alunparanggi/AndroidStudioProjects/BinarAcademy/Chapter6/Challenge/MovieReviewsApp/app/src/main/res/menu/main_menu.xml" value="0.225" />
+        <entry key="..\:/Users/alunparanggi/AndroidStudioProjects/BinarAcademy/Chapter6/Challenge/MovieReviewsApp/app/src/main/res/menu/menu_main.xml" value="0.21574074074074073" />
       </map>
     </option>
   </component>
@@ -27,5 +58,12 @@
   </component>
   <component name="ProjectType">
     <option name="id" value="Android" />
+  </component>
+  <component name="VisualizationToolProject">
+    <option name="state">
+      <ProjectState>
+        <option name="scale" value="1.0" />
+      </ProjectState>
+    </option>
   </component>
 </project>

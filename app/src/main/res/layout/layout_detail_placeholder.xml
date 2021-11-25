@@ -165,7 +165,7 @@
         android:importantForAccessibility="no" />
 
     <TextView
-        android:id="@+id/tv_add_review"
+        android:id="@+id/tv_all_review"
         style="@style/Text.Bold.Movie.App"
         android:layout_width="@dimen/_100sdp"
         android:layout_height="wrap_content"

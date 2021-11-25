@@ -1,0 +1,280 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/bg_corner"
+    android:backgroundTint="@color/color_primary_variant"
+    android:padding="@dimen/_12sdp"
+    tools:context=".ui.main.profile.dialog.CustomDialogFragment">
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="?android:attr/progressBarStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/_12sdp"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:visibility="visible" />
+
+    <TextView
+        android:id="@+id/tv_dialog_change_profile"
+        style="@style/Text.Bold.Movie.App"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_4sdp"
+        android:text="@string/text_title_change_profile"
+        android:textColor="@color/color_secondary_variant"
+        android:textSize="@dimen/_16ssp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_title_username_dialog"
+        style="@style/Text.Bold.Movie.App"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:text="@string/text_placeholder_username"
+        android:textColor="@color/color_secondary"
+        android:textSize="@dimen/_12ssp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_dialog_change_profile" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/til_username"
+        style="@style/TextInputLayoutStyle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_4sdp"
+        app:boxBackgroundColor="@color/color_secondary_variant"
+        app:endIconMode="clear_text"
+        app:errorEnabled="false"
+        app:hintEnabled="false"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_title_username_dialog">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/et_username"
+            style="@style/Text.Bold.Movie.App"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/text_placeholder_username"
+            android:inputType="textCapWords"
+            android:textColor="@color/color_primary" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <TextView
+        android:id="@+id/tv_title_email_dialog"
+        style="@style/Text.Bold.Movie.App"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:text="@string/text_placeholder_email"
+        android:textColor="@color/color_secondary"
+        android:textSize="@dimen/_12ssp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/til_username" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/til_email"
+        style="@style/TextInputLayoutStyle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_4sdp"
+        android:layout_marginBottom="@dimen/_14sdp"
+        app:boxBackgroundColor="@color/color_secondary_variant"
+        app:errorEnabled="false"
+        app:hintEnabled="false"
+        app:layout_constraintBottom_toTopOf="@id/btn_negative"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_title_email_dialog">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/et_email"
+            style="@style/Text.Bold.Movie.App"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/text_placeholder_email"
+            android:inputType="textEmailAddress"
+            android:textColor="@color/color_primary" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <TextView
+        android:id="@+id/tv_title_logout_dialog"
+        style="@style/Text.Bold.Movie.App"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/_10sdp"
+        android:text="@string/text_title_logout"
+        android:textColor="@color/color_secondary_variant"
+        android:textSize="@dimen/_16ssp"
+        app:layout_constraintBottom_toTopOf="@id/tv_desc_logout_dialog"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_desc_logout_dialog"
+        style="@style/Text.Light.Movie.App"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/_16sdp"
+        android:text="@string/message_logout"
+        android:textColor="@color/color_secondary_variant"
+        android:textSize="@dimen/_12ssp"
+        app:layout_constraintBottom_toTopOf="@id/btn_negative"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/tv_title_logout_dialog" />
+
+    <TextView
+        android:id="@+id/tv_title_about_dialog"
+        style="@style/Text.Bold.Movie.App"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_4sdp"
+        android:text="@string/text_title_about"
+        android:textColor="@color/color_secondary_variant"
+        android:textSize="@dimen/_16ssp"
+        app:layout_constraintBottom_toTopOf="@id/ll_about"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <LinearLayout
+        android:id="@+id/ll_about"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="@dimen/_14sdp"
+        app:layout_constraintBottom_toTopOf="@id/btn_negative"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <ImageView
+            android:layout_width="@dimen/_100sdp"
+            android:layout_height="@dimen/_100sdp"
+            android:importantForAccessibility="no"
+            android:src="@drawable/ic_logo_app_vertical" />
+
+        <TextView
+            android:id="@+id/tv_placeholder_version"
+            style="@style/Text.Light.Movie.App"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_18sdp"
+            android:textColor="@color/color_secondary_variant"
+            android:textSize="@dimen/_10ssp"
+            tools:text="@string/text_placeholder_version" />
+
+        <TextView
+            style="@style/Text.Light.Movie.App"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_4sdp"
+            android:text="@string/text_placeholder_copyright"
+            android:textColor="@color/color_secondary_variant"
+            android:textSize="@dimen/_10ssp" />
+
+        <TextView
+            style="@style/Text.Light.Movie.App"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_20sdp"
+            android:text="@string/text_placeholder_development"
+            android:textColor="@color/color_secondary_variant"
+            android:textSize="@dimen/_10sdp" />
+
+        <TextView
+            style="@style/Text.Bold.Movie.App"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_4sdp"
+            android:text="@string/app_name"
+            android:textColor="@color/color_secondary"
+            android:textSize="@dimen/_12ssp" />
+
+        <TextView
+            style="@style/Text.Light.Movie.App"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_20sdp"
+            android:text="@string/text_placeholder_challenge"
+            android:textColor="@color/color_secondary"
+            android:textSize="@dimen/_12ssp" />
+    </LinearLayout>
+
+    <View
+        android:id="@+id/view"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_1sdp"
+        android:background="@android:color/transparent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_negative"
+        style="@style/Text.Bold.Movie.App"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_8sdp"
+        android:layout_marginEnd="@dimen/_4sdp"
+        android:backgroundTint="@color/color_secondary_variant"
+        android:paddingStart="@dimen/_16sdp"
+        android:paddingTop="@dimen/_4sdp"
+        android:paddingEnd="@dimen/_16sdp"
+        android:paddingBottom="@dimen/_4sdp"
+        android:text="@string/text_title_cancel"
+        android:textColor="@color/color_primary"
+        android:textSize="@dimen/_14ssp"
+        app:cornerRadius="@dimen/_25sdp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/btn_positive"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_positive"
+        style="@style/Text.Bold.Movie.App"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_4sdp"
+        android:backgroundTint="@color/color_secondary"
+        android:paddingStart="@dimen/_16sdp"
+        android:paddingTop="@dimen/_4sdp"
+        android:paddingEnd="@dimen/_16sdp"
+        android:paddingBottom="@dimen/_4sdp"
+        android:text="@string/text_title_ok"
+        android:textColor="@color/color_primary"
+        android:textSize="@dimen/_14ssp"
+        app:cornerRadius="@dimen/_25sdp"
+        app:layout_constraintBottom_toBottomOf="@+id/btn_negative"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/btn_negative"
+        app:layout_constraintTop_toTopOf="@+id/btn_negative" />
+
+    <androidx.constraintlayout.widget.Group
+        android:id="@+id/group_change_profile_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:constraint_referenced_ids="tv_dialog_change_profile,tv_title_username_dialog,til_username,tv_title_email_dialog,til_email"
+        tools:visibility="gone" />
+
+    <androidx.constraintlayout.widget.Group
+        android:id="@+id/group_about_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:constraint_referenced_ids="tv_title_about_dialog, ll_about"
+        tools:visibility="gone" />
+
+    <androidx.constraintlayout.widget.Group
+        android:id="@+id/group_logout_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:constraint_referenced_ids="tv_title_logout_dialog,tv_desc_logout_dialog" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

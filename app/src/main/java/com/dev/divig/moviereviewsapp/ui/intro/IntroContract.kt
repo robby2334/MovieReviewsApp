@@ -7,10 +7,10 @@ interface IntroContract {
         fun setIntro()
         fun setupIndicator()
         fun setCurrentIndicator(position: Int)
-        fun navigateToMainPage()
+        fun navigateToLoginPage()
     }
 
-    interface Presenter : BaseContract.BasePresenter {
+    interface ViewModel {
         fun setStateFirstRunApp()
     }
 

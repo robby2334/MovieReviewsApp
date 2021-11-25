@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_corner"
+    android:backgroundTint="@color/color_primary"
+    android:orientation="vertical"
+    android:padding="@dimen/_16sdp">
+
+    <ImageView
+        android:id="@+id/img_view"
+        android:layout_width="@dimen/_100sdp"
+        android:layout_height="@dimen/_100sdp"
+        android:layout_centerHorizontal="true"
+        android:contentDescription="@string/app_name"
+        tools:src="@drawable/ic_no_internet_connection" />
+
+    <TextView
+        android:id="@+id/dialog_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/img_view"
+        android:layout_centerHorizontal="true"
+        android:paddingBottom="@dimen/_14sdp"
+        android:textColor="@color/color_secondary"
+        android:textSize="@dimen/_16ssp"
+        android:textStyle="bold"
+        tools:text="@string/text_title_lost_connection" />
+
+    <TextView
+        android:id="@+id/dialog_message"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/dialog_title"
+        android:paddingBottom="@dimen/_14sdp"
+        android:textAlignment="center"
+        android:textColor="@color/color_secondary_variant"
+        android:textSize="@dimen/_14ssp"
+        tools:text="@string/message_dialog_lost_connection" />
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/dialog_message"
+        android:layout_centerHorizontal="true">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_dialog_negative"
+            style="@style/Text.Bold.Movie.App"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/_40sdp"
+            android:layout_marginEnd="@dimen/_7sdp"
+            android:layout_weight="1"
+            android:backgroundTint="@color/color_secondary_variant"
+            android:text="@string/text_placeholder_exit"
+            android:textColor="@color/color_primary"
+            android:textSize="@dimen/_12ssp"
+            app:cornerRadius="@dimen/_25sdp" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_dialog_positive"
+            style="@style/Text.Bold.Movie.App"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/_40sdp"
+            android:layout_marginStart="@dimen/_7sdp"
+            android:layout_weight="1"
+            android:backgroundTint="@color/color_secondary"
+            android:text="@string/text_placeholder_retry"
+            android:textColor="@color/color_primary"
+            android:textSize="@dimen/_12ssp"
+            app:cornerRadius="@dimen/_25sdp" />
+    </TableRow>
+</RelativeLayout>

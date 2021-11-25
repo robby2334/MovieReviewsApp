@@ -14,10 +14,12 @@
         <item name="android:navigationBarColor" tools:targetApi="l">@color/color_primary</item>
     </style>
 
-    <style name="SplashScreenTheme" parent="Theme.AppCompat.NoActionBar">
-        <item name="android:windowBackground">@color/color_primary</item>
-        <item name="android:statusBarColor" tools:targetApi="l">@color/color_primary</item>
-        <item name="android:navigationBarColor" tools:targetApi="l">@color/color_primary</item>
+    <style name="SplashScreenTheme" parent="Theme.MovieReviewsApp">
+        <item name="android:windowBackground">@drawable/bg_splash_screen</item>
+    </style>
+
+    <style name="LoginTheme" parent="Theme.MovieReviewsApp">
+        <item name="android:windowBackground">@drawable/img_background_login</item>
     </style>
 
     <style name="Text.Light.Movie.App" parent="TextAppearance.AppCompat">
@@ -30,8 +32,30 @@
         <item name="android:textColor">@color/white</item>
     </style>
 
-    <style name="Theme.MovieReviewsApp.ActionBar" parent="Theme.MovieReviewsApp">
-        <item name="android:textColorPrimary">@color/white</item>
+    <style name="Theme.MovieReviewsApp.SearchView" parent="Theme.MovieReviewsApp">
+        <item name="android:editTextColor">@color/color_secondary_variant</item>
+        <item name="android:textColorHint">@color/color_secondary_variant</item>
     </style>
 
+    <style name="Theme.MovieReviewsApp.FloatingActionButton" parent="Theme.MovieReviewsApp">
+        <item name="colorSecondary">@color/blue_700</item>
+    </style>
+
+    <style name="TextInputLayoutStyle" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <item name="android:background">@android:color/transparent</item>
+        <item name="android:textColor">@color/color_primary</item>
+        <item name="hintTextColor">@color/color_secondary_variant</item>
+        <item name="boxStrokeColor">@color/color_primary_variant</item>
+        <item name="android:textColorHint">@color/color_primary</item>
+        <item name="boxStrokeWidth">1dp</item>
+        <item name="errorEnabled">true</item>
+        <item name="counterEnabled">false</item>
+        <item name="endIconMode">clear_text</item>
+        <item name="endIconTint">@color/color_primary</item>
+        <item name="android:theme">@style/TextInputColorOutline</item>
+    </style>
+
+    <style name="TextInputColorOutline" parent="ThemeOverlay.MaterialComponents.TextInputEditText.OutlinedBox">
+        <item name="colorControlActivated">@color/color_primary_variant</item>
+    </style>
 </resources>

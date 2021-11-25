@@ -4,14 +4,17 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.ViewModel
 import androidx.viewbinding.ViewBinding
+import com.dev.divig.moviereviewsapp.utils.Utils
+import com.dev.divig.moviereviewsapp.utils.Utils.isInternetAvailable
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 
-abstract class BaseBottomSheetDialogFragment<B : ViewBinding, P : BaseContract.BasePresenter>(
+abstract class BaseBottomSheetDialogFragment<B : ViewBinding, VM : ViewModel>(
     val bindingFactory: (LayoutInflater, ViewGroup?, Boolean) -> B
 ) : BottomSheetDialogFragment(), BaseContract.BaseView {
     private lateinit var binding: B
-    private lateinit var presenter: P
+    abstract val viewModelInstance: VM
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -23,23 +26,33 @@ abstract class BaseBottomSheetDialogFragment<B : ViewBinding, P : BaseContract.B
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        initPresenter()
         initView()
+        observeViewModel()
+        initScenarioComponent()
     }
 
     fun getViewBinding(): B = binding
-    fun getPresenter(): P = presenter
-    fun setPresenter(presenter: P) {
-        this.presenter = presenter
+    fun getViewModel(): VM = viewModelInstance
+    fun checkInternetConnection(): Boolean {
+        return requireActivity().isInternetAvailable()
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
-        presenter.onDestroy()
+    fun hideSoftKeyboard() {
+        Utils.hideSoftKeyboard(requireActivity(), binding.root)
+    }
+
+    fun showSnackBarSuccess(msg: String?) {
+        Utils.showSnackBarSuccess(requireContext(), binding.root, msg.orEmpty())
+    }
+
+    fun showSnackBarError(msg: String?) {
+        Utils.showSnackBarError(requireContext(), binding.root, msg.orEmpty())
     }
 
     abstract fun initView()
-    abstract fun initPresenter()
+    override fun observeViewModel() {}
+    override fun initScenarioComponent() {}
+    override fun showEmptyPlaceholder(isVisible: Boolean) {}
     override fun showContent(isContentVisible: Boolean) {}
     override fun showLoading(isLoading: Boolean) {}
     override fun showError(isErrorEnabled: Boolean, msg: String?) {}

@@ -1,27 +1,22 @@
 package com.dev.divig.moviereviewsapp.ui.detail.bottomsheetreview
 
+import androidx.lifecycle.LiveData
 import com.dev.divig.moviereviewsapp.base.BaseContract
-import com.dev.divig.moviereviewsapp.data.model.ReviewEntity
+import com.dev.divig.moviereviewsapp.base.model.Resource
+import com.dev.divig.moviereviewsapp.data.local.model.ReviewEntity
 
 interface ReviewsBottomSheetContract {
     interface View : BaseContract.BaseView {
-        fun onLoading()
-        fun onReadSuccess(response: List<ReviewEntity>)
-        fun onInsertSuccess()
-        fun onDeleteSuccess()
-        fun onDataFailed(response: Pair<Int, String?>)
-        fun onDataEmpty()
+        fun getReviews()
+        fun setListData(reviews: List<ReviewEntity>?)
     }
 
-    interface Presenter : BaseContract.BasePresenter {
+    interface ViewModel {
+        fun getReviewsLiveData() : LiveData<Resource<List<ReviewEntity>>>
         fun getReviewsByMovieId(movieId: Int)
-        fun insertReview(review: ReviewEntity)
-        fun deleteReview(review: ReviewEntity)
     }
 
     interface Repository {
         suspend fun getReviewsByMovieId(movieId: Int): List<ReviewEntity>
-        suspend fun insertReview(review: ReviewEntity): Long
-        suspend fun deleteReview(review: ReviewEntity): Int
     }
 }

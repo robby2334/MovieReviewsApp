@@ -5,33 +5,31 @@ import android.content.Intent
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.LinearLayout
+import androidx.activity.viewModels
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
 import com.dev.divig.moviereviewsapp.R
 import com.dev.divig.moviereviewsapp.base.BaseActivity
-import com.dev.divig.moviereviewsapp.data.local.preference.MoviePreference
 import com.dev.divig.moviereviewsapp.databinding.ActivityIntroBinding
 import com.dev.divig.moviereviewsapp.ui.intro.adapter.IntroAdapter
 import com.dev.divig.moviereviewsapp.ui.intro.model.Intro
-import com.dev.divig.moviereviewsapp.ui.main.MainActivity
+import com.dev.divig.moviereviewsapp.ui.login.LoginActivity
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class IntroActivity :
-    BaseActivity<ActivityIntroBinding, IntroContract.Presenter>(ActivityIntroBinding::inflate),
+    BaseActivity<ActivityIntroBinding, IntroViewModel>(ActivityIntroBinding::inflate),
     IntroContract.View {
     private lateinit var introDataAdapter: IntroAdapter
     private lateinit var indicatorContainer: LinearLayout
+    override val viewModelInstance: IntroViewModel by viewModels()
 
     override fun initView() {
         setIntro()
         supportActionBar?.hide()
         setupIndicator()
         setCurrentIndicator(0)
-    }
-
-    override fun initPresenter() {
-        val repository = IntroRepository(MoviePreference(this))
-        setPresenter(IntroPresenter(repository))
     }
 
     override fun setCurrentIndicator(position: Int) {
@@ -120,14 +118,14 @@ class IntroActivity :
                     getViewBinding().mbBtnNext.text = getString(R.string.text_navigate_to_main_page)
                 }
             } else {
-                navigateToMainPage()
+                navigateToLoginPage()
             }
         }
     }
 
-    override fun navigateToMainPage() {
-        getPresenter().setStateFirstRunApp()
-        MainActivity.startActivity(this)
+    override fun navigateToLoginPage() {
+        getViewModel().setStateFirstRunApp()
+        LoginActivity.startActivity(this)
     }
 
     companion object {

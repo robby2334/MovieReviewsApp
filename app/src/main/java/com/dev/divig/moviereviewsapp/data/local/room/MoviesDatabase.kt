@@ -4,13 +4,13 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import com.dev.divig.moviereviewsapp.data.local.model.MovieEntity
+import com.dev.divig.moviereviewsapp.data.local.model.ReviewEntity
 import com.dev.divig.moviereviewsapp.data.local.room.dao.MoviesDao
-import com.dev.divig.moviereviewsapp.data.model.MovieEntity
-import com.dev.divig.moviereviewsapp.data.model.ReviewEntity
 
 @Database(
     entities = [MovieEntity::class, ReviewEntity::class],
-    version = 1,
+    version = 2,
     exportSchema = false
 )
 abstract class MoviesDatabase : RoomDatabase() {
@@ -26,8 +26,9 @@ abstract class MoviesDatabase : RoomDatabase() {
                 val instance = Room.databaseBuilder(
                     context.applicationContext,
                     MoviesDatabase::class.java,
-                    DB_NAME
-                ).build()
+                    DB_NAME)
+                    .fallbackToDestructiveMigration()
+                    .build()
                 INSTANCE = instance
                 instance
             }
