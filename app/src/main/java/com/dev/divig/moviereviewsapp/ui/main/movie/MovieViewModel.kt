@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.dev.divig.moviereviewsapp.base.model.Resource
 import com.dev.divig.moviereviewsapp.data.local.model.MovieEntity
+import com.dev.divig.moviereviewsapp.utils.Constant
 import com.dev.divig.moviereviewsapp.utils.Utils
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
@@ -70,6 +71,25 @@ class MovieViewModel @Inject constructor(private val repository: MovieRepository
             } catch (e: Exception) {
                 viewModelScope.launch(Dispatchers.Main) {
                     repositoryLiveData.value = Resource.Error(e.message.orEmpty())
+                }
+            }
+        }
+    }
+
+    override fun getMovieFilters(
+        movies: List<MovieEntity>,
+        type: Int,
+        genre: String?
+    ): List<MovieEntity> {
+        return when (type) {
+            Constant.TYPE_NOW_PLAYING_MOVIES -> {
+                movies.filter {
+                    Utils.dateToMillis(it.releaseDate) <= Utils.dateToMillis(Utils.getDate())
+                }.sortedByDescending { Utils.dateToMillis(it.releaseDate) }
+            }
+            else -> {
+                movies.filter { item ->
+                    Utils.splitGenre(item.genres).find { it == genre } == genre
                 }
             }
         }

@@ -19,6 +19,13 @@ class MoviePreference @Inject constructor(@ApplicationContext context: Context) 
         private val PREF_LOGIN_EMAIL = Pair("PREF_LOGIN_EMAIL", null)
     }
 
+    fun deleteLoginSession() {
+        preference.delete(PREF_AUTH_TOKEN.first)
+        preference.delete(PREF_LOGIN_SESSION.first)
+        preference.delete(PREF_LOGIN_USERNAME.first)
+        preference.delete(PREF_LOGIN_EMAIL.first)
+    }
+
     var isFirstRunApp: Boolean
         get() = preference.getBoolean(PREF_IS_FIRST_RUN_APP.first, PREF_IS_FIRST_RUN_APP.second)
         set(value) = preference.edit {
@@ -54,4 +61,8 @@ private inline fun SharedPreferences.edit(operation: (SharedPreferences.Editor) 
     val editor = edit()
     operation(editor)
     editor.apply()
+}
+
+private fun SharedPreferences.delete(key: String) {
+    edit().remove(key).apply()
 }

@@ -12,6 +12,7 @@ import com.dev.divig.moviereviewsapp.ui.detail.DetailActivity
 import com.dev.divig.moviereviewsapp.ui.main.movie.adapter.ParentItemAdapter
 import com.dev.divig.moviereviewsapp.ui.main.movie.bottomsheet.MovieBottomSheet
 import com.dev.divig.moviereviewsapp.ui.main.movie.model.ParentEntity
+import com.dev.divig.moviereviewsapp.utils.Constant
 import com.dev.divig.moviereviewsapp.utils.SpacesItemDecoration
 import com.dev.divig.moviereviewsapp.utils.Utils
 import dagger.hilt.android.AndroidEntryPoint
@@ -53,20 +54,25 @@ class MovieFragment :
     }
 
     override fun getMovies(update: Boolean) {
-        if (checkInternetConnection()) {
-            getViewModel().getMovies(update)
+        if (update) {
+            if (checkInternetConnection()) {
+                getViewModel().getMovies(update)
+            } else {
+                Utils.noInternetDialog(
+                    requireActivity(),
+                    getString(R.string.text_placeholder_close),
+                    {
+                        getMovies(update)
+                        it?.dismiss()
+                    },
+                    {
+                        getMovies(false)
+                        it?.dismiss()
+                    }
+                )
+            }
         } else {
-            Utils.noInternetDialog(
-                requireActivity(),
-                getString(R.string.text_placeholder_close),
-                {
-                    getMovies(update)
-                    it?.dismiss()
-                },
-                {
-                    it?.dismiss()
-                }
-            )
+            getViewModel().getMovies(update)
         }
     }
 
@@ -93,6 +99,14 @@ class MovieFragment :
         }
     }
 
+    override fun getMovieFilters(
+        movies: List<MovieEntity>,
+        type: Int,
+        genre: String?
+    ): List<MovieEntity> {
+        return getViewModel().getMovieFilters(movies, type, genre)
+    }
+
     private fun parentItemList(movies: List<MovieEntity>): List<ParentEntity> {
         val itemList: MutableList<ParentEntity> = ArrayList()
         itemList.add(
@@ -104,21 +118,17 @@ class MovieFragment :
         itemList.add(
             ParentEntity(
                 getString(R.string.text_title_now_playing_movies),
-                movies.filter {
-                    Utils.dateToMillis(it.releaseDate) <= Utils.dateToMillis(Utils.getDate())
-                }.sortedByDescending { Utils.dateToMillis(it.releaseDate) }
+                getMovieFilters(movies, Constant.TYPE_NOW_PLAYING_MOVIES)
             )
         )
 
         val listGenrePlaceholder: MutableList<String> =
             resources.getStringArray(R.array.genre_name_list).toMutableList()
 
-        listGenrePlaceholder.forEach { value ->
+        listGenrePlaceholder.forEach { genre ->
             val item = ParentEntity(
-                value,
-                movies.filter { item ->
-                    Utils.splitGenre(item.genres).find { it == value } == value
-                }
+                genre,
+                getMovieFilters(movies, Constant.TYPE_GENRE, genre)
             )
             if (item.childItemList.isNotEmpty() && item.childItemList.size >= 4) itemList.add(item)
         }

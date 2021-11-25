@@ -1,142 +1,149 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:overScrollMode="never"
     android:padding="16sp"
+    android:scrollbars="none"
     tools:background="@color/color_primary">
 
-    <TextView
-        android:id="@+id/tv_title_username_dialog"
-        style="@style/Text.Bold.Movie.App"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/text_placeholder_username"
-        android:textColor="@color/color_secondary"
-        android:textSize="@dimen/_12ssp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/til_username"
-        style="@style/TextInputLayoutStyle"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/_4sdp"
-        android:layout_marginBottom="@dimen/_14sdp"
-        app:boxBackgroundColor="@color/color_secondary_variant"
-        app:errorEnabled="false"
-        app:hintEnabled="false"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_title_username_dialog">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/et_username"
+        <TextView
+            android:id="@+id/tv_title_username_dialog"
             style="@style/Text.Bold.Movie.App"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:hint="@string/text_placeholder_username"
-            android:inputType="text"
-            android:textColor="@color/color_primary" />
-    </com.google.android.material.textfield.TextInputLayout>
+            android:text="@string/text_placeholder_username"
+            android:textColor="@color/color_secondary"
+            android:textSize="@dimen/_12ssp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/tv_title_email_dialog"
-        style="@style/Text.Bold.Movie.App"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/_10sdp"
-        android:text="@string/text_placeholder_email"
-        android:textColor="@color/color_secondary"
-        android:textSize="@dimen/_12ssp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/til_username" />
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/til_username"
+            style="@style/TextInputLayoutStyle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_4sdp"
+            android:layout_marginBottom="@dimen/_14sdp"
+            app:boxBackgroundColor="@color/color_secondary_variant"
+            app:errorEnabled="false"
+            app:hintEnabled="false"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_title_username_dialog">
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/til_email"
-        style="@style/TextInputLayoutStyle"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/_4sdp"
-        android:layout_marginBottom="@dimen/_14sdp"
-        app:boxBackgroundColor="@color/color_secondary_variant"
-        app:errorEnabled="false"
-        app:hintEnabled="false"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_title_email_dialog">
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/et_username"
+                style="@style/Text.Bold.Movie.App"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/text_placeholder_username"
+                android:inputType="text"
+                android:textColor="@color/color_primary" />
+        </com.google.android.material.textfield.TextInputLayout>
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/et_email"
+        <TextView
+            android:id="@+id/tv_title_email_dialog"
             style="@style/Text.Bold.Movie.App"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:hint="@string/text_placeholder_email"
-            android:inputType="textEmailAddress"
-            android:textColor="@color/color_primary" />
-    </com.google.android.material.textfield.TextInputLayout>
+            android:layout_marginTop="@dimen/_10sdp"
+            android:text="@string/text_placeholder_email"
+            android:textColor="@color/color_secondary"
+            android:textSize="@dimen/_12ssp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/til_username" />
 
-    <TextView
-        android:id="@+id/tv_title_password_dialog"
-        style="@style/Text.Bold.Movie.App"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/_10sdp"
-        android:text="@string/text_placeholder_password"
-        android:textColor="@color/color_secondary"
-        android:textSize="@dimen/_12ssp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/til_email" />
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/til_email"
+            style="@style/TextInputLayoutStyle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_4sdp"
+            android:layout_marginBottom="@dimen/_14sdp"
+            app:boxBackgroundColor="@color/color_secondary_variant"
+            app:errorEnabled="false"
+            app:hintEnabled="false"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_title_email_dialog">
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/til_password"
-        style="@style/TextInputLayoutStyle"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/_4sdp"
-        app:boxBackgroundColor="@color/color_secondary_variant"
-        app:endIconMode="password_toggle"
-        app:errorEnabled="false"
-        app:hintEnabled="false"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_title_password_dialog">
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/et_email"
+                style="@style/Text.Bold.Movie.App"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/text_placeholder_email"
+                android:inputType="textEmailAddress"
+                android:textColor="@color/color_primary" />
+        </com.google.android.material.textfield.TextInputLayout>
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/et_password"
+        <TextView
+            android:id="@+id/tv_title_password_dialog"
             style="@style/Text.Bold.Movie.App"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:hint="@string/text_placeholder_password"
-            android:inputType="textPassword"
-            android:textColor="@color/color_primary" />
-    </com.google.android.material.textfield.TextInputLayout>
+            android:layout_marginTop="@dimen/_10sdp"
+            android:text="@string/text_placeholder_password"
+            android:textColor="@color/color_secondary"
+            android:textSize="@dimen/_12ssp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/til_email" />
 
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/btn_action"
-        style="@style/Text.Bold.Movie.App"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/_8sdp"
-        android:backgroundTint="@color/color_secondary"
-        android:paddingStart="@dimen/_16sdp"
-        android:paddingTop="@dimen/_8sdp"
-        android:paddingEnd="@dimen/_16sdp"
-        android:paddingBottom="@dimen/_8sdp"
-        android:textAllCaps="false"
-        android:textColor="@color/color_primary"
-        android:textSize="@dimen/_14ssp"
-        app:cornerRadius="@dimen/_25sdp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/til_password"
-        tools:text="@string/text_placeholder_sign_up" />
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/til_password"
+            style="@style/TextInputLayoutStyle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_4sdp"
+            app:boxBackgroundColor="@color/color_secondary_variant"
+            app:endIconMode="password_toggle"
+            app:errorEnabled="false"
+            app:hintEnabled="false"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_title_password_dialog">
 
-    <androidx.constraintlayout.widget.Group
-        android:id="@+id/group_username_layout"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:constraint_referenced_ids="tv_title_username_dialog,til_username" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/et_password"
+                style="@style/Text.Bold.Movie.App"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/text_placeholder_password"
+                android:inputType="textPassword"
+                android:textColor="@color/color_primary" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_action"
+            style="@style/Text.Bold.Movie.App"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_8sdp"
+            android:backgroundTint="@color/color_secondary"
+            android:paddingStart="@dimen/_16sdp"
+            android:paddingTop="@dimen/_8sdp"
+            android:paddingEnd="@dimen/_16sdp"
+            android:paddingBottom="@dimen/_8sdp"
+            android:textAllCaps="false"
+            android:textColor="@color/color_primary"
+            android:textSize="@dimen/_14ssp"
+            app:cornerRadius="@dimen/_25sdp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/til_password"
+            tools:text="@string/text_placeholder_sign_up" />
+
+        <androidx.constraintlayout.widget.Group
+            android:id="@+id/group_username_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:constraint_referenced_ids="tv_title_username_dialog,til_username" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

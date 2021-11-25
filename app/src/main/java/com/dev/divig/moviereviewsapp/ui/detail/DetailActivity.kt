@@ -4,7 +4,6 @@ import android.content.Context
 import android.content.Intent
 import android.content.pm.ActivityInfo
 import android.graphics.drawable.Drawable
-import android.util.Log
 import android.view.ViewGroup
 import androidx.activity.viewModels
 import androidx.core.content.ContextCompat
@@ -20,6 +19,7 @@ import com.dev.divig.moviereviewsapp.databinding.ActivityDetailBinding
 import com.dev.divig.moviereviewsapp.ui.detail.bottomsheetreview.ReviewsBottomSheet
 import com.dev.divig.moviereviewsapp.utils.Constant
 import com.dev.divig.moviereviewsapp.utils.FullScreenHelper
+import com.dev.divig.moviereviewsapp.utils.StringUtils.textFromHtml
 import com.dev.divig.moviereviewsapp.utils.Utils
 import com.google.android.material.appbar.AppBarLayout
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.PlayerConstants
@@ -174,7 +174,6 @@ class DetailActivity :
     }
 
     override fun fetchDataMovie(movie: MovieEntity) {
-        Log.d("MovieReview", "fetchDataMovie: ${movie.isFavorite}")
         setFabFavorite(movie.isFavorite)
 
         val imgBackdrop = Constant.BASE_URL_IMAGE + movie.backdropPath
@@ -202,7 +201,7 @@ class DetailActivity :
 
     override fun fetchDataReview(review: ReviewEntity?) {
         getViewBinding().detailMovie.itemReview.tvReviewName.text = review?.author
-        getViewBinding().detailMovie.itemReview.tvDescReview.text = review?.content
+        getViewBinding().detailMovie.itemReview.tvDescReview.textFromHtml(review?.content)
         getViewBinding().detailMovie.itemReview.tvDescReview.isClickable = false
         getViewBinding().detailMovie.itemReview.tvDateReview.text =
             Utils.dateFormatter(review?.createAt)

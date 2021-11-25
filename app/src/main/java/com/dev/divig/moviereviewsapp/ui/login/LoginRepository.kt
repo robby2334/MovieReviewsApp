@@ -19,7 +19,7 @@ class LoginRepository @Inject constructor(
         localDataSource.loginEmail(value)
     }
 
-    override fun saveSessionLogin(authToken: String) {
+    override fun saveLoginSession(authToken: String) {
         localDataSource.authToken(authToken)
         localDataSource.isLoginSession(false)
     }

@@ -26,6 +26,7 @@ class LoginActivity :
     override val viewModelInstance: LoginViewModel by viewModels()
 
     override fun initView() {
+        supportActionBar?.hide()
         setupAdapter()
         observeViewModel()
     }
@@ -46,6 +47,7 @@ class LoginActivity :
                     } else {
                         getViewBinding().vpLogin.currentItem = 0
                         showSnackBarSuccess(getString(R.string.message_success_register))
+                        loginAdapter.clearFieldFormRegister()
                     }
                 }
                 is Resource.Error -> {

@@ -70,6 +70,7 @@
             style="@style/Text.Bold.Movie.App"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:paddingStart="0dp"
             android:paddingEnd="@dimen/_4sdp"
             android:textColor="@color/color_secondary"

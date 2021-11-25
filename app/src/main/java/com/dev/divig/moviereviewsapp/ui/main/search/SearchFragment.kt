@@ -13,7 +13,6 @@ import com.dev.divig.moviereviewsapp.databinding.FragmentSearchBinding
 import com.dev.divig.moviereviewsapp.ui.detail.DetailActivity
 import com.dev.divig.moviereviewsapp.ui.main.search.adapter.SearchAdapter
 import com.dev.divig.moviereviewsapp.utils.Constant
-import com.dev.divig.moviereviewsapp.utils.Utils
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -64,7 +63,7 @@ class SearchFragment :
                     setupRecyclerView(emptyList())
                     this@SearchFragment.query = query
                     searchMovies(query)
-                    Utils.hideSoftKeyboard(requireActivity(), getViewBinding().svMovies)
+                    hideSoftKeyboard()
                 }
                 return true
             }

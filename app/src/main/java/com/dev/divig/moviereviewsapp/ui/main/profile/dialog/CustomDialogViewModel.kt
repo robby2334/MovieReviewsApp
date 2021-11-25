@@ -18,8 +18,8 @@ class CustomDialogViewModel @Inject constructor(private val repository: CustomDi
 
     override fun getUserLiveData(): LiveData<Resource<UserEntity>> = repositoryLiveData
 
-    override fun setLoginSession() {
-        repository.setLoginSession()
+    override fun deleteLoginSession() {
+        repository.deleteLoginSession()
     }
 
     override fun getUserData(): UserEntity {

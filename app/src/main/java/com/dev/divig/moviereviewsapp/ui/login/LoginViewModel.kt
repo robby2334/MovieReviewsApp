@@ -24,7 +24,7 @@ class LoginViewModel @Inject constructor(private val repository: LoginRepository
     override fun saveDataLogin(userEntity: UserEntity) {
         repository.saveLoginUsername(userEntity.username.orEmpty())
         repository.saveLoginEmail(userEntity.email.orEmpty())
-        repository.saveSessionLogin(userEntity.token.orEmpty())
+        repository.saveLoginSession(userEntity.token.orEmpty())
     }
 
     override fun loginUser(loginRequest: AuthRequest) {

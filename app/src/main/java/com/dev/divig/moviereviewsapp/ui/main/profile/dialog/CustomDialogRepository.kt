@@ -10,8 +10,8 @@ class CustomDialogRepository @Inject constructor(
     private val authApiDataSource: AuthApiDataSource,
     private val localDataSource: LocalDataSource
 ) : CustomDialogContract.Repository {
-    override fun setLoginSession() {
-        localDataSource.isLoginSession(true)
+    override fun deleteLoginSession() {
+        localDataSource.deleteLoginSession()
     }
 
     override fun loginUsername(value: String?): String? {

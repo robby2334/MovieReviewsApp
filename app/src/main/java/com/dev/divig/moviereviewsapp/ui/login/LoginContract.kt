@@ -26,7 +26,7 @@ interface LoginContract {
     interface Repository {
         fun saveLoginUsername(value : String?)
         fun saveLoginEmail(value : String?)
-        fun saveSessionLogin(authToken: String)
+        fun saveLoginSession(authToken: String)
         suspend fun postLoginUser(loginRequest: AuthRequest): BaseAuthResponse<UserData, String>
         suspend fun postRegister(registerRequest: AuthRequest): BaseAuthResponse<UserData, String>
     }

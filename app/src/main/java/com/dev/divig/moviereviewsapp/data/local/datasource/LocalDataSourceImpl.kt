@@ -11,6 +11,10 @@ class LocalDataSourceImpl @Inject constructor(
     private val moviesDao: MoviesDao
 ) :
     LocalDataSource {
+    override fun deleteLoginSession() {
+        moviePreference.deleteLoginSession()
+    }
+
     override fun isFirstRunApp(state: Boolean?): Boolean {
         if (state != null) {
             moviePreference.isFirstRunApp = state

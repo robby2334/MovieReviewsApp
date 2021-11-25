@@ -22,6 +22,8 @@ object Constant {
     const val ITEM_TYPE_LOGIN = 3
     const val ITEM_TYPE_REGISTER = 4
     const val NOW_PLAYING_MOVIES = "Now Playing Movies"
+    const val TYPE_NOW_PLAYING_MOVIES = 110
+    const val TYPE_GENRE = 111
     const val TYPE_CHANGE_PROFILE_DIALOG = "type_change_profile_dialog"
     const val TYPE_ABOUT_DIALOG = "type_about"
     const val TYPE_LOGOUT_DIALOG = "type_logout_dialog"

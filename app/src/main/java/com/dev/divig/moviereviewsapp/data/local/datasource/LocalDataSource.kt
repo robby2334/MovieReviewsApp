@@ -4,6 +4,8 @@ import com.dev.divig.moviereviewsapp.data.local.model.MovieEntity
 import com.dev.divig.moviereviewsapp.data.local.model.ReviewEntity
 
 interface LocalDataSource {
+    fun deleteLoginSession()
+
     fun isFirstRunApp(state: Boolean?): Boolean
 
     fun authToken(value: String?): String?

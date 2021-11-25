@@ -100,7 +100,7 @@ class CustomDialogFragment(
     private fun showLogoutDialog() {
         getViewBinding().groupLogoutLayout.isVisible = true
         getViewBinding().btnPositive.setOnClickListener {
-            setLoginSession()
+            deleteLoginSession()
             onCallback(dialog)
         }
         getViewBinding().btnNegative.setOnClickListener {
@@ -140,8 +140,8 @@ class CustomDialogFragment(
         return isFormValid
     }
 
-    override fun setLoginSession() {
-        getViewModel().setLoginSession()
+    override fun deleteLoginSession() {
+        getViewModel().deleteLoginSession()
     }
 
     override fun getUserData() {

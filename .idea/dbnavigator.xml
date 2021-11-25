@@ -28,8 +28,8 @@
   </component>
   <component name="DBNavigator.Project.DatabaseConsoleManager">
     <connection id="15f6102a-80f3-46ae-87b1-142d2f3c4fab">
-      <console name="MovieReviewsApp" type="STANDARD" schema="main" session="Main"><![CDATA[SELECT * FROM tb_review WHERE movie_id LIKE 436969 order by create_at desc
---SELECT * FROM tb_review]]></console>
+      <console name="MovieReviewsApp" type="STANDARD" schema="main" session="Main"><![CDATA[--SELECT * FROM tb_review WHERE movie_id LIKE 436969 order by create_at desc
+SELECT * FROM tb_movie]]></console>
     </connection>
   </component>
   <component name="DBNavigator.Project.DatabaseFileManager">

@@ -15,6 +15,11 @@ class LoginAdapter(
     private val itemClick: (Pair<Int, UserEntity>) -> Unit
 ) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+    private lateinit var binding: ItemLoginRegisterBinding
+
+    fun clearFieldFormRegister() {
+        clearFieldForm()
+    }
 
     override fun getItemViewType(position: Int): Int {
         return if (position == 0) Constant.ITEM_TYPE_LOGIN else Constant.ITEM_TYPE_REGISTER
@@ -22,11 +27,11 @@ class LoginAdapter(
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return if (viewType == Constant.ITEM_TYPE_LOGIN) {
-            val binding =
+            binding =
                 ItemLoginRegisterBinding.inflate(LayoutInflater.from(parent.context), parent, false)
             LoginViewHolder(binding, itemClick)
         } else {
-            val binding =
+            binding =
                 ItemLoginRegisterBinding.inflate(LayoutInflater.from(parent.context), parent, false)
             RegisterViewHolder(binding, itemClick)
         }
@@ -82,6 +87,12 @@ class LoginAdapter(
                 }
             }
         }
+    }
+
+    private fun clearFieldForm() {
+        binding.etUsername.text = null
+        binding.etEmail.text = null
+        binding.etPassword.text = null
     }
 
     private fun checkValidation(binding: ItemLoginRegisterBinding, type: Int?): Boolean {

@@ -59,11 +59,16 @@ class DetailViewModel @Inject constructor(private val repository: DetailReposito
                         }
                     } else {
                         val listVideos = response.videos?.results
-                        val videoKey = if (!listVideos.isNullOrEmpty()) {
-                            listVideos.filter { it.type == Constant.TRAILER }.let {
-                                it[0].key
+
+                        val videoKey = if (listVideos?.isEmpty() == true) {
+                            null
+                        } else {
+                            listVideos?.let {
+                                it.filter { item -> item.type == Constant.TRAILER }.let { items ->
+                                    if (items.isNotEmpty()) items[0].key else null
+                                }
                             }
-                        } else null
+                        }
 
                         val favorite = if (isSearch) false else movie.isFavorite
 

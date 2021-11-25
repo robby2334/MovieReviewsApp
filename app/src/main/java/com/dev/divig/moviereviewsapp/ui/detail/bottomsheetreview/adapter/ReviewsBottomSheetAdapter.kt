@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.dev.divig.moviereviewsapp.data.local.model.ReviewEntity
 import com.dev.divig.moviereviewsapp.databinding.ItemReviewBinding
+import com.dev.divig.moviereviewsapp.utils.StringUtils.textFromHtml
 import com.dev.divig.moviereviewsapp.utils.Utils
 
 class ReviewsBottomSheetAdapter() :
@@ -26,7 +27,7 @@ class ReviewsBottomSheetAdapter() :
         fun bindView(item: ReviewEntity) {
             with(item) {
                 binding.tvReviewName.text = author
-                binding.tvDescReview.text = content
+                binding.tvDescReview.textFromHtml(content)
                 binding.tvDateReview.text = Utils.dateFormatter(createAt)
             }
         }

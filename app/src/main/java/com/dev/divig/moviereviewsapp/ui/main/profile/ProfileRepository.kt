@@ -9,16 +9,16 @@ import javax.inject.Inject
 class ProfileRepository @Inject constructor(
     private val authApiDataSource: AuthApiDataSource,
     private val localDataSource: LocalDataSource
-) : ProfileContract.Repository{
+) : ProfileContract.Repository {
     override suspend fun getUserData(): BaseAuthResponse<UserData, String> {
         return authApiDataSource.getUserData()
     }
 
-    override fun loginUsername(value : String?): String? {
+    override fun loginUsername(value: String?): String? {
         return localDataSource.loginUsername(value)
     }
 
-    override fun loginEmail(value : String?): String? {
+    override fun loginEmail(value: String?): String? {
         return localDataSource.loginEmail(value)
     }
 }

@@ -11,12 +11,22 @@ interface MovieContract {
     interface View : BaseContract.BaseView {
         fun getMovies(update: Boolean)
         fun setupRecyclerView(movies: List<MovieEntity>)
+        fun getMovieFilters(
+            movies: List<MovieEntity>,
+            type: Int,
+            genre: String? = null
+        ): List<MovieEntity>
         fun initSwipeRefresh()
     }
 
     interface ViewModel {
         fun getMoviesLiveData(): LiveData<Resource<List<MovieEntity>>>
         fun getMovies(update: Boolean)
+        fun getMovieFilters(
+            movies: List<MovieEntity>,
+            type: Int,
+            genre: String?
+        ): List<MovieEntity>
     }
 
     interface Repository {

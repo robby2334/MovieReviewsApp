@@ -32,8 +32,8 @@
         <activity
             android:name=".ui.detail.DetailActivity"
             android:configChanges="orientation|screenSize|keyboardHidden|smallestScreenSize|screenLayout"
-            android:hardwareAccelerated="true"
-            android:exported="false" />
+            android:exported="false"
+            android:hardwareAccelerated="true" />
         <activity
             android:name=".ui.intro.IntroActivity"
             android:exported="true"

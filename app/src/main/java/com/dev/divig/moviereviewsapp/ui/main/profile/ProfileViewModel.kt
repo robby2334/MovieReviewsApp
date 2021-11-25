@@ -14,8 +14,8 @@ import javax.inject.Inject
 class ProfileViewModel @Inject constructor(private val repository: ProfileRepository) : ViewModel(),
     ProfileContract.ViewModel {
     private val repositoryLiveData = MutableLiveData<Resource<Pair<String, String>>>()
-    override fun getUserLiveData(): LiveData<Resource<Pair<String, String>>> = repositoryLiveData
 
+    override fun getUserLiveData(): LiveData<Resource<Pair<String, String>>> = repositoryLiveData
 
     override fun getUserData() {
         repositoryLiveData.value = Resource.Loading()
@@ -33,5 +33,4 @@ class ProfileViewModel @Inject constructor(private val repository: ProfileReposi
             }
         }
     }
-
 }
