@@ -9,4 +9,4 @@ Repositori ini merupakan projek akhir dari Bootcamp Android Engineering di Binar
 ![](screenshot/detail%20movies.png)
 ![](screenshot/search%20movies.png)
 ![](screenshot/favorite%20movie.png)
-![](screenshot/profile.png)
+![](screenshot/profile.jpg)
