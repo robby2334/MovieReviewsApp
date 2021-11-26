@@ -11,4 +11,4 @@ Repositori ini merupakan projek akhir dari Bootcamp Android Engineering di Binar
 ![favorite movie](https://user-images.githubusercontent.com/45459922/143530024-5dda3197-4152-4d97-b846-8e094145088c.png)
 ![profile](https://user-images.githubusercontent.com/45459922/143530033-110d04eb-8664-42e5-aae0-45a352a4bd84.jpg)
 # Dependensi
-![Room](https://developer.android.com/jetpack/androidx/releases/room)
+![Room](https://developer.android.com/jetpack/androidx/releases/room#feedback)
