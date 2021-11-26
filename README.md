@@ -1,8 +1,8 @@
 # Movie Reviews
 Repositori ini merupakan projek akhir dari Bootcamp Android Engineering di Binar Academy.
 # Preview
-![splashscreen](https://user-images.githubusercontent.com/45459922/143531874-4cb47c09-1de1-4417-91b2-c4fa6933fa2c.ico)
-![landing page](https://user-images.githubusercontent.com/45459922/143531898-149669a9-932e-4060-bba1-b8463a0db008.ico)
+![splashscreen](https://github.com/robby2334/MovieReviewsApp/blob/master/screenshot/splashscreen.png)
+![landing page](https://user-images.githubusercontent.com/45459922/143531898-149669a9-932e-4060-bba1-b8463a0db008.png)
 ![login](https://user-images.githubusercontent.com/45459922/143531933-e65fffdd-120d-4003-8de3-15e3ca513ae6.png)
 ![list movie](https://user-images.githubusercontent.com/45459922/143531913-5c279913-0d6a-4ebc-abe0-41f2e67487b5.png)
 ![movie category](https://user-images.githubusercontent.com/45459922/143531952-889d370a-e9ad-4e8c-a5fd-522a51b6e293.png)
