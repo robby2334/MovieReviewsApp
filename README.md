@@ -2,7 +2,7 @@
 Repositori ini merupakan projek akhir dari Bootcamp Android Engineering di Binar Academy.
 # Preview
 ![](screenshot/splashscreen.png)
-![](screenshot/landing_page.png)
+![](screenshot/landing%20page.png)
 ![](screenshot/login.png)
 ![](screenshot/list-movie.png)
 ![](screenshot/movie category.png)
